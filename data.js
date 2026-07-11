@@ -5,10 +5,13 @@ const DATABASES = {
   contacts: "contacts.json",
   coachNetwork: "coach_network.json",
   countries: "countries.json",
-  licences: "pro_licence_watch.json"
+  licences: "pro_licence_watch.json",
+  leagueIntelligence: "league_intelligence.json",
+  updates: "updates.json",
+  updateSchedule: "update_schedule.json"
 };
 
-const state = { jobs: [], contacts: [], coachNetwork: [], countries: [], licences: [] };
+const state = { jobs: [], contacts: [], coachNetwork: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
 const text = (value) => {
   if (Array.isArray(value)) return value.join(", ");
   return value === undefined || value === null || value === "" ? "To verify" : String(value);
@@ -49,12 +52,20 @@ function renderDashboard() {
   const contactsToVerify = state.contacts.filter((item) =>
     item.accuracyLevel === "To verify" || item.email === "To verify"
   );
+  const currentCoaches = state.coachNetwork.filter((item) => text(item.currentStatus).toLowerCase() === "current" && !text(item.accuracyLevel).toLowerCase().includes("to verify"));
+  const marketCount = (field) => state.countries.filter((item) => ["high", "medium", "open"].includes(text(item[field]).toLowerCase())).length;
+  const professionalLeagues = state.leagueIntelligence.filter((item) => !["to verify", "not public"].includes(text(item.professionalDivisions).toLowerCase())).length;
   const stats = [
-    ["Asia Countries Tracked", asiaCountries.length, "AFC markets"],
-    ["AFC A Head Coach Watch", headCoachWatch.length, "High and medium possibility"],
-    ["Pro Licence Watch", state.licences.length, "AFC and nearby OFC"],
-    ["Coach Network Updates", coachUpdates.length, "Non-placeholder records"],
-    ["Contacts To Verify", contactsToVerify.length, "Research queue"]
+    ["Countries Covered", state.countries.length, "Priority markets"],
+    ["Professional Leagues", professionalLeagues, "Source-qualified records"],
+    ["National Teams", state.countries.length, "Country markets tracked"],
+    ["Current Korean Coaches", currentCoaches.filter((item) => item.nationality === "Korean").length, "Verified current records"],
+    ["Current Japanese Coaches", currentCoaches.filter((item) => item.nationality === "Japanese").length, "Verified current records"],
+    ["Current Asian Coaches", currentCoaches.filter((item) => ["Korean", "Japanese", "Asian"].includes(item.nationality)).length, "Verified current records"],
+    ["Head Coach Markets", marketCount("afcAHeadCoachPossibility"), "High or medium watch"],
+    ["Assistant Coach Markets", marketCount("assistantCoachPossibility"), "High or medium watch"],
+    ["Fitness Coach Markets", marketCount("fitnessCoachPossibility"), "High or medium watch"],
+    ["4-Day Update Cycle", state.updateSchedule ? `Every ${escapeHtml(state.updateSchedule.updateCycleDays)} days` : "To verify", state.updateSchedule ? `Last: ${scheduleLastDate()} · Next: ${scheduleNextDate()} · Push: Manual` : "Schedule unavailable"]
   ];
   document.querySelector("#dashboardGrid").innerHTML = stats.map(([name, value, note]) =>
     `<article class="stat-card"><span>${escapeHtml(name)}</span><strong>${value}</strong><small>${escapeHtml(note)}</small></article>`
@@ -62,6 +73,131 @@ function renderDashboard() {
   const actions = state.jobs.filter((item) => text(item.status).toLowerCase() === "open").slice(0, 2).map(jobCard);
   actions.push(card({ label: "Licence", title: "Review application windows", meta: "Pro Licence Watch", body: "Confirm foreign applicant rules and AFC A Licence recognition with priority associations." }));
   document.querySelector("#actionGrid").innerHTML = actions.join("");
+}
+
+function scheduleLastDate() {
+  return state.updateSchedule && validDate(state.updateSchedule.lastSiteUpdate) ? state.updateSchedule.lastSiteUpdate : "To verify";
+}
+function scheduleNextDate() {
+  const last = scheduleLastDate();
+  if (!validDate(last)) return "To verify";
+  const date = new Date(`${last}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + Number(state.updateSchedule.updateCycleDays || 4));
+  return date.toISOString().slice(0, 10);
+}
+function renderUpdateSchedule() {
+  const target = document.querySelector("#schedulePanel");
+  const workflow = document.querySelector("#updateWorkflow");
+  if (!state.updateSchedule) {
+    target.innerHTML = "";
+    workflow.innerHTML = "";
+    return;
+  }
+  const next = scheduleNextDate();
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const researchDue = validDate(next) && dateValue(next) <= today.getTime();
+  const filesUpdated = validDate(scheduleLastDate());
+  const badges = [["Research Due", researchDue ? "hot" : "neutral"], ["Files Updated", filesUpdated ? "good" : "neutral"], ["Push Required", "neutral"], ["Site Live", "neutral"]];
+  target.innerHTML = `<div class="schedule-heading"><div><span class="label">${escapeHtml(state.updateSchedule.cycleName)}</span><h3>Update Cycle: Every ${escapeHtml(state.updateSchedule.updateCycleDays)} Days</h3></div><div class="schedule-badges">${badges.map(([label, className]) => `<span class="badge ${className}">${escapeHtml(label)}</span>`).join("")}</div></div><dl class="schedule-grid">${row("Last Site Update", scheduleLastDate())}${row("Next Planned Update", next)}${row("Current Status", state.updateSchedule.updateStatus)}${row("Managed Databases", state.updateSchedule.managedFiles)}</dl><p class="schedule-note">Research is collected every four days. The live website changes after the updated JSON files are committed and pushed to GitHub.</p>`;
+  const steps = ["Review verified research", "Update JSON databases", "Check Live Server", "Commit changes", "Push to GitHub", "Confirm GitHub Pages"];
+  workflow.innerHTML = `<h3>Update Workflow</h3><ol>${steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`;
+}
+
+const leagueGroups = [
+  ["League Structure", ["association", "confederation", "leagueSystem", "topDivision", "professionalDivisions", "semiProfessionalDivisions", "totalKnownDivisions", "topDivisionTeams", "leagueFormat"]],
+  ["Competitions and Match Numbers", ["leagueMatchesPerClub", "regularSeasonMatches", "playoffMatches", "mainCupCompetitions", "superCup", "otherCompetitions", "seasonCalendar", "transferWindows"]],
+  ["Licence and Coaching Opportunity", ["foreignPlayerRules", "foreignCoachRules", "headCoachMinimumLicence", "afcAHeadCoachPossibility", "assistantCoachPossibility", "fitnessCoachPossibility", "marketProfessionalLevel", "foreignCoachHiringFrequency", "englishWorkingEnvironment", "visaDifficulty"]],
+  ["Current and Previous National Team Coaches", ["nationalTeamCurrentCoach", "nationalTeamCurrentCoachNationality", "nationalTeamCurrentCoachStartDate", "nationalTeamPreviousCoach", "nationalTeamPreviousCoachNationality"]],
+  ["Coach Career Comparison", ["currentCoachCareerSummary", "previousCoachCareerSummary", "currentChampion", "currentChampionHeadCoach", "currentChampionCoachNationality", "previousChampionHeadCoach"]],
+  ["Korean / Japanese / Asian Coach History", ["recentKoreanCoaches", "recentJapaneseCoaches", "recentOtherAsianCoaches"]],
+  ["League and Club Budgets", ["leagueOperatingBudget", "leagueBudgetCurrency", "leagueBudgetStatus", "leagueBudgetSource", "clubBudgetRange", "clubBudgetCurrency", "clubBudgetStatus", "clubBudgetSource"]],
+  ["National Team Budget", ["nationalAssociationBudget", "nationalAssociationBudgetCurrency", "nationalAssociationBudgetStatus", "nationalAssociationBudgetSource", "nationalTeamOperatingBudget", "nationalTeamBudgetCurrency", "nationalTeamBudgetStatus", "nationalTeamBudgetSource"]],
+  ["Coach Salary Information", ["currentNationalTeamCoachSalary", "previousNationalTeamCoachSalary", "coachSalaryCurrency", "coachSalaryStatus", "coachSalarySource"]]
+];
+const titleCase = (key) => key.replace(/([A-Z])/g, " $1").replace(/^./, (char) => char.toUpperCase()).replace("Afc", "AFC");
+const leagueRow = (key, value) => row(titleCase(key), value);
+function leagueSources(item) {
+  const links = (item.officialSourceUrls || []).map((url, index) => row(`Official source ${index + 1}`, url, true));
+  return [row("Association website", item.officialAssociationWebsite, true), row("League website", item.officialLeagueWebsite, true), ...links, row("Last checked", item.lastChecked), row("Accuracy", item.accuracyLevel), row("Notes", item.notes)].join("");
+}
+function leagueCard(item) {
+  const summary = [
+    row("Top Division", item.topDivision), row("Known League Divisions", item.totalKnownDivisions), row("League Matches", item.leagueMatchesPerClub),
+    row("Main Cup", item.mainCupCompetitions), row("AFC A Head Coach", item.afcAHeadCoachPossibility), row("Head Coach Fit", item.headCoachFitScore),
+    row("Assistant Fit", item.assistantCoachFitScore), row("Fitness Fit", item.fitnessCoachFitScore), row("Last Checked", item.lastChecked)
+  ].join("");
+  const groups = leagueGroups.map(([heading, keys]) => `<h4>${escapeHtml(heading)}</h4>${keys.map((key) => leagueRow(key, item[key])).join("")}`).join("");
+  const fitRows = Object.entries(item.fitFactors || {}).map(([key, value]) => leagueRow(key, value)).join("");
+  const fit = `${leagueRow("headCoachFitScore", item.headCoachFitScore)}${leagueRow("assistantCoachFitScore", item.assistantCoachFitScore)}${leagueRow("fitnessCoachFitScore", item.fitnessCoachFitScore)}${leagueRow("overallOpportunityScore", item.overallOpportunityScore)}${fitRows}<p class="fit-note">This score is an internal comparison tool, not a prediction of employment.</p>`;
+  return `<article class="card league-card"><div class="card-top"><span class="label">${escapeHtml(item.continent)}</span><span class="badge ${badgeClass(item.accuracyLevel)}">${escapeHtml(item.accuracyLevel)}</span></div><h3>${item.flag === "To verify" ? "" : escapeHtml(item.flag) + " "}${escapeHtml(item.marketName || item.country)}</h3><dl class="league-summary">${summary}</dl><details><summary>View Details</summary><dl>${groups}<h4>Official Sources</h4>${leagueSources(item)}<h4>Julio Fit Analysis</h4>${fit}</dl></details></article>`;
+}
+const leagueFilterNames = ["All", "Asia", "Oceania", "Canada", "Africa Watch", "Europe Watch", "AFC A Head Coach", "Assistant Coach", "Fitness Coach", "Verified", "To Verify"];
+function leagueMatchesFilter(item, filter) {
+  if (filter === "All") return true;
+  if (["Asia", "Oceania", "Canada", "Africa Watch", "Europe Watch"].includes(filter)) return item.continent === filter;
+  if (filter === "Verified") return /verified|official|audited/i.test(item.accuracyLevel);
+  if (filter === "To Verify") return /to verify|research required/i.test(item.accuracyLevel);
+  const field = { "AFC A Head Coach": "afcAHeadCoachPossibility", "Assistant Coach": "assistantCoachPossibility", "Fitness Coach": "fitnessCoachPossibility" }[filter];
+  return /high|medium|open|suitable/i.test(text(item[field]));
+}
+function renderLeagueStats() {
+  const data = state.leagueIntelligence;
+  const countMarkets = (field) => data.filter((item) => /high|medium|open|suitable/i.test(text(item[field]))).length;
+  const verifiedStatuses = new Set(["Official", "Audited Report"]);
+  const uniqueCountries = new Set(data.map((item) => item.country)).size;
+  const stats = [["Countries Covered", uniqueCountries], ["AFC A Head Coach Markets", countMarkets("afcAHeadCoachPossibility")], ["Assistant Coach Markets", countMarkets("assistantCoachPossibility")], ["Fitness Coach Markets", countMarkets("fitnessCoachPossibility")], ["Budgets Verified", data.filter((item) => verifiedStatuses.has(item.leagueBudgetStatus) || verifiedStatuses.has(item.nationalAssociationBudgetStatus) || verifiedStatuses.has(item.nationalTeamBudgetStatus) || verifiedStatuses.has(item.clubBudgetStatus)).length], ["Salaries Verified", data.filter((item) => verifiedStatuses.has(item.coachSalaryStatus)).length], ["Research Required", data.filter((item) => /research required|to verify/i.test(item.accuracyLevel)).length]];
+  document.querySelector("#leagueStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
+}
+function renderLeagueIntelligence(filter = "All", query = "") {
+  const normalized = query.trim().toLowerCase();
+  const list = state.leagueIntelligence.filter((item) => leagueMatchesFilter(item, filter) && (!normalized || [item.country, item.marketName, item.topDivision, item.association, item.nationalTeamCurrentCoach, item.nationalTeamPreviousCoach, item.currentChampionHeadCoach].join(" ").toLowerCase().includes(normalized)));
+  document.querySelector("#leagueCount").textContent = `${list.length} markets`;
+  document.querySelector("#leagueGrid").innerHTML = list.map(leagueCard).join("") || emptyState("No markets match this search and filter.");
+  document.querySelector("#leagueFilters").innerHTML = leagueFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-league-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
+}
+
+const updateFilterNames = ["All", "New", "Changed", "Verified", "Jobs", "Contacts", "Coach Network", "League Intelligence", "Pro Licence", "Deadline Soon", "Research Required"];
+const validDate = (value) => /^\d{4}-\d{2}-\d{2}$/.test(text(value));
+const dateValue = (value) => validDate(value) ? new Date(`${value}T00:00:00`).getTime() : 0;
+function updateMatchesFilter(item, filter) {
+  if (filter === "All") return true;
+  if (["New", "Changed", "Verified", "Deadline Soon", "Research Required"].includes(filter)) return item.updateType === filter;
+  const category = { Jobs: "Job", Contacts: "Contact" }[filter] || filter;
+  return item.category === category;
+}
+function updateMatchesPeriod(item, period) {
+  if (period === "All History") return true;
+  if (!validDate(item.date)) return false;
+  const days = period === "Last 7 Days" ? 7 : 30;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const difference = today.getTime() - dateValue(item.date);
+  return difference >= 0 && difference <= days * 86400000;
+}
+function updateHighlight(item) {
+  if (item.updateType === "Deadline Soon") return "deadline-highlight";
+  if (item.updateType === "New" && item.category === "Job" && /verified|official/i.test(item.accuracyLevel)) return "verified-highlight";
+  if (item.updateType === "Corrected" && ["Coach Network", "National Team", "Professional Club"].includes(item.category)) return "corrected-highlight";
+  if (item.updateType === "Contact Added" && /verified|official/i.test(item.accuracyLevel)) return "contact-highlight";
+  return "";
+}
+function updateCard(item) {
+  const source = safeUrl(item.sourceUrl) ? row("Source URL", item.sourceUrl, true) : row("Source URL", item.sourceUrl);
+  return `<article class="card update-card ${updateHighlight(item)}"><div class="card-top"><span class="label">${escapeHtml(item.date)}</span><span class="badge ${badgeClass(item.updateType)}">${escapeHtml(item.updateType)}</span></div><h3>${escapeHtml(item.title)}</h3><p class="meta">${escapeHtml(item.country)} · ${escapeHtml(item.organization)}</p><p>${escapeHtml(item.shortSummary)}</p><div class="update-card-meta"><span>${escapeHtml(item.priority)}</span><span>${escapeHtml(item.accuracyLevel)}</span><span>${escapeHtml(item.relatedPage)}</span></div><details><summary>View Details</summary><dl>${row("Source", item.sourceName)}${source}${row("Related Role", item.relatedRole)}${row("Status", item.status)}${row("Recommended Action", item.recommendedAction)}${row("Last Checked", item.lastChecked)}${row("Notes", item.notes)}</dl></details></article>`;
+}
+function renderUpdateStats() {
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  const thisWeek = state.updates.filter((item) => validDate(item.date) && now.getTime() - dateValue(item.date) >= 0 && now.getTime() - dateValue(item.date) <= 7 * 86400000 && ["Changed", "Corrected"].includes(item.updateType)).length;
+  const stats = [["New Today", state.updates.filter((item) => item.date === today && item.updateType === "New").length], ["Changed This Week", thisWeek], ["Deadline Soon", state.updates.filter((item) => item.updateType === "Deadline Soon").length], ["Contacts Added", state.updates.filter((item) => item.updateType === "Contact Added").length], ["Coaches Appointed", state.updates.filter((item) => item.updateType === "Coach Appointed").length], ["Research Required", state.updates.filter((item) => item.updateType === "Research Required").length]];
+  document.querySelector("#updatesStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
+}
+function renderUpdates(filter = "All", query = "", period = "All History") {
+  const normalized = query.trim().toLowerCase();
+  const list = state.updates.filter((item) => updateMatchesFilter(item, filter) && updateMatchesPeriod(item, period) && (!normalized || [item.country, item.organization, item.title, item.relatedRole, item.shortSummary].join(" ").toLowerCase().includes(normalized))).sort((a, b) => dateValue(b.date) - dateValue(a.date) || text(b.time).localeCompare(text(a.time)));
+  document.querySelector("#updatesCount").textContent = `${list.length} updates`;
+  document.querySelector("#updatesGrid").innerHTML = list.map(updateCard).join("") || emptyState("No updates match this search and filter.");
+  document.querySelector("#updatesFilters").innerHTML = updateFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-update-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
 }
 
 function jobCard(item) {
@@ -171,25 +307,67 @@ function setupNavigation() {
     const button = event.target.closest("[data-country-filter]");
     if (button) renderCountries(button.dataset.countryFilter);
   });
+  document.querySelector("#leagueFilters").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-league-filter]");
+    if (button) renderLeagueIntelligence(button.dataset.leagueFilter, document.querySelector("#leagueSearch").value);
+  });
+  document.querySelector("#leagueSearch").addEventListener("input", (event) => {
+    const active = document.querySelector("#leagueFilters .active");
+    renderLeagueIntelligence(active ? active.dataset.leagueFilter : "All", event.target.value);
+  });
+  document.querySelector("#updatesFilters").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-update-filter]");
+    if (button) renderUpdates(button.dataset.updateFilter, document.querySelector("#updatesSearch").value, document.querySelector("#updatesPeriod").value);
+  });
+  document.querySelector("#updatesSearch").addEventListener("input", (event) => {
+    const active = document.querySelector("#updatesFilters .active");
+    renderUpdates(active ? active.dataset.updateFilter : "All", event.target.value, document.querySelector("#updatesPeriod").value);
+  });
+  document.querySelector("#updatesPeriod").addEventListener("change", (event) => {
+    const active = document.querySelector("#updatesFilters .active");
+    renderUpdates(active ? active.dataset.updateFilter : "All", document.querySelector("#updatesSearch").value, event.target.value);
+  });
 }
 
 async function loadDatabases() {
-  try {
-    const entries = await Promise.all(Object.entries(DATABASES).map(async ([key, url]) => {
+  const entries = await Promise.allSettled(Object.entries(DATABASES).map(async ([key, url]) => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`${url}: ${response.status}`);
       const payload = await response.json();
-      if (!Array.isArray(payload)) throw new Error(`${url}: expected an array`);
+      if (key === "updateSchedule") {
+        if (!payload || Array.isArray(payload) || typeof payload !== "object") throw new Error(`${url}: expected an object`);
+      } else if (!Array.isArray(payload)) throw new Error(`${url}: expected an array`);
       return [key, payload];
-    }));
-    entries.forEach(([key, payload]) => { state[key] = payload; });
-    renderDashboard(); renderJobs(); renderContacts(); renderCoachNetwork(); renderCountries(); renderLicences();
-  } catch (error) {
+  }));
+  entries.forEach((result, index) => {
+    if (result.status === "fulfilled") state[result.value[0]] = result.value[1];
+    else console.error("Database loading failed:", Object.values(DATABASES)[index], result.reason);
+  });
+  const generalFailed = entries.slice(0, -3).some((result) => result.status === "rejected");
+  const leagueFailed = entries[entries.length - 3].status === "rejected";
+  const updatesFailed = entries[entries.length - 2].status === "rejected";
+  const scheduleFailed = entries[entries.length - 1].status === "rejected";
+  if (generalFailed) {
     const notice = document.querySelector("#databaseMessage");
     notice.hidden = false;
     notice.textContent = "For JSON database mode, please run with Live Server or GitHub Pages.";
-    console.error("Database loading failed:", error);
   }
+  if (leagueFailed) {
+    const notice = document.querySelector("#leagueMessage");
+    notice.hidden = false;
+    notice.textContent = "League Intelligence data could not be loaded. Run the project with Live Server or GitHub Pages.";
+  }
+  if (updatesFailed) {
+    const notice = document.querySelector("#updatesMessage");
+    notice.hidden = false;
+    notice.textContent = "Update Center data could not be loaded. Run the project with Live Server or GitHub Pages.";
+  }
+  if (scheduleFailed) {
+    const notice = document.querySelector("#scheduleMessage");
+    notice.hidden = false;
+    notice.textContent = "Update schedule could not be loaded. Run the project with Live Server or GitHub Pages.";
+  }
+  renderUpdateSchedule(); renderDashboard(); renderJobs(); renderContacts(); renderCoachNetwork(); renderCountries(); renderLicences(); renderLeagueStats(); renderLeagueIntelligence(); renderUpdateStats(); renderUpdates();
 }
 
 document.querySelector("#todayDate").textContent = new Intl.DateTimeFormat("en", { dateStyle: "long" }).format(new Date());

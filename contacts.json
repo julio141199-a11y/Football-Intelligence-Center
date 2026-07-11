@@ -19,7 +19,9 @@
     "sourceUrl": "https://inside.fifa.com/associations/LAO/organisation",
     "lastChecked": "2026-07-07",
     "accuracyLevel": "Official website / FIFA page to verify",
-    "notes": "Priority because Julio has Laos national team experience."
+    "notes": "Priority because Julio has Laos national team experience.",
+    "leagueIntelligenceCountryId": "country-007",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-002",
@@ -41,7 +43,9 @@
     "sourceUrl": "https://inside.fifa.com/associations/CAM/organisation",
     "lastChecked": "2026-07-07",
     "accuracyLevel": "Official website / FIFA page to verify",
-    "notes": "High priority ASEAN market with Korean/Japanese coaching links."
+    "notes": "High priority ASEAN market with Korean/Japanese coaching links.",
+    "leagueIntelligenceCountryId": "country-006",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-003",
@@ -63,7 +67,9 @@
     "sourceUrl": "https://inside.fifa.com/associations/THA/organisation",
     "lastChecked": "2026-07-07",
     "accuracyLevel": "Official association contact to verify",
-    "notes": "Important ASEAN market and AFC Pro course watch."
+    "notes": "Important ASEAN market and AFC Pro course watch.",
+    "leagueIntelligenceCountryId": "country-001",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-004",
@@ -85,7 +91,9 @@
     "sourceUrl": "https://inside.fifa.com/associations/PHI/organisation",
     "lastChecked": "2026-07-07",
     "accuracyLevel": "Official website / FIFA page to verify",
-    "notes": "English-friendly market and Korean coach network watch."
+    "notes": "English-friendly market and Korean coach network watch.",
+    "leagueIntelligenceCountryId": "country-005",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-005",
@@ -107,7 +115,9 @@
     "sourceUrl": "https://www.instagram.com/p/DZ-yLspz5wq/",
     "lastChecked": "2026-07-07",
     "accuracyLevel": "Verified from official vacancy post",
-    "notes": "Active Men's National Team Head Coach vacancy contact."
+    "notes": "Active Men's National Team Head Coach vacancy contact.",
+    "leagueIntelligenceCountryId": "country-040",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-vietnam-fa",
@@ -129,7 +139,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-002",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-malaysia-fa",
@@ -151,7 +163,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-003",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-indonesia-fa",
@@ -173,7 +187,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-004",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-singapore-fa",
@@ -195,7 +211,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-008",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-brunei-fa",
@@ -217,7 +235,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-009",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-myanmar-fa",
@@ -239,7 +259,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-021",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-timor-leste-fa",
@@ -261,7 +283,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-timor-leste",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-india-fa",
@@ -283,7 +307,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-010",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-bangladesh-fa",
@@ -305,7 +331,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-011",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-pakistan-fa",
@@ -327,7 +355,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-016",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-sri-lanka-fa",
@@ -349,7 +379,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-015",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-nepal-fa",
@@ -371,7 +403,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-012",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-bhutan-fa",
@@ -393,7 +427,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-013",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-maldives-fa",
@@ -415,7 +451,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-014",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-mongolia-fa",
@@ -437,7 +475,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-017",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-chinese-taipei-fa",
@@ -459,7 +499,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-020",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-hong-kong-fa",
@@ -481,7 +523,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-018",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-macau-fa",
@@ -503,7 +547,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-019",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-china-pr-fa",
@@ -525,7 +571,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-china-pr",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-korea-republic-fa",
@@ -547,7 +595,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-korea-republic",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-japan-fa",
@@ -569,7 +619,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-japan",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-dpr-korea-fa",
@@ -591,7 +643,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-dpr-korea",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-uzbekistan-fa",
@@ -613,7 +667,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-022",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-tajikistan-fa",
@@ -635,7 +691,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-023",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-kyrgyzstan-fa",
@@ -657,7 +715,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-024",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-turkmenistan-fa",
@@ -679,7 +739,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-025",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-kazakhstan-fa",
@@ -701,7 +763,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-026",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-afghanistan-fa",
@@ -723,7 +787,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-afghanistan",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-iran-fa",
@@ -745,7 +811,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-iran",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-iraq-fa",
@@ -767,7 +835,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-035",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-jordan-fa",
@@ -789,7 +859,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-033",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-lebanon-fa",
@@ -811,7 +883,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-034",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-syria-fa",
@@ -833,7 +907,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-syria",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-palestine-fa",
@@ -855,7 +931,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-palestine",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-saudi-arabia-fa",
@@ -877,7 +955,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-029",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-qatar-fa",
@@ -899,7 +979,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-027",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-uae-fa",
@@ -921,7 +1003,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-028",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-bahrain-fa",
@@ -943,7 +1027,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-031",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-kuwait-fa",
@@ -965,7 +1051,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-032",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-oman-fa",
@@ -987,7 +1075,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-030",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "contact-yemen-fa",
@@ -1009,6 +1099,8 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "To verify"
+    "notes": "To verify",
+    "leagueIntelligenceCountryId": "country-yemen",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   }
 ]

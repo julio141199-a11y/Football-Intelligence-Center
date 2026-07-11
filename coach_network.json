@@ -16,7 +16,9 @@
     "sourceUrl": "https://vietnamnet.vn/en/head-coach-kim-sang-sik-signs-contract-introduces-winning-philosophy-2277926.html",
     "accuracyLevel": "Verified media report",
     "notes": "Important Korean national team head coach case in ASEAN.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-002",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-002",
@@ -35,7 +37,9 @@
     "sourceUrl": "https://en.sedaily.com/sports/2026/06/24/kim-doo-hyun-joins-vietnam-national-team-as-assistant-coach",
     "accuracyLevel": "Verified media report",
     "notes": "Joined Kim Sang-sik staff through October.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-002",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-003",
@@ -54,7 +58,9 @@
     "sourceUrl": "To verify",
     "accuracyLevel": "To verify with PFF or official team source",
     "notes": "Renewal reported by user; official source required.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-005",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-004",
@@ -73,7 +79,9 @@
     "sourceUrl": "https://en.wikipedia.org/wiki/Yoo_Kee-heung",
     "accuracyLevel": "To verify with official federation archive",
     "notes": "Historical Korean head coach case in Cambodia.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-006",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-005",
@@ -92,7 +100,9 @@
     "sourceUrl": "To verify",
     "accuracyLevel": "To verify with club or CPL source",
     "notes": "Reported Cambodian professional football role.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-006",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-006",
@@ -111,7 +121,9 @@
     "sourceUrl": "https://www.mk.co.kr/en/society/12091754",
     "accuracyLevel": "Verified media report; official club SNS should be checked",
     "notes": "Important Cambodian club technical director case.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-006",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-007",
@@ -130,7 +142,9 @@
     "sourceUrl": "https://www.facebook.com/GuamFootball/posts/3920933874687764/",
     "accuracyLevel": "Official association social media",
     "notes": "Korean coach appointment in Guam.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-guam",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-008",
@@ -149,7 +163,9 @@
     "sourceUrl": "https://en.wikipedia.org/wiki/Nagaworld_FC",
     "accuracyLevel": "To verify with official club source",
     "notes": "Do not mark as Korean owner; Korean link not verified.",
-    "lastChecked": "2026-07-07"
+    "lastChecked": "2026-07-07",
+    "leagueIntelligenceCountryId": "country-006",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-thailand-placeholder",
@@ -168,7 +184,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-001",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-malaysia-placeholder",
@@ -187,7 +205,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-003",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-indonesia-placeholder",
@@ -206,7 +226,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-004",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-laos-placeholder",
@@ -225,7 +247,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-007",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-singapore-placeholder",
@@ -244,7 +268,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-008",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-brunei-placeholder",
@@ -263,7 +289,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-009",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-myanmar-placeholder",
@@ -282,7 +310,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-021",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-timor-leste-placeholder",
@@ -301,7 +331,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-timor-leste",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-india-placeholder",
@@ -320,7 +352,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-010",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-bangladesh-placeholder",
@@ -339,7 +373,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-011",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-pakistan-placeholder",
@@ -358,7 +394,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-016",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-sri-lanka-placeholder",
@@ -377,7 +415,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-015",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-nepal-placeholder",
@@ -396,7 +436,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-012",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-bhutan-placeholder",
@@ -415,7 +457,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-013",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-maldives-placeholder",
@@ -434,7 +478,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-014",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-mongolia-placeholder",
@@ -453,7 +499,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-017",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-chinese-taipei-placeholder",
@@ -472,7 +520,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-020",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-hong-kong-placeholder",
@@ -491,7 +541,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-018",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-macau-placeholder",
@@ -510,7 +562,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-019",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-china-pr-placeholder",
@@ -529,7 +583,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-china-pr",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-korea-republic-placeholder",
@@ -548,7 +604,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-korea-republic",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-japan-placeholder",
@@ -567,7 +625,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-japan",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-dpr-korea-placeholder",
@@ -586,7 +646,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-dpr-korea",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-uzbekistan-placeholder",
@@ -605,7 +667,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-022",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-tajikistan-placeholder",
@@ -624,7 +688,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-023",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-kyrgyzstan-placeholder",
@@ -643,7 +709,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-024",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-turkmenistan-placeholder",
@@ -662,7 +730,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-025",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-kazakhstan-placeholder",
@@ -681,7 +751,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-026",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-afghanistan-placeholder",
@@ -700,7 +772,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-afghanistan",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-iran-placeholder",
@@ -719,7 +793,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-iran",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-iraq-placeholder",
@@ -738,7 +814,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-035",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-jordan-placeholder",
@@ -757,7 +835,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-033",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-lebanon-placeholder",
@@ -776,7 +856,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-034",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-syria-placeholder",
@@ -795,7 +877,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-syria",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-palestine-placeholder",
@@ -814,7 +898,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-palestine",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-saudi-arabia-placeholder",
@@ -833,7 +919,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-029",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-qatar-placeholder",
@@ -852,7 +940,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-027",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-uae-placeholder",
@@ -871,7 +961,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-028",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-bahrain-placeholder",
@@ -890,7 +982,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-031",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-kuwait-placeholder",
@@ -909,7 +1003,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-032",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-oman-placeholder",
@@ -928,7 +1024,9 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-030",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   },
   {
     "id": "coach-yemen-placeholder",
@@ -947,6 +1045,8 @@
     "sourceUrl": "To verify",
     "lastChecked": "To verify",
     "accuracyLevel": "To verify",
-    "notes": "Placeholder only; no verified Korean or Japanese coach history added."
+    "notes": "Placeholder only; no verified Korean or Japanese coach history added.",
+    "leagueIntelligenceCountryId": "country-yemen",
+    "dataPolicy": "Use only official or highly trusted sources; unavailable data is Not Public and uncertain data is To Verify."
   }
 ]

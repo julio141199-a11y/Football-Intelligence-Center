@@ -1,0 +1,26 @@
+{
+  "updateCycleDays": 4,
+  "cycleName": "FIC 4-Day Update",
+  "lastSiteUpdate": "To verify",
+  "nextPlannedUpdate": "To verify",
+  "updateStatus": "Waiting for next research update",
+  "managedFiles": [
+    "jobs.json",
+    "contacts.json",
+    "coach_network.json",
+    "countries.json",
+    "pro_licence_watch.json",
+    "league_intelligence.json",
+    "updates.json"
+  ],
+  "updatePriority": [
+    "AFC A Head Coach opportunities",
+    "Assistant Coach opportunities",
+    "Fitness Coach opportunities",
+    "Official contacts",
+    "Coach Network changes",
+    "League Intelligence",
+    "Pro Licence information"
+  ],
+  "notes": "Research is reviewed every four days. GitHub Pages updates after files are committed and pushed."
+}

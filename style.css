@@ -31,7 +31,7 @@ h1 { margin: 0; font-size: clamp(21px, 4vw, 30px); letter-spacing: 0; }
 }
 .main-nav button, .filters button {
   flex: 0 0 auto; border: 0; border-radius: 5px; padding: 8px 11px; background: transparent;
-  color: #555; font-size: 12px; font-weight: 700; cursor: pointer;
+  min-height: 44px; color: #555; font-size: 12px; font-weight: 700; cursor: pointer;
 }
 .main-nav button.active { background: var(--accent); color: #fff; }
 
@@ -75,16 +75,51 @@ dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
 .filters button { background: var(--soft); border: 1px solid var(--line); }
 .filters button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .notice, .empty { padding: 14px; border: 1px solid #e6bcbc; border-radius: var(--radius); background: #fff5f5; color: var(--accent-dark); font-weight: 700; }
+.league-tools { margin: -4px 0 10px; }
+.league-tools label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 11px; font-weight: 700; }
+.league-tools input { width: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; font-size: 14px; }
+.league-stats { margin-bottom: 16px; }
+.league-summary { margin-top: 9px; }
+.league-summary .detail-row { grid-template-columns: minmax(120px, 48%) 1fr; }
+.league-card h4 { margin: 16px 0 4px; padding-bottom: 4px; border-bottom: 2px solid var(--line); color: var(--accent); font-size: 11px; text-transform: uppercase; }
+.league-card summary { min-height: 44px; padding-top: 13px; }
+.fit-note { padding: 8px; border-radius: 5px; background: var(--soft); color: var(--muted); font-size: 11px; }
+.updates-stats { margin-bottom: 16px; }
+.update-tools { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: -4px 0 10px; }
+.update-tools label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 11px; font-weight: 700; }
+.update-tools input, .update-tools select { width: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font: inherit; font-size: 14px; }
+.update-card-meta { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.update-card-meta span { padding: 3px 6px; border-radius: 4px; background: var(--soft); color: var(--muted); font-size: 10px; font-weight: 700; }
+.update-card.deadline-highlight { border-left: 4px solid #c2410c; }
+.update-card.verified-highlight { border-left: 4px solid #15803d; }
+.update-card.corrected-highlight { border-left: 4px solid #1d4ed8; }
+.update-card.contact-highlight { border-left: 4px solid #0f766e; }
+.schedule-panel, .workflow-panel { margin-bottom: 12px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.schedule-panel:empty, .workflow-panel:empty { display: none; }
+.schedule-heading { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+.schedule-heading h3, .workflow-panel h3 { margin: 4px 0 0; font-size: 15px; }
+.schedule-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+.schedule-grid { display: grid; grid-template-columns: 1fr; margin-top: 10px; }
+.schedule-note { margin: 10px 0 0; padding: 8px; border-radius: 5px; background: var(--soft); color: var(--muted); font-size: 11px; }
+.workflow-panel ol { display: grid; grid-template-columns: 1fr; gap: 5px; margin: 10px 0 0; padding-left: 24px; }
+.workflow-panel li { padding: 4px 2px; font-size: 12px; }
 
 @media (min-width: 600px) {
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .update-tools { grid-template-columns: minmax(0, 1fr) 180px; }
+  .schedule-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }
+  .workflow-panel ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 900px) {
   .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .stats-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 520px) {
   .site-header { align-items: start; flex-direction: column; }
   main { padding-top: 18px; }
+  body { overflow-x: hidden; font-size: 14px; }
+  .league-summary .detail-row { grid-template-columns: minmax(115px, 48%) 1fr; }
+  .schedule-heading { flex-direction: column; }
+  .schedule-badges { justify-content: flex-start; }
 }
