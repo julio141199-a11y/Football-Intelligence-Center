@@ -103,6 +103,18 @@ dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
 .schedule-note { margin: 10px 0 0; padding: 8px; border-radius: 5px; background: var(--soft); color: var(--muted); font-size: 11px; }
 .workflow-panel ol { display: grid; grid-template-columns: 1fr; gap: 5px; margin: 10px 0 0; padding-left: 24px; }
 .workflow-panel li { padding: 4px 2px; font-size: 12px; }
+.urgent-monitoring { border-left: 3px solid var(--accent); }
+.jobs-stats { margin-bottom: 16px; }
+.jobs-tools { margin: -4px 0 10px; }
+.jobs-tools label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 11px; font-weight: 700; }
+.jobs-tools input { width: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font: inherit; font-size: 14px; }
+.job-summary { margin-top: 9px; }
+.job-summary .detail-row { grid-template-columns: minmax(118px, 44%) 1fr; }
+.source-badge { padding: 2px 6px; border: 1px solid #d8d1d1; border-radius: 999px; color: #514b4b; font-size: 9px; font-weight: 800; }
+.job-actions { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 10px; }
+.job-action { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 5px; background: #fff; color: var(--ink); font-size: 11px; font-weight: 800; text-align: center; text-decoration: none; }
+.job-action.primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+.job-action.disabled { color: #918989; cursor: not-allowed; }
 
 @media (min-width: 600px) {
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -110,6 +122,7 @@ dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
   .update-tools { grid-template-columns: minmax(0, 1fr) 180px; }
   .schedule-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }
   .workflow-panel ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .job-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 900px) {
   .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -122,4 +135,5 @@ dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
   .league-summary .detail-row { grid-template-columns: minmax(115px, 48%) 1fr; }
   .schedule-heading { flex-direction: column; }
   .schedule-badges { justify-content: flex-start; }
+  .job-summary .detail-row { grid-template-columns: minmax(112px, 46%) 1fr; }
 }

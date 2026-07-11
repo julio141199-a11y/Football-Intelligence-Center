@@ -98,7 +98,7 @@ function renderUpdateSchedule() {
   const researchDue = validDate(next) && dateValue(next) <= today.getTime();
   const filesUpdated = validDate(scheduleLastDate());
   const badges = [["Research Due", researchDue ? "hot" : "neutral"], ["Files Updated", filesUpdated ? "good" : "neutral"], ["Push Required", "neutral"], ["Site Live", "neutral"]];
-  target.innerHTML = `<div class="schedule-heading"><div><span class="label">${escapeHtml(state.updateSchedule.cycleName)}</span><h3>Update Cycle: Every ${escapeHtml(state.updateSchedule.updateCycleDays)} Days</h3></div><div class="schedule-badges">${badges.map(([label, className]) => `<span class="badge ${className}">${escapeHtml(label)}</span>`).join("")}</div></div><dl class="schedule-grid">${row("Last Site Update", scheduleLastDate())}${row("Next Planned Update", next)}${row("Current Status", state.updateSchedule.updateStatus)}${row("Managed Databases", state.updateSchedule.managedFiles)}</dl><p class="schedule-note">Research is collected every four days. The live website changes after the updated JSON files are committed and pushed to GitHub.</p>`;
+  target.innerHTML = `<div class="schedule-heading"><div><span class="label">${escapeHtml(state.updateSchedule.cycleName)}</span><h3>Update Cycle: Every ${escapeHtml(state.updateSchedule.updateCycleDays)} Days</h3></div><div class="schedule-badges">${badges.map(([label, className]) => `<span class="badge ${className}">${escapeHtml(label)}</span>`).join("")}</div></div><dl class="schedule-grid">${row("Last Site Update", scheduleLastDate())}${row("Next Planned Update", next)}${row("Current Status", state.updateSchedule.updateStatus)}${row("Managed Databases", state.updateSchedule.managedFiles)}</dl><p class="schedule-note">Research is collected every four days. The live website changes after the updated JSON files are committed and pushed to GitHub.</p><p class="schedule-note urgent-monitoring">Official vacancies are monitored more frequently. Verified urgent vacancies may be added before the regular four-day database update.</p>`;
   const steps = ["Review verified research", "Update JSON databases", "Check Live Server", "Commit changes", "Push to GitHub", "Confirm GitHub Pages"];
   workflow.innerHTML = `<h3>Update Workflow</h3><ol>${steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`;
 }
@@ -161,7 +161,10 @@ const validDate = (value) => /^\d{4}-\d{2}-\d{2}$/.test(text(value));
 const dateValue = (value) => validDate(value) ? new Date(`${value}T00:00:00`).getTime() : 0;
 function updateMatchesFilter(item, filter) {
   if (filter === "All") return true;
-  if (["New", "Changed", "Verified", "Deadline Soon", "Research Required"].includes(filter)) return item.updateType === filter;
+  if (filter === "New") return ["New", "New Vacancy"].includes(item.updateType);
+  if (filter === "Changed") return ["Changed", "Vacancy Changed", "Vacancy Closed"].includes(item.updateType);
+  if (filter === "Verified") return ["Verified", "Vacancy Verified"].includes(item.updateType);
+  if (["Deadline Soon", "Research Required"].includes(filter)) return item.updateType === filter;
   const category = { Jobs: "Job", Contacts: "Contact" }[filter] || filter;
   return item.category === category;
 }
@@ -176,7 +179,7 @@ function updateMatchesPeriod(item, period) {
 }
 function updateHighlight(item) {
   if (item.updateType === "Deadline Soon") return "deadline-highlight";
-  if (item.updateType === "New" && item.category === "Job" && /verified|official/i.test(item.accuracyLevel)) return "verified-highlight";
+  if (["New", "New Vacancy", "Vacancy Verified"].includes(item.updateType) && item.category === "Job" && /verified|official/i.test(item.accuracyLevel)) return "verified-highlight";
   if (item.updateType === "Corrected" && ["Coach Network", "National Team", "Professional Club"].includes(item.category)) return "corrected-highlight";
   if (item.updateType === "Contact Added" && /verified|official/i.test(item.accuracyLevel)) return "contact-highlight";
   return "";
@@ -188,8 +191,8 @@ function updateCard(item) {
 function renderUpdateStats() {
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
   const now = new Date(); now.setHours(0, 0, 0, 0);
-  const thisWeek = state.updates.filter((item) => validDate(item.date) && now.getTime() - dateValue(item.date) >= 0 && now.getTime() - dateValue(item.date) <= 7 * 86400000 && ["Changed", "Corrected"].includes(item.updateType)).length;
-  const stats = [["New Today", state.updates.filter((item) => item.date === today && item.updateType === "New").length], ["Changed This Week", thisWeek], ["Deadline Soon", state.updates.filter((item) => item.updateType === "Deadline Soon").length], ["Contacts Added", state.updates.filter((item) => item.updateType === "Contact Added").length], ["Coaches Appointed", state.updates.filter((item) => item.updateType === "Coach Appointed").length], ["Research Required", state.updates.filter((item) => item.updateType === "Research Required").length]];
+  const thisWeek = state.updates.filter((item) => validDate(item.date) && now.getTime() - dateValue(item.date) >= 0 && now.getTime() - dateValue(item.date) <= 7 * 86400000 && ["Changed", "Corrected", "Vacancy Changed", "Vacancy Closed"].includes(item.updateType)).length;
+  const stats = [["New Today", state.updates.filter((item) => item.date === today && ["New", "New Vacancy"].includes(item.updateType)).length], ["Changed This Week", thisWeek], ["Deadline Soon", state.updates.filter((item) => item.updateType === "Deadline Soon").length], ["Contacts Added", state.updates.filter((item) => item.updateType === "Contact Added").length], ["Coaches Appointed", state.updates.filter((item) => item.updateType === "Coach Appointed").length], ["Research Required", state.updates.filter((item) => item.updateType === "Research Required").length]];
   document.querySelector("#updatesStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
 }
 function renderUpdates(filter = "All", query = "", period = "All History") {
@@ -200,25 +203,66 @@ function renderUpdates(filter = "All", query = "", period = "All History") {
   document.querySelector("#updatesFilters").innerHTML = updateFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-update-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
 }
 
-function jobCard(item) {
-  return card({
-    label: item.roleType, title: item.position,
-    meta: `${item.country} · ${item.organization}`,
-    badges: [item.priority, item.status],
-    body: item.shortSummary,
-    rows: [
-      row("Deadline", item.deadline), row("Team", item.teamType), row("Licence", item.licenceRequirement),
-      row("Application", item.applicationMethod), row("Contact", `${item.contactPerson} · ${item.contactEmail}`),
-      row("Fit score", item.fitScore), row("Fit reason", item.fitReason),
-      row("Recommended action", item.recommendedAction), row("Details", item.details),
-      row("Source", item.sourceUrl, true), row("Last checked", item.lastChecked), row("Notes", item.notes)
-    ]
+const jobFilterNames = ["All", "Open", "Closing Soon", "Head Coach", "Assistant Coach", "Fitness Coach", "National Team", "Professional Club", "AFC", "OFC", "Africa", "Canada", "Central America", "Verified", "To Verify", "Closed"];
+const verifiedJobPlatforms = new Set(["Official Website", "Instagram", "Facebook", "TikTok", "LinkedIn", "X", "FIFA", "AFC", "OFC", "CAF", "UEFA", "CONCACAF", "FutbolJobs", "Jobs4Football", "LinkedIn Jobs"]);
+const socialJobPlatforms = new Set(["Instagram", "Facebook", "TikTok", "LinkedIn", "X"]);
+const recruitmentPlatforms = new Set(["FutbolJobs", "Jobs4Football", "LinkedIn Jobs"]);
+function calculateJobDeadline(item) {
+  if (!validDate(item.deadline)) {
+    item.daysUntilDeadline = "To verify";
+    return;
+  }
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  item.daysUntilDeadline = Math.round((dateValue(item.deadline) - today.getTime()) / 86400000);
+  if (item.daysUntilDeadline < 0) item.status = "Closed";
+  else if (item.daysUntilDeadline <= 7) item.status = "Closing Soon";
+}
+function hasVerifiedJobSource(item) {
+  if (!verifiedJobPlatforms.has(item.sourcePlatform) || !safeUrl(item.sourceUrl) || /to verify|screenshot|uncertain/i.test(text(item.accuracyLevel))) return false;
+  if (socialJobPlatforms.has(item.sourcePlatform)) return !/to verify/i.test(text(item.officialSocialAccount));
+  if (recruitmentPlatforms.has(item.sourcePlatform)) return Boolean(safeUrl(item.applicationLink));
+  return item.sourcePlatform === "Official Website" || Boolean(safeUrl(item.applicationLink));
+}
+function prepareJobs() {
+  state.jobs.forEach((item) => {
+    calculateJobDeadline(item);
+    if (item.status === "Open" && (!validDate(item.deadline) || !hasVerifiedJobSource(item))) item.status = "To Verify";
   });
 }
-
-function renderJobs() {
-  document.querySelector("#jobsCount").textContent = `${state.jobs.length} records`;
-  document.querySelector("#jobsGrid").innerHTML = state.jobs.map(jobCard).join("") || emptyState("No jobs recorded.");
+function sourceBadge(item) {
+  const jobBoards = ["FutbolJobs", "Jobs4Football", "LinkedIn Jobs"];
+  return jobBoards.includes(item.sourcePlatform) ? "Job Board" : item.sourcePlatform;
+}
+function jobAction(label, value, primary = false) {
+  const url = safeUrl(value);
+  return url ? `<a class="job-action ${primary ? "primary" : ""}" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>` : `<span class="job-action disabled" aria-disabled="true">${escapeHtml(label)} unavailable</span>`;
+}
+function jobCard(item) {
+  const summary = [row("Role", item.roleType), row("Country", item.country), row("Organization", item.organization), row("Team type", item.teamType), row("Deadline", item.deadline), row("Days remaining", item.daysUntilDeadline), row("Licence requirement", item.licenceRequirement), row("AFC A fit", item.afcALicenceFit), row("Fit score", item.fitScore), row("Status", item.status), row("Accuracy", item.accuracyLevel), row("Source platform", sourceBadge(item))].join("");
+  const expanded = [row("Full description", item.details), row("Application method", item.applicationMethod), row("Contact person", item.contactPerson), row("Public email", item.contactEmail), row("Public phone", item.contactPhone), row("Official source", item.sourceUrl, true), row("Official SNS", item.officialSocialAccount), row("Licence analysis", `${item.licenceRequirement} · ${item.afcALicenceFit}`), row("Julio fit reason", item.fitReason), row("Recommended action", item.recommendedAction), row("Last checked", item.lastChecked), row("Notes", item.notes)].join("");
+  return `<article class="card job-card"><div class="card-top"><span class="label">${escapeHtml(item.roleType)}</span><span class="source-badge">${escapeHtml(sourceBadge(item))}</span><span class="badge ${badgeClass(item.status)}">${escapeHtml(item.status)}</span></div><h3>${escapeHtml(item.position)}</h3><dl class="job-summary">${summary}</dl><details><summary>View Details</summary><dl>${expanded}</dl></details><div class="job-actions">${jobAction("Open Official Source", item.sourceUrl)}${jobAction("Open Application", item.applicationLink, true)}</div></article>`;
+}
+function jobMatchesFilter(item, filter) {
+  if (filter === "All") return true;
+  if (["Open", "Closing Soon", "To Verify", "Closed"].includes(filter)) return item.status === filter;
+  if (["Head Coach", "Assistant Coach", "Fitness Coach"].includes(filter)) return item.roleType === filter;
+  if (["National Team", "Professional Club"].includes(filter)) return item.teamType === filter;
+  if (filter === "Verified") return hasVerifiedJobSource(item);
+  if (filter === "AFC") return item.continent === "Asia" || item.sourcePlatform === "AFC";
+  if (filter === "OFC") return item.continent === "Oceania" || item.sourcePlatform === "OFC";
+  if (filter === "Africa") return item.continent === "Africa";
+  return item.continent === filter;
+}
+function renderJobStats() {
+  const stats = [["Verified Open", state.jobs.filter((item) => item.status === "Open" && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["Fitness Coach", state.jobs.filter((item) => item.roleType === "Fitness Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
+  document.querySelector("#jobsStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
+}
+function renderJobs(filter = "All", query = "") {
+  const normalized = query.trim().toLowerCase();
+  const list = state.jobs.filter((item) => jobMatchesFilter(item, filter) && (!normalized || [item.roleType, item.position, item.country, item.organization, item.teamType, item.sourcePlatform].join(" ").toLowerCase().includes(normalized)));
+  document.querySelector("#jobsCount").textContent = `${list.length} records`;
+  document.querySelector("#jobsGrid").innerHTML = list.map(jobCard).join("") || emptyState("No vacancies match this search and filter.");
+  document.querySelector("#jobsFilters").innerHTML = jobFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-job-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
 }
 
 function renderContacts() {
@@ -307,6 +351,14 @@ function setupNavigation() {
     const button = event.target.closest("[data-country-filter]");
     if (button) renderCountries(button.dataset.countryFilter);
   });
+  document.querySelector("#jobsFilters").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-job-filter]");
+    if (button) renderJobs(button.dataset.jobFilter, document.querySelector("#jobsSearch").value);
+  });
+  document.querySelector("#jobsSearch").addEventListener("input", (event) => {
+    const active = document.querySelector("#jobsFilters .active");
+    renderJobs(active ? active.dataset.jobFilter : "All", event.target.value);
+  });
   document.querySelector("#leagueFilters").addEventListener("click", (event) => {
     const button = event.target.closest("[data-league-filter]");
     if (button) renderLeagueIntelligence(button.dataset.leagueFilter, document.querySelector("#leagueSearch").value);
@@ -367,7 +419,7 @@ async function loadDatabases() {
     notice.hidden = false;
     notice.textContent = "Update schedule could not be loaded. Run the project with Live Server or GitHub Pages.";
   }
-  renderUpdateSchedule(); renderDashboard(); renderJobs(); renderContacts(); renderCoachNetwork(); renderCountries(); renderLicences(); renderLeagueStats(); renderLeagueIntelligence(); renderUpdateStats(); renderUpdates();
+  prepareJobs(); renderUpdateSchedule(); renderDashboard(); renderJobStats(); renderJobs(); renderContacts(); renderCoachNetwork(); renderCountries(); renderLicences(); renderLeagueStats(); renderLeagueIntelligence(); renderUpdateStats(); renderUpdates();
 }
 
 document.querySelector("#todayDate").textContent = new Intl.DateTimeFormat("en", { dateStyle: "long" }).format(new Date());
