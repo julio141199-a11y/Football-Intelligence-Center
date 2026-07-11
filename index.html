@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7f1d1d">
+  <title>Football Intelligence Center</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Professional Football Dashboard</p>
+      <h1>Football Intelligence Center</h1>
+    </div>
+    <time id="todayDate"></time>
+  </header>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <button class="active" data-page="dashboard">Dashboard</button>
+    <button data-page="jobs">Jobs</button>
+    <button data-page="contacts">Contacts</button>
+    <button data-page="coach-network">Coach Network</button>
+    <button data-page="countries">Countries</button>
+    <button data-page="pro-licence">Pro Licence Watch</button>
+    <button data-page="career">My Career</button>
+  </nav>
+
+  <main>
+    <div id="databaseMessage" class="notice" hidden></div>
+    <section id="dashboard" class="page active"><div class="page-heading"><div><p>Overview</p><h2>Dashboard</h2></div></div><div id="dashboardGrid" class="card-grid stats-grid"></div><div class="section-heading"><h3>Priority Actions</h3></div><div id="actionGrid" class="card-grid"></div></section>
+    <section id="jobs" class="page"><div class="page-heading"><div><p>Opportunity tracker</p><h2>Jobs</h2></div><span id="jobsCount" class="count"></span></div><div id="jobsGrid" class="card-grid"></div></section>
+    <section id="contacts" class="page"><div class="page-heading"><div><p>Public CV contact points</p><h2>Contacts</h2></div><span id="contactsCount" class="count"></span></div><div id="contactsGrid" class="card-grid"></div></section>
+    <section id="coach-network" class="page"><div class="page-heading"><div><p>Korean, Japanese and Asian pathways</p><h2>Coach Network</h2></div><span id="coachCount" class="count"></span></div><div id="coachGrid" class="card-grid"></div></section>
+    <section id="countries" class="page"><div class="page-heading"><div><p>Market intelligence</p><h2>Countries</h2></div><span id="countriesCount" class="count"></span></div><div id="countryFilters" class="filters"></div><div id="countriesGrid" class="card-grid"></div></section>
+    <section id="pro-licence" class="page"><div class="page-heading"><div><p>AFC Pro and nearby OFC Pro</p><h2>Pro Licence Watch</h2></div><span id="licenceCount" class="count"></span></div><div id="licenceGrid" class="card-grid"></div></section>
+    <section id="career" class="page"><div class="page-heading"><div><p>Professional profile</p><h2>My Career</h2></div></div><div class="card-grid"><article class="card"><span class="label">Profile</span><h3>Julio Park</h3><p>AFC A Licence · AFC Fitness Coach Level 2</p></article><article class="card"><span class="label">Target Roles</span><h3>Coaching pathway</h3><p>Head Coach · Assistant Coach · Fitness Coach</p></article><article class="card"><span class="label">Languages</span><h3>Communication</h3><p>Korean · English · Portuguese · Basic Spanish</p></article></div></section>
+  </main>
+
+  <script src="data.js"></script>
+</body>
+</html>
