@@ -1,6 +1,21 @@
 {
-  "lastRun": null,
+  "lastRun": "2026-07-20T15:30:53+00:00",
   "lastSuccessfulRun": null,
-  "sourceStates": {},
-  "lastError": null
+  "sourceStates": {
+    "afc-club-news": {
+      "lastChecked": "2026-07-20T15:30:52+00:00",
+      "lastResult": "success"
+    },
+    "afc-national-news": {
+      "lastChecked": "2026-07-20T15:30:52+00:00",
+      "lastResult": "success"
+    },
+    "football-australia-news": {
+      "lastChecked": "2026-07-20T15:30:53+00:00",
+      "lastResult": "success"
+    }
+  },
+  "lastError": [
+    "ofc-news: robots.txt disallows or could not confirm access"
+  ]
 }
