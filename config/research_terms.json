@@ -1,0 +1,35 @@
+{
+  "positiveTerms": [
+    "head coach",
+    "assistant coach",
+    "national team head coach",
+    "national team assistant coach",
+    "treinador principal",
+    "treinador adjunto",
+    "seleção nacional treinador",
+    "equipa técnica"
+  ],
+  "vacancyTerms": [
+    "vacancy",
+    "job",
+    "career",
+    "applications",
+    "apply",
+    "deadline",
+    "recruitment",
+    "vaga",
+    "candidatura",
+    "recrutamento",
+    "prazo"
+  ],
+  "excludedTerms": [
+    "fitness coach",
+    "technical director",
+    "sporting director",
+    "performance analyst",
+    "video analyst",
+    "gps analyst",
+    "academy coach",
+    "women's professional club"
+  ]
+}

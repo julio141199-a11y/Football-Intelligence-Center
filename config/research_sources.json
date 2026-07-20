@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {
+      "id": "example-official-source",
+      "name": "Replace with official association, league, club, or confederation source",
+      "url": "https://example.com/",
+      "type": "html",
+      "region": "Replace",
+      "enabled": false,
+      "official": true,
+      "notes": "Enable only after confirming the URL is public and permits automated access."
+    }
+  ],
+  "rules": {
+    "maxPagesPerRun": 50,
+    "requestTimeoutSeconds": 20,
+    "minimumMinutesBetweenSameSource": 720,
+    "respectRobotsTxt": true,
+    "userAgent": "FIC-Research-Watch/1.0 (+public-source-monitoring)"
+  }
+}
