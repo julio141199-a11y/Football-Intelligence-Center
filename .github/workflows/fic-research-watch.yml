@@ -1,0 +1,71 @@
+name: FIC Research Watch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 23 * * *"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: fic-research-watch
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect public-source leads
+        run: python scripts/collect_research_leads.py
+
+      - name: Validate research data
+        run: python scripts/validate_research.py
+
+      - name: Build review report
+        run: python scripts/build_research_report.py
+
+      - name: Commit research state when changed
+        id: commit
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git config user.name "fic-ai-employee"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research_inbox.json data/research_state.json data/research_report.md
+          git commit -m "FIC daily update: refresh research watch"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open review issue for pending leads
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pending=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          leads=json.loads(Path("data/research_inbox.json").read_text())
+          print(sum(1 for x in leads if x.get("status")=="To Verify"))
+          PY
+          )
+
+          if [ "$pending" -gt 0 ]; then
+            gh issue create \
+              --title "FIC research review: ${pending} lead(s) pending" \
+              --body-file data/research_report.md
+          fi
