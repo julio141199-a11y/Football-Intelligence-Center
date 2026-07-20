@@ -1,26 +1,52 @@
 {
-  "updateCycleDays": 4,
-  "cycleName": "FIC 4-Day Update",
-  "lastSiteUpdate": "To verify",
-  "nextPlannedUpdate": "To verify",
-  "updateStatus": "Waiting for next research update",
+  "updateCycleDays": 1,
+  "cycleName": "FIC Daily Update",
+  "timezone": "Asia/Seoul",
+  "plannedRunTime": "08:00",
+  "updateStatus": "Daily research and verified-change update",
   "managedFiles": [
     "jobs.json",
+    "updates.json",
     "contacts.json",
     "coach_network.json",
     "countries.json",
     "pro_licence_watch.json",
-    "league_intelligence.json",
-    "updates.json"
+    "league_intelligence.json"
+  ],
+  "trackedRoles": [
+    "Head Coach",
+    "Assistant Coach"
+  ],
+  "includedTeams": [
+    "Men's National Team",
+    "Women's National Team",
+    "Men's Professional Club"
+  ],
+  "excludedRolesAndTeams": [
+    "Fitness Coach",
+    "Technical Director",
+    "Coach Education",
+    "Sporting Director",
+    "Performance Analyst",
+    "Video Analyst",
+    "GPS Analyst",
+    "Data Analyst",
+    "Women's Professional Club",
+    "Academy-only role"
   ],
   "updatePriority": [
-    "AFC A Head Coach opportunities",
-    "Assistant Coach opportunities",
-    "Fitness Coach opportunities",
-    "Official contacts",
-    "Coach Network changes",
-    "League Intelligence",
-    "Pro Licence information"
+    "New verified Head Coach opportunities",
+    "New verified Assistant Coach opportunities",
+    "Material vacancy changes",
+    "Closing soon",
+    "Official closure",
+    "Official appointment"
   ],
-  "notes": "Research is reviewed every four days. GitHub Pages updates after files are committed and pushed."
+  "commitPolicy": {
+    "prefix": "FIC daily update:",
+    "commitOnlyOnMeaningfulChange": true,
+    "preserveExistingRecords": true,
+    "preventDuplicates": true
+  },
+  "notes": "Use official or highly trusted sources. Mark uncertain information To Verify or omit it."
 }
