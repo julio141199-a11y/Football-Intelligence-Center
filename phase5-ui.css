@@ -1,0 +1,249 @@
+
+:root {
+  --fic-accent: #8f1d24;
+  --fic-accent-dark: #681217;
+  --fic-soft: #f7f3f3;
+  --fic-border: #e9e2e2;
+  --fic-text-soft: #6f6868;
+  --fic-success: #266d4a;
+  --fic-warning: #9a5c00;
+}
+
+.site-subtitle {
+  margin: .35rem 0 0;
+  color: var(--fic-text-soft);
+  max-width: 44rem;
+}
+
+.fic-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--fic-accent-dark), var(--fic-accent));
+  color: #fff;
+  box-shadow: 0 16px 36px rgba(77, 14, 19, .18);
+}
+
+.fic-hero .eyebrow {
+  color: rgba(255,255,255,.76);
+}
+
+.fic-hero h2 {
+  margin: .2rem 0 .55rem;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+.fic-hero p {
+  margin-bottom: 0;
+  color: rgba(255,255,255,.86);
+}
+
+.hero-status {
+  white-space: nowrap;
+  padding: .55rem .8rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.2);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.priority-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .85rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.priority-metric {
+  padding: 1rem;
+  border: 1px solid var(--fic-border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.priority-metric span {
+  display: block;
+  color: var(--fic-text-soft);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.priority-metric strong {
+  display: block;
+  margin-top: .35rem;
+  font-size: 1.65rem;
+}
+
+.priority-metric.urgent {
+  border-left: 4px solid var(--fic-accent);
+}
+
+.dashboard-section {
+  margin-top: 1.7rem;
+}
+
+.section-heading-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.section-kicker {
+  margin: 0 0 .2rem;
+  color: var(--fic-accent);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.text-button {
+  border: 0;
+  background: transparent;
+  color: var(--fic-accent);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.priority-jobs-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.priority-job {
+  position: relative;
+  overflow: hidden;
+}
+
+.priority-job::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--fic-accent);
+}
+
+.priority-job .job-deadline {
+  font-weight: 800;
+  color: var(--fic-accent);
+}
+
+.dashboard-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+  gap: 1.2rem;
+}
+
+.compact-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pulse-item {
+  padding: 1rem;
+  border: 1px solid var(--fic-border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.pulse-item h4 {
+  margin: .25rem 0 .4rem;
+}
+
+.pulse-item p {
+  margin: 0;
+  color: var(--fic-text-soft);
+}
+
+.daily-brief {
+  height: 100%;
+  padding: 1.1rem;
+  border: 1px solid var(--fic-border);
+  border-radius: 18px;
+  background: var(--fic-soft);
+}
+
+.brief-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--fic-border);
+}
+
+.brief-row:last-child {
+  border-bottom: 0;
+}
+
+.brief-row span {
+  color: var(--fic-text-soft);
+}
+
+.brief-row strong {
+  text-align: right;
+}
+
+.legacy-dashboard,
+.technical-details {
+  margin-top: 1.5rem;
+  border: 1px solid var(--fic-border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.legacy-dashboard > summary,
+.technical-details > summary {
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  color: var(--fic-accent);
+  font-weight: 800;
+}
+
+.legacy-dashboard[open],
+.technical-details[open] {
+  padding-bottom: 1rem;
+}
+
+.legacy-dashboard[open] > #dashboardGrid,
+.legacy-dashboard[open] > #actionGrid,
+.legacy-dashboard[open] > .section-heading,
+.technical-details[open] > #schedulePanel,
+.technical-details[open] > #updateWorkflow {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+@media (max-width: 900px) {
+  .priority-summary,
+  .priority-jobs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .fic-hero {
+    flex-direction: column;
+    padding: 1.2rem;
+  }
+
+  .hero-status {
+    white-space: normal;
+  }
+
+  .priority-summary,
+  .priority-jobs-grid,
+  .compact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading-row {
+    align-items: flex-start;
+  }
+}
