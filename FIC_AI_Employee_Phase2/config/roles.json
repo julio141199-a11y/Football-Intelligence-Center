@@ -1,0 +1,30 @@
+{
+  "trackedRoles": [
+    "Head Coach",
+    "Assistant Coach"
+  ],
+  "includedTeams": [
+    "Men's National Team",
+    "Women's National Team",
+    "Men's Professional Club"
+  ],
+  "excludedRolesAndTeams": [
+    "Fitness Coach",
+    "Technical Director",
+    "Coach Education",
+    "Sporting Director",
+    "Performance Analyst",
+    "Video Analyst",
+    "GPS Analyst",
+    "Data Analyst",
+    "Women's Professional Club",
+    "Academy-only role"
+  ],
+  "allowedStatuses": [
+    "Verified Open",
+    "Closing Soon",
+    "To Verify",
+    "Closed",
+    "Filled"
+  ]
+}
