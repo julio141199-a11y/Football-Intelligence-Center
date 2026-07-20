@@ -1,14 +1,72 @@
 {
   "sources": [
     {
-      "id": "example-official-source",
-      "name": "Replace with official association, league, club, or confederation source",
-      "url": "https://example.com/",
+      "id": "afc-club-news",
+      "name": "Asian Football Confederation — Club Competitions News",
+      "url": "https://www.the-afc.com/en/club.html",
       "type": "html",
-      "region": "Replace",
-      "enabled": false,
+      "region": "AFC",
+      "enabled": true,
       "official": true,
-      "notes": "Enable only after confirming the URL is public and permits automated access."
+      "monitorFor": [
+        "appointment",
+        "departure",
+        "dismissal",
+        "resignation",
+        "vacancy"
+      ],
+      "notes": "Official AFC club news. Useful for coaching changes and market signals; verify applications with the employer."
+    },
+    {
+      "id": "afc-national-news",
+      "name": "Asian Football Confederation — Asian Qualifiers News",
+      "url": "https://www.the-afc.com/en/national/asian_qualifiers/asian_qualifiers.html",
+      "type": "html",
+      "region": "AFC",
+      "enabled": true,
+      "official": true,
+      "monitorFor": [
+        "appointment",
+        "departure",
+        "dismissal",
+        "resignation",
+        "vacancy"
+      ],
+      "notes": "Official AFC national-team news. Useful for identifying coaching changes."
+    },
+    {
+      "id": "ofc-news",
+      "name": "Oceania Football Confederation — Official News",
+      "url": "https://www.oceaniafootball.com/",
+      "type": "html",
+      "region": "Oceania",
+      "enabled": true,
+      "official": true,
+      "monitorFor": [
+        "appointment",
+        "departure",
+        "dismissal",
+        "resignation",
+        "vacancy"
+      ],
+      "notes": "Official OFC news. Verify any vacancy directly with the relevant member association."
+    },
+    {
+      "id": "football-australia-news",
+      "name": "Football Australia — Official News",
+      "url": "https://footballaustralia.com.au/news",
+      "type": "html",
+      "region": "Australia",
+      "enabled": true,
+      "official": true,
+      "monitorFor": [
+        "appointment",
+        "departure",
+        "dismissal",
+        "resignation",
+        "vacancy"
+      ],
+      "notes": "Official Football Australia news. Australia is lower priority but relevant for AFC market intelligence."
     }
   ],
   "rules": {
@@ -16,6 +74,8 @@
     "requestTimeoutSeconds": 20,
     "minimumMinutesBetweenSameSource": 720,
     "respectRobotsTxt": true,
-    "userAgent": "FIC-Research-Watch/1.0 (+public-source-monitoring)"
+    "userAgent": "FIC-Research-Watch/1.1 (+public-source-monitoring)",
+    "publishToJobsJsonAutomatically": false,
+    "defaultLeadStatus": "To Verify"
   }
 }
