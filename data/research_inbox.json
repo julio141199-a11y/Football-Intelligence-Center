@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "lead-7cf2ef58b9d2ffb0",
+    "status": "To Verify",
+    "discoveredAt": "2026-07-21T00:08:08+00:00",
+    "sourceId": "football-australia-news",
+    "sourceName": "Football Australia — Official News",
+    "sourceUrl": "https://footballaustralia.com.au/news",
+    "sourceOfficial": true,
+    "region": "Australia",
+    "title": "News | Football Australia",
+    "matchedScope": "Potential Head Coach or Assistant Coach lead",
+    "verificationNotes": "Not yet verified. Review the official source before adding to jobs.json."
+  }
+]
