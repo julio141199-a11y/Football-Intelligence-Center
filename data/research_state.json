@@ -1,17 +1,17 @@
 {
-  "lastRun": "2026-07-22T00:04:53+00:00",
+  "lastRun": "2026-07-23T00:12:19+00:00",
   "lastSuccessfulRun": null,
   "sourceStates": {
     "afc-club-news": {
-      "lastChecked": "2026-07-22T00:04:52+00:00",
+      "lastChecked": "2026-07-23T00:12:17+00:00",
       "lastResult": "success"
     },
     "afc-national-news": {
-      "lastChecked": "2026-07-22T00:04:52+00:00",
+      "lastChecked": "2026-07-23T00:12:17+00:00",
       "lastResult": "success"
     },
     "football-australia-news": {
-      "lastChecked": "2026-07-22T00:04:53+00:00",
+      "lastChecked": "2026-07-23T00:12:19+00:00",
       "lastResult": "success"
     }
   },
