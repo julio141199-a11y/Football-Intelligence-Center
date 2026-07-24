@@ -11,6 +11,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
 ALLOWED_STATUSES = {"To Verify", "Verified Open", "Closed", "Filled"}
+ALLOWED_CONTACT_STATUSES = {"To Verify", "Verified", "Historical"}
 
 
 def load(path: Path):
@@ -101,8 +102,10 @@ def main() -> int:
     contact_keys: set[tuple[str, str]] = set()
     for index, item in enumerate(contacts):
         label = f"data/contacts.json[{index}]"
-        if item.get("status") != "To Verify":
-            errors.append(f"{label}.status must remain To Verify.")
+        if item.get("status") not in ALLOWED_CONTACT_STATUSES:
+            errors.append(f"{label}.status is invalid: {item.get('status')}")
+        if item.get("status") != "To Verify" and not item.get("verificationNote"):
+            errors.append(f"{label}.verificationNote is required for reviewed contacts.")
         if item.get("id") in contact_ids:
             errors.append(f"Duplicate contact id: {item.get('id')}")
         contact_ids.add(item.get("id"))

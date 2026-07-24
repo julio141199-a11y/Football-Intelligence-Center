@@ -425,8 +425,8 @@ async function loadDatabases() {
       source: "Official organisation page",
       sourceUrl: item.sourceUrl,
       lastChecked: text(item.detectedAt).slice(0, 10),
-      accuracyLevel: "To verify",
-      notes: "Automatically detected public role-based email. Verify the recipient before sending a CV."
+      accuracyLevel: item.status,
+      notes: item.applicationUse || "Automatically detected public role-based email. Verify the recipient before sending a CV."
     });
     existingContactKeys.add(key);
   });

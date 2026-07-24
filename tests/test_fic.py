@@ -34,6 +34,13 @@ def test_pipeline_validator():
     assert result.returncode == 0, result.stdout + result.stderr
 
 
+def test_reviewed_contacts_include_verification_notes():
+    contacts = json.loads((ROOT / "data" / "contacts.json").read_text(encoding="utf-8"))
+    reviewed = [item for item in contacts if item["status"] != "To Verify"]
+    assert reviewed
+    assert all(item.get("verificationNote") for item in reviewed)
+
+
 def test_pipeline_accepts_only_target_roles():
     assert match_candidate("Head Coach vacancy", "https://example.com/jobs") == ("Head Coach", "Vacancy")
     assert match_candidate("Assistant Coach recruitment", "https://example.com/jobs") == ("Assistant Coach", "Vacancy")

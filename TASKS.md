@@ -29,6 +29,7 @@
 - [x] Verify GitHub Pages deployment
 - [ ] Verify notification behaviour
 - [ ] Observe for seven days and tune false positives
+- [x] Review the first generated official contact candidates
 
 ## Current next task
-Review official LinkedIn and generated email candidates, then expand verified federation and professional-club profiles conservatively.
+Expand official federation and professional-club website sources conservatively, prioritising organisations with a public recruitment route.

@@ -29,6 +29,7 @@
 - LinkedIn watch is limited to Head Coach and Assistant Coach vacancies and verified coach-change signals
 - Fitness Coach summary was removed from the current opportunity view
 - Incomplete HTTP responses now fail safely without stopping other sources
+- Reviewed the first four generated contacts: two verified, one historical, and one still requiring verification
 
 ### Pending
 - Review generated contact candidates before using them for applications

@@ -1,7 +1,7 @@
 [
   {
     "id": "contact-4e3c44191683058d",
-    "status": "To Verify",
+    "status": "Verified",
     "country": "Canada",
     "region": "Canada",
     "organisation": "Canada Soccer",
@@ -12,11 +12,13 @@
     "sourceUrl": "https://canadasoccer.com/careers/",
     "official": true,
     "detectedAt": "2026-07-24T01:27:32+00:00",
-    "lastVerified": "Needs verification"
+    "lastVerified": "2026-07-24",
+    "applicationUse": "Careers posting requests; not a direct coaching application address unless Canada Soccer requests it.",
+    "verificationNote": "Published on the official Canada Soccer Careers page."
   },
   {
     "id": "contact-b3e802aa38bcab7e",
-    "status": "To Verify",
+    "status": "Historical",
     "country": "Canada",
     "region": "Canada",
     "organisation": "Canadian Premier League",
@@ -27,11 +29,13 @@
     "sourceUrl": "https://canpl.ca/careers",
     "official": true,
     "detectedAt": "2026-07-24T01:27:32+00:00",
-    "lastVerified": "Needs verification"
+    "lastVerified": "2026-07-24",
+    "applicationUse": "Do not use as the first choice; retained as historical recruitment evidence.",
+    "verificationNote": "Published in older official CPL/League1 Canada job descriptions; the current Careers page uses careers@cplsoccer.com."
   },
   {
     "id": "contact-d305839d6dee10b5",
-    "status": "To Verify",
+    "status": "Verified",
     "country": "Canada",
     "region": "Canada",
     "organisation": "Canadian Premier League",
@@ -42,7 +46,9 @@
     "sourceUrl": "https://canpl.ca/careers",
     "official": true,
     "detectedAt": "2026-07-24T01:27:32+00:00",
-    "lastVerified": "Needs verification"
+    "lastVerified": "2026-07-24",
+    "applicationUse": "Official general careers channel for future opportunities; confirm a Head Coach or Assistant Coach route before sending.",
+    "verificationNote": "Published on the current official Canadian Premier League Careers page."
   },
   {
     "id": "contact-f61e77a24d9cbdc6",
@@ -57,6 +63,8 @@
     "sourceUrl": "https://www.concacaf.com/",
     "official": true,
     "detectedAt": "2026-07-24T01:27:32+00:00",
-    "lastVerified": "Needs verification"
+    "lastVerified": "Needs verification",
+    "applicationUse": "Do not use until its recruitment purpose is confirmed.",
+    "verificationNote": "Automatically found on the official site, but no official recruitment context was verified."
   }
 ]
