@@ -4,6 +4,14 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 23 * * *" # 08:00 Asia/Seoul
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/daily-update.yml"
+      - "run_pipeline.py"
+      - "scripts/validate_pipeline.py"
+      - "sources/sources.json"
 
 permissions:
   contents: write

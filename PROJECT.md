@@ -37,6 +37,7 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 
 ## Daily automation
 - `.github/workflows/daily-update.yml` runs at 08:00 Asia/Seoul (`0 23 * * *` UTC).
+- Pipeline code or source-registry changes also trigger one verification run after push.
 - `run_pipeline.py` checks a small registry of generic public sources.
 - Automated discoveries remain `To Verify`; they are never promoted directly into `jobs.json`.
 - Official Instagram accounts are registry-only because reliable automated access requires platform authentication.

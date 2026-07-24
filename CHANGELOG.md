@@ -21,6 +21,7 @@
 - Daily operating cadence selected
 - Existing maintenance and research workflows changed to manual-only to prevent duplicate schedules
 - Existing website now reads the generated pipeline JSON without changing the visual design
+- Pipeline configuration pushes trigger one immediate verification run
 
 ### Pending
 - Confirm repository Workflow permissions allow `GITHUB_TOKEN` write access
