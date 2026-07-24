@@ -1,5 +1,25 @@
 [
   {
+    "runAt": "2026-07-24T03:04:53+00:00",
+    "status": "completed",
+    "sourcesChecked": 17,
+    "registryOnlySources": 27,
+    "newCandidates": 0,
+    "newContacts": 0,
+    "socialProfiles": 24,
+    "warnings": []
+  },
+  {
+    "runAt": "2026-07-24T03:03:55+00:00",
+    "status": "completed",
+    "sourcesChecked": 17,
+    "registryOnlySources": 27,
+    "newCandidates": 0,
+    "newContacts": 0,
+    "socialProfiles": 24,
+    "warnings": []
+  },
+  {
     "runAt": "2026-07-24T02:21:59+00:00",
     "status": "completed_with_warnings",
     "sourcesChecked": 16,

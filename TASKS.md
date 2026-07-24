@@ -32,6 +32,7 @@
 - [ ] Observe for seven days and tune false positives
 - [x] Review the first generated official contact candidates
 - [x] Add verified Philippines federation and Auckland City decision-maker contact routes
+- [x] Remove repeated source-access noise and replace two broken club URLs with working official pages
 
 ## Current next task
 Observe the expanded official sources and confirm the first real GitHub candidate alert. Until then, verify only high-value public contacts that can receive or route a coaching enquiry.

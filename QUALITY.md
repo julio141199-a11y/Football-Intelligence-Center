@@ -37,6 +37,8 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - One generic collector; no country-specific parser.
 - A source failure must not stop other sources.
 - Interrupted or incomplete HTTP responses must be recorded as warnings and must not stop the run.
+- Repeated access blocks may be moved to registry-only monitoring through the small operational override file; never bypass an official site's access controls.
+- Operational URL overrides must reference an existing source ID and remain limited to a small set of confirmed fixes.
 - Only Head Coach and Assistant Coach terms may create candidates.
 - Automated candidates are always `To Verify`.
 - Official social accounts that require authentication remain registry-only.

@@ -22,6 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 SOURCES_PATH = ROOT / "sources" / "sources.json"
+SOURCE_OVERRIDES_PATH = ROOT / "config" / "source_access_overrides.json"
 OPPORTUNITIES_PATH = ROOT / "data" / "opportunities.json"
 CONTACTS_PATH = ROOT / "data" / "contacts.json"
 SOCIAL_SOURCES_PATH = ROOT / "data" / "social_sources.json"
@@ -114,6 +115,14 @@ class LinkParser(HTMLParser):
 
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def apply_source_overrides(sources: list[dict]) -> list[dict]:
+    """Apply small operational URL/mode fixes without changing the source registry."""
+    if not SOURCE_OVERRIDES_PATH.exists():
+        return sources
+    overrides = read_json(SOURCE_OVERRIDES_PATH)
+    return [{**source, **overrides.get(source.get("id"), {})} for source in sources]
 
 
 def write_json(path: Path, value) -> None:
@@ -258,6 +267,7 @@ def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
 
 def main() -> int:
     config = read_json(SOURCES_PATH)
+    config["sources"] = apply_source_overrides(config.get("sources", []))
     opportunities = read_json(OPPORTUNITIES_PATH)
     contacts = read_json(CONTACTS_PATH)
     updates = read_json(UPDATES_PATH)

@@ -10,6 +10,7 @@ on:
     paths:
       - ".github/workflows/daily-update.yml"
       - "run_pipeline.py"
+      - "config/source_access_overrides.json"
       - "scripts/publish_action_summary.py"
       - "scripts/validate_pipeline.py"
       - "sources/sources.json"

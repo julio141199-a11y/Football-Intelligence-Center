@@ -34,6 +34,7 @@
 - Reviewed the first four generated contacts: two verified, one historical, and one still requiring verification
 - Verified New Zealand Football careers/general contacts and the FCRF general contact; Singapore recruitment remains pending verification
 - Added the verified Philippine Football Federation secretariat, retained its older HR address as historical only, and added Auckland City FC's publicly listed General Manager contact
+- Added a small source-access override layer: three access-blocked federation sites now remain manual official registries, while Forge FC and Auckland City use working official pages
 
 ### Pending
 - Review generated contact candidates before using them for applications

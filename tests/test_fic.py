@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from run_pipeline import build_social_registry, extract_role_emails, match_candidate
+from run_pipeline import apply_source_overrides, build_social_registry, extract_role_emails, match_candidate
 from scripts.publish_action_summary import current_candidates, summary_markdown
 
 
@@ -80,3 +80,20 @@ def test_social_registry_keeps_only_official_supported_profiles():
 def test_pipeline_module_handles_incomplete_http_responses():
     import run_pipeline
     assert run_pipeline.http.client.IncompleteRead
+
+
+def test_source_access_overrides_are_small_and_known():
+    registry = json.loads((ROOT / "sources" / "sources.json").read_text(encoding="utf-8"))
+    overrides = json.loads(
+        (ROOT / "config" / "source_access_overrides.json").read_text(encoding="utf-8")
+    )
+    known_ids = {source["id"] for source in registry["sources"]}
+    assert set(overrides) <= known_ids
+    assert len(overrides) <= 10
+    assert all(
+        override.get("collectionMode") in {None, "automatic", "registry-only"}
+        for override in overrides.values()
+    )
+    applied = apply_source_overrides(registry["sources"])
+    forge = next(source for source in applied if source["id"] == "forge-fc")
+    assert forge["url"] == "https://www.canpl.ca/forgefc"

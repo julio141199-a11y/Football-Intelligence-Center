@@ -1,0 +1,24 @@
+{
+  "fpf-portugal": {
+    "collectionMode": "registry-only",
+    "accessNote": "Official website returns HTTP 403 to the GitHub-hosted collector. Keep official social and contact routes for manual verification."
+  },
+  "philippines-fa": {
+    "collectionMode": "registry-only",
+    "accessNote": "Official website returns HTTP 403 to the GitHub-hosted collector. Keep official social and verified federation contacts for manual verification."
+  },
+  "indonesia-fa": {
+    "collectionMode": "registry-only",
+    "accessNote": "Official website returns HTTP 403 to the GitHub-hosted collector. Keep official LinkedIn for manual verification."
+  },
+  "forge-fc": {
+    "url": "https://www.canpl.ca/forgefc",
+    "collectionMode": "automatic",
+    "accessNote": "Use the club's current official Canadian Premier League page; the former subdomain has an expired TLS certificate."
+  },
+  "auckland-city": {
+    "url": "https://www.aucklandcityfc.com/news/",
+    "collectionMode": "automatic",
+    "accessNote": "Use the official news index, which is more stable and focused than the home page."
+  }
+}
