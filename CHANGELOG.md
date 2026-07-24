@@ -15,6 +15,7 @@
 - Generated public professional contact candidate database
 - Generated official social-source registry for the website
 - Verified LinkedIn organisation pages for AFC, OFC, Concacaf, Canada Soccer, Liga Portugal, and Auckland City FC
+- Automatic official-website monitoring for the Malaysia, Singapore, Philippines, Indonesia, New Zealand, and Costa Rica federations
 
 ### Changed
 - Vacancy scope limited to Head Coach and Assistant Coach
@@ -30,6 +31,7 @@
 - Fitness Coach summary was removed from the current opportunity view
 - Incomplete HTTP responses now fail safely without stopping other sources
 - Reviewed the first four generated contacts: two verified, one historical, and one still requiring verification
+- Verified New Zealand Football careers/general contacts and the FCRF general contact; Singapore recruitment remains pending verification
 
 ### Pending
 - Review generated contact candidates before using them for applications

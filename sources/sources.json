@@ -163,6 +163,72 @@
       "collectionMode": "automatic"
     },
     {
+      "id": "malaysia-fa",
+      "name": "Football Association of Malaysia",
+      "country": "Malaysia",
+      "region": "AFC",
+      "type": "federation",
+      "url": "https://fam.org.my/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "singapore-fa",
+      "name": "Football Association of Singapore",
+      "country": "Singapore",
+      "region": "AFC",
+      "type": "federation",
+      "url": "https://www.fas.org.sg/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "philippines-fa",
+      "name": "Philippine Football Federation",
+      "country": "Philippines",
+      "region": "AFC",
+      "type": "federation",
+      "url": "https://pff.org.ph/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "indonesia-fa",
+      "name": "Persatuan Sepakbola Seluruh Indonesia",
+      "country": "Indonesia",
+      "region": "AFC",
+      "type": "federation",
+      "url": "https://www.pssi.org/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "new-zealand-football",
+      "name": "New Zealand Football",
+      "country": "New Zealand",
+      "region": "Oceania",
+      "type": "federation",
+      "url": "https://www.nzfootball.co.nz/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "costa-rica-fa",
+      "name": "Federación Costarricense de Fútbol",
+      "country": "Costa Rica",
+      "region": "Central America and Caribbean",
+      "type": "federation",
+      "url": "https://www.fcrf.cr/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
       "id": "afc-instagram",
       "name": "AFC Official Instagram",
       "country": "Regional",

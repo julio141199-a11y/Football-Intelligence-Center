@@ -32,4 +32,4 @@
 - [x] Review the first generated official contact candidates
 
 ## Current next task
-Expand official federation and professional-club website sources conservatively, prioritising organisations with a public recruitment route.
+Observe the expanded official federation sources, review new contact candidates, and tune only confirmed false positives.

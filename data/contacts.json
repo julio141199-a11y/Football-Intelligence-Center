@@ -1,5 +1,20 @@
 [
   {
+    "id": "contact-d66188cdab99f5a9",
+    "status": "To Verify",
+    "country": "Singapore",
+    "region": "AFC",
+    "organisation": "Football Association of Singapore",
+    "organisationType": "Federation",
+    "email": "recruitment@fas.org.sg",
+    "website": "https://www.fas.org.sg/",
+    "contactPage": "https://fas.org.sg/careers/",
+    "sourceUrl": "https://fas.org.sg/careers/",
+    "official": true,
+    "detectedAt": "2026-07-24T02:03:03+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "contact-4e3c44191683058d",
     "status": "Verified",
     "country": "Canada",
@@ -66,5 +81,56 @@
     "lastVerified": "Needs verification",
     "applicationUse": "Do not use until its recruitment purpose is confirmed.",
     "verificationNote": "Automatically found on the official site, but no official recruitment context was verified."
+  },
+  {
+    "id": "contact-665a0d64a04b1131",
+    "status": "Verified",
+    "country": "Costa Rica",
+    "region": "Central America and Caribbean",
+    "organisation": "Federación Costarricense de Fútbol",
+    "organisationType": "Federation",
+    "email": "info@fcrf.cr",
+    "website": "https://www.fcrf.cr/",
+    "contactPage": "https://www.fcrf.cr/",
+    "sourceUrl": "https://www.fcrf.cr/",
+    "official": true,
+    "detectedAt": "2026-07-24T02:03:03+00:00",
+    "lastVerified": "2026-07-24",
+    "applicationUse": "General federation enquiry only; ask for the appropriate recruitment contact before sending a coaching application.",
+    "verificationNote": "Published on the official FCRF website and contact page."
+  },
+  {
+    "id": "contact-dbf560fe868dc742",
+    "status": "Verified",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "New Zealand Football",
+    "organisationType": "Federation",
+    "email": "info@nzfootball.co.nz",
+    "website": "https://www.nzfootball.co.nz/",
+    "contactPage": "https://www.nzfootball.co.nz/",
+    "sourceUrl": "https://www.nzfootball.co.nz/",
+    "official": true,
+    "detectedAt": "2026-07-24T02:03:03+00:00",
+    "lastVerified": "2026-07-24",
+    "applicationUse": "General federation enquiries; use careers@nzfootball.co.nz for vacancy questions.",
+    "verificationNote": "Published on the official New Zealand Football Contacts and Careers pages."
+  },
+  {
+    "id": "contact-9592381f6c24205c",
+    "status": "Verified",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "New Zealand Football",
+    "organisationType": "Federation",
+    "email": "careers@nzfootball.co.nz",
+    "website": "https://www.nzfootball.co.nz/",
+    "contactPage": "https://www.nzfootball.co.nz/careers",
+    "sourceUrl": "https://www.nzfootball.co.nz/careers",
+    "official": true,
+    "detectedAt": "2026-07-24T02:03:03+00:00",
+    "lastVerified": "2026-07-24",
+    "applicationUse": "Official address for questions about advertised New Zealand Football vacancies.",
+    "verificationNote": "Published on the official New Zealand Football Careers page."
   }
 ]
