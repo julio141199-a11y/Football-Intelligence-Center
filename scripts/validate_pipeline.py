@@ -91,6 +91,11 @@ def main() -> int:
         parsed = urlparse(str(item.get("profileUrl", "")))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
             errors.append(f"{label}.profileUrl is invalid.")
+        jobs_url = str(item.get("jobsUrl", ""))
+        if item.get("platform") == "LinkedIn":
+            parsed_jobs = urlparse(jobs_url)
+            if parsed_jobs.scheme not in {"http", "https"} or not parsed_jobs.netloc:
+                errors.append(f"{label}.jobsUrl is invalid.")
 
     contact_ids: set[str] = set()
     contact_keys: set[tuple[str, str]] = set()

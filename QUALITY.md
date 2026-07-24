@@ -36,6 +36,7 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 ## Pipeline gate
 - One generic collector; no country-specific parser.
 - A source failure must not stop other sources.
+- Interrupted or incomplete HTTP responses must be recorded as warnings and must not stop the run.
 - Only Head Coach and Assistant Coach terms may create candidates.
 - Automated candidates are always `To Verify`.
 - Official social accounts that require authentication remain registry-only.

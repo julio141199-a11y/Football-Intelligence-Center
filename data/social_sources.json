@@ -5,7 +5,8 @@
     "country": "Regional",
     "region": "AFC",
     "organisation": "AFC",
-    "profileUrl": "https://www.instagram.com/theafchub/",
+    "profileUrl": "https://www.instagram.com/theafchub",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -24,7 +25,8 @@
     "country": "Indonesia",
     "region": "AFC",
     "organisation": "Bali United",
-    "profileUrl": "https://www.instagram.com/baliunitedfc/",
+    "profileUrl": "https://www.instagram.com/baliunitedfc",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -43,7 +45,8 @@
     "country": "Thailand",
     "region": "AFC",
     "organisation": "Buriram United",
-    "profileUrl": "https://www.instagram.com/buriramunitedofficial/",
+    "profileUrl": "https://www.instagram.com/buriramunitedofficial",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -62,7 +65,8 @@
     "country": "Malaysia",
     "region": "AFC",
     "organisation": "Johor Darul Ta'zim",
-    "profileUrl": "https://www.instagram.com/officialjohor/",
+    "profileUrl": "https://www.instagram.com/officialjohor",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -81,7 +85,8 @@
     "country": "Cambodia",
     "region": "AFC",
     "organisation": "Phnom Penh Crown",
-    "profileUrl": "https://www.instagram.com/ppcrownfc/",
+    "profileUrl": "https://www.instagram.com/ppcrownfc",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -100,7 +105,8 @@
     "country": "Canada",
     "region": "Canada",
     "organisation": "Canada Soccer",
-    "profileUrl": "https://www.instagram.com/canadasoccer/",
+    "profileUrl": "https://www.instagram.com/canadasoccer",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -119,7 +125,8 @@
     "country": "Canada",
     "region": "Canada",
     "organisation": "Forge FC",
-    "profileUrl": "https://www.instagram.com/forgefc/",
+    "profileUrl": "https://www.instagram.com/forgefc",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -138,7 +145,8 @@
     "country": "Regional",
     "region": "Central America and Caribbean",
     "organisation": "Concacaf",
-    "profileUrl": "https://www.instagram.com/concacaf/",
+    "profileUrl": "https://www.instagram.com/concacaf",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -157,7 +165,8 @@
     "country": "New Zealand",
     "region": "Oceania",
     "organisation": "Auckland City FC",
-    "profileUrl": "https://www.instagram.com/aucklandcity_fc/",
+    "profileUrl": "https://www.instagram.com/aucklandcity_fc",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -176,7 +185,8 @@
     "country": "Regional",
     "region": "Oceania",
     "organisation": "OFC",
-    "profileUrl": "https://www.instagram.com/ofcfootball/",
+    "profileUrl": "https://www.instagram.com/ofcfootball",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -195,7 +205,8 @@
     "country": "Portugal",
     "region": "Portugal",
     "organisation": "Liga Portugal",
-    "profileUrl": "https://www.instagram.com/ligaportugal/",
+    "profileUrl": "https://www.instagram.com/ligaportugal",
+    "jobsUrl": "Not applicable",
     "official": true,
     "monitoring": "Registry only",
     "watchFor": [
@@ -215,6 +226,87 @@
     "region": "AFC",
     "organisation": "Asian Football Confederation (AFC)",
     "profileUrl": "https://www.linkedin.com/company/theafcdotcom",
+    "jobsUrl": "https://www.linkedin.com/company/theafcdotcom/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "malaysia-fa-linkedin",
+    "platform": "LinkedIn",
+    "country": "Malaysia",
+    "region": "AFC",
+    "organisation": "Football Association of Malaysia",
+    "profileUrl": "https://www.linkedin.com/company/football-association-malaysia",
+    "jobsUrl": "https://www.linkedin.com/company/football-association-malaysia/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "singapore-fa-linkedin",
+    "platform": "LinkedIn",
+    "country": "Singapore",
+    "region": "AFC",
+    "organisation": "Football Association of Singapore",
+    "profileUrl": "https://www.linkedin.com/company/football-association-of-singapore",
+    "jobsUrl": "https://www.linkedin.com/company/football-association-of-singapore/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "indonesia-fa-linkedin",
+    "platform": "LinkedIn",
+    "country": "Indonesia",
+    "region": "AFC",
+    "organisation": "Persatuan Sepakbola Seluruh Indonesia",
+    "profileUrl": "https://www.linkedin.com/company/officialpssi",
+    "jobsUrl": "https://www.linkedin.com/company/officialpssi/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "philippines-fa-linkedin",
+    "platform": "LinkedIn",
+    "country": "Philippines",
+    "region": "AFC",
+    "organisation": "Philippine Football Federation",
+    "profileUrl": "https://www.linkedin.com/company/phifootballfederation",
+    "jobsUrl": "https://www.linkedin.com/company/phifootballfederation/jobs",
     "official": true,
     "monitoring": "Manual content check when LinkedIn requires login",
     "watchFor": [
@@ -234,6 +326,7 @@
     "region": "Canada",
     "organisation": "Canada Soccer",
     "profileUrl": "https://www.linkedin.com/company/canada-soccer",
+    "jobsUrl": "https://www.linkedin.com/company/canada-soccer/jobs",
     "official": true,
     "monitoring": "Manual content check when LinkedIn requires login",
     "watchFor": [
@@ -253,6 +346,27 @@
     "region": "Central America and Caribbean",
     "organisation": "CONCACAF",
     "profileUrl": "https://www.linkedin.com/company/concacaf",
+    "jobsUrl": "https://www.linkedin.com/company/concacaf/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "costa-rica-fa-linkedin",
+    "platform": "LinkedIn",
+    "country": "Costa Rica",
+    "region": "Central America and Caribbean",
+    "organisation": "FCRF",
+    "profileUrl": "https://www.linkedin.com/company/fcrf",
+    "jobsUrl": "https://www.linkedin.com/company/fcrf/jobs",
     "official": true,
     "monitoring": "Manual content check when LinkedIn requires login",
     "watchFor": [
@@ -272,6 +386,47 @@
     "region": "Oceania",
     "organisation": "Auckland City Football Club",
     "profileUrl": "https://www.linkedin.com/company/auckland-city-football-club",
+    "jobsUrl": "https://www.linkedin.com/company/auckland-city-football-club/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "auckland-fc-linkedin",
+    "platform": "LinkedIn",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "Auckland FC",
+    "profileUrl": "https://www.linkedin.com/company/auckland-fc",
+    "jobsUrl": "https://www.linkedin.com/company/auckland-fc/jobs",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "new-zealand-football-linkedin",
+    "platform": "LinkedIn",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "New Zealand Football",
+    "profileUrl": "https://www.linkedin.com/company/newzealandfootball",
+    "jobsUrl": "https://www.linkedin.com/company/newzealandfootball/jobs",
     "official": true,
     "monitoring": "Manual content check when LinkedIn requires login",
     "watchFor": [
@@ -291,6 +446,7 @@
     "region": "Oceania",
     "organisation": "Oceania Football Confederation",
     "profileUrl": "https://www.linkedin.com/company/oceania-football-confederation",
+    "jobsUrl": "https://www.linkedin.com/company/oceania-football-confederation/jobs",
     "official": true,
     "monitoring": "Manual content check when LinkedIn requires login",
     "watchFor": [
@@ -310,6 +466,7 @@
     "region": "Portugal",
     "organisation": "Liga Portugal",
     "profileUrl": "https://www.linkedin.com/company/ligaportugal",
+    "jobsUrl": "https://www.linkedin.com/company/ligaportugal/jobs",
     "official": true,
     "monitoring": "Manual content check when LinkedIn requires login",
     "watchFor": [

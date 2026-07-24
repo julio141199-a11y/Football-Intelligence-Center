@@ -453,7 +453,7 @@ async function loadDatabases() {
       facebook: "Not Public",
       instagram: field === "instagram" ? item.profileUrl : "Not Public",
       linkedin: field === "linkedin" ? item.profileUrl : "Not Public",
-      applicationPage: "Not Public",
+      applicationPage: item.platform === "LinkedIn" ? item.jobsUrl : "Not Public",
       priority: "Monitor",
       source: `${item.platform} official page`,
       sourceUrl: item.profileUrl,

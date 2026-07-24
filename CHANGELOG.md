@@ -28,8 +28,10 @@
 - Existing Contacts page merges role-based email candidates detected on official pages
 - LinkedIn watch is limited to Head Coach and Assistant Coach vacancies and verified coach-change signals
 - Fitness Coach summary was removed from the current opportunity view
+- Incomplete HTTP responses now fail safely without stopping other sources
 
 ### Pending
 - Review generated contact candidates before using them for applications
 - Expand official professional-club website coverage conservatively
 - Review gated LinkedIn content manually when login is required
+- Verify and add official LinkedIn profiles for additional priority federations and professional clubs

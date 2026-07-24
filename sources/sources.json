@@ -360,6 +360,97 @@
       "collectionMode": "registry-only",
       "monitoring": "Manual content check when LinkedIn requires login",
       "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "malaysia-fa-linkedin",
+      "name": "Football Association of Malaysia Official LinkedIn",
+      "country": "Malaysia",
+      "region": "AFC",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/football-association-malaysia",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "singapore-fa-linkedin",
+      "name": "Football Association of Singapore Official LinkedIn",
+      "country": "Singapore",
+      "region": "AFC",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/football-association-of-singapore",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "philippines-fa-linkedin",
+      "name": "Philippine Football Federation Official LinkedIn",
+      "country": "Philippines",
+      "region": "AFC",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/phifootballfederation",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "indonesia-fa-linkedin",
+      "name": "Persatuan Sepakbola Seluruh Indonesia Official LinkedIn",
+      "country": "Indonesia",
+      "region": "AFC",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/officialpssi",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "new-zealand-football-linkedin",
+      "name": "New Zealand Football Official LinkedIn",
+      "country": "New Zealand",
+      "region": "Oceania",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/newzealandfootball",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "costa-rica-fa-linkedin",
+      "name": "FCRF Official LinkedIn",
+      "country": "Costa Rica",
+      "region": "Central America and Caribbean",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/fcrf",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "auckland-fc-linkedin",
+      "name": "Auckland FC Official LinkedIn",
+      "country": "New Zealand",
+      "region": "Oceania",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/auckland-fc",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
     }
   ]
 }

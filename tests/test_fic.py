@@ -54,3 +54,9 @@ def test_social_registry_keeps_only_official_supported_profiles():
     assert len(result) == 1
     assert result[0]["platform"] == "LinkedIn"
     assert result[0]["organisation"] == "Example"
+    assert result[0]["jobsUrl"] == "https://www.linkedin.com/company/example/jobs"
+
+
+def test_pipeline_module_handles_incomplete_http_responses():
+    import run_pipeline
+    assert run_pipeline.http.client.IncompleteRead

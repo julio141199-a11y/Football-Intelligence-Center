@@ -9,6 +9,7 @@ new candidate remains ``To Verify`` until a human checks the official source.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import re
 import sys
@@ -233,6 +234,7 @@ def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
         if source_type not in {"official-linkedin", "official-instagram", "official-club-instagram"}:
             continue
         platform = "LinkedIn" if source_type == "official-linkedin" else "Instagram"
+        profile_url = source["url"].rstrip("/")
         records.append(
             {
                 "id": source["id"],
@@ -240,7 +242,8 @@ def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
                 "country": source.get("country", "Regional"),
                 "region": source.get("region", "International"),
                 "organisation": source["name"].removesuffix(" Official LinkedIn").removesuffix(" Official Instagram"),
-                "profileUrl": source["url"],
+                "profileUrl": profile_url,
+                "jobsUrl": f"{profile_url}/jobs" if platform == "LinkedIn" else "Not applicable",
                 "official": True,
                 "monitoring": source.get("monitoring", "Registry only"),
                 "watchFor": source.get(
@@ -315,7 +318,7 @@ def main() -> int:
                 for contact_url in contact_page_links(source["url"], links):
                     try:
                         pages.append((contact_url, fetch_text(contact_url, timeout, user_agent)))
-                    except (urllib.error.URLError, TimeoutError, ValueError, OSError) as exc:
+                    except (urllib.error.URLError, TimeoutError, ValueError, OSError, http.client.HTTPException) as exc:
                         warnings.append(f"{source['id']} contact page: {exc}")
                 for contact_url, contact_document in pages:
                     for email in extract_role_emails(contact_document):
@@ -341,7 +344,7 @@ def main() -> int:
                         )
                         existing_contact_ids.add(item_id)
                         contacts_added += 1
-        except (urllib.error.URLError, TimeoutError, ValueError, OSError) as exc:
+        except (urllib.error.URLError, TimeoutError, ValueError, OSError, http.client.HTTPException) as exc:
             warnings.append(f"{source['id']}: {exc}")
 
     opportunities = deduplicate(opportunities)
