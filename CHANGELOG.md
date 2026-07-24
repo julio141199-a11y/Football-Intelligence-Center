@@ -16,6 +16,7 @@
 - Generated official social-source registry for the website
 - Verified LinkedIn organisation pages for AFC, OFC, Concacaf, Canada Soccer, Liga Portugal, and Auckland City FC
 - Automatic official-website monitoring for the Malaysia, Singapore, Philippines, Indonesia, New Zealand, and Costa Rica federations
+- Stable-operations guide defining daily automation and the limited cases that require manual work
 
 ### Changed
 - Vacancy scope limited to Head Coach and Assistant Coach
@@ -35,6 +36,7 @@
 - Verified New Zealand Football careers/general contacts and the FCRF general contact; Singapore recruitment remains pending verification
 - Added the verified Philippine Football Federation secretariat, retained its older HR address as historical only, and added Auckland City FC's publicly listed General Manager contact
 - Added a small source-access override layer: three access-blocked federation sites now remain manual official registries, while Forge FC and Auckland City use working official pages
+- Declared the first FIC daily-automation release feature-complete; future work now prioritises verified applications over additional features
 
 ### Pending
 - Review generated contact candidates before using them for applications

@@ -44,3 +44,8 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 - Official LinkedIn organisation profiles are published as a focused watch list. Gated post content remains a manual check; only Head Coach and Assistant Coach hiring or coach-change signals are relevant.
 - Public role-based emails found on official federation, league, and club pages are stored separately as `To Verify`.
 - GitHub commits generated files only when they change.
+
+## Current lifecycle
+
+FIC is feature-complete for its first stable daily-operation release. See `OPERATIONS.md`.
+Further work should focus on verified opportunities, high-value contacts, and application preparation rather than adding features.
