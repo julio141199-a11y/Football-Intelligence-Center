@@ -134,23 +134,6 @@
     "verificationNote": "Published on the official FCRF website and contact page."
   },
   {
-    "id": "contact-dbf560fe868dc742",
-    "status": "Verified",
-    "country": "New Zealand",
-    "region": "Oceania",
-    "organisation": "New Zealand Football",
-    "organisationType": "Federation",
-    "email": "info@nzfootball.co.nz",
-    "website": "https://www.nzfootball.co.nz/",
-    "contactPage": "https://www.nzfootball.co.nz/",
-    "sourceUrl": "https://www.nzfootball.co.nz/",
-    "official": true,
-    "detectedAt": "2026-07-24T02:03:03+00:00",
-    "lastVerified": "2026-07-24",
-    "applicationUse": "General federation enquiries; use careers@nzfootball.co.nz for vacancy questions.",
-    "verificationNote": "Published on the official New Zealand Football Contacts and Careers pages."
-  },
-  {
     "id": "contact-c046fe8776daef15",
     "status": "Verified",
     "country": "New Zealand",
@@ -166,6 +149,23 @@
     "lastVerified": "2026-07-24",
     "applicationUse": "Public professional address for the club General Manager; use a concise introduction and ask whether coaching applications are being considered.",
     "verificationNote": "Published on the official Auckland City FC Governance page."
+  },
+  {
+    "id": "contact-dbf560fe868dc742",
+    "status": "Verified",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "New Zealand Football",
+    "organisationType": "Federation",
+    "email": "info@nzfootball.co.nz",
+    "website": "https://www.nzfootball.co.nz/",
+    "contactPage": "https://www.nzfootball.co.nz/",
+    "sourceUrl": "https://www.nzfootball.co.nz/",
+    "official": true,
+    "detectedAt": "2026-07-24T02:03:03+00:00",
+    "lastVerified": "2026-07-24",
+    "applicationUse": "General federation enquiries; use careers@nzfootball.co.nz for vacancy questions.",
+    "verificationNote": "Published on the official New Zealand Football Contacts and Careers pages."
   },
   {
     "id": "contact-9592381f6c24205c",
