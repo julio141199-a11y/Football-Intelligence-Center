@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from run_pipeline import build_social_registry, extract_role_emails, match_candidate
+from scripts.publish_action_summary import current_candidates, summary_markdown
 
 
 def test_jobs_json_parses():
@@ -39,6 +40,18 @@ def test_reviewed_contacts_include_verification_notes():
     reviewed = [item for item in contacts if item["status"] != "To Verify"]
     assert reviewed
     assert all(item.get("verificationNote") for item in reviewed)
+
+
+def test_action_alert_includes_only_current_target_roles():
+    updates = [{"runAt": "2026-07-24T00:00:00+00:00", "sourcesChecked": 3}]
+    opportunities = [
+        {"role": "Head Coach", "detectedAt": updates[0]["runAt"], "organisation": "A", "sourceUrl": "https://example.com/a", "country": "A"},
+        {"role": "Fitness Coach", "detectedAt": updates[0]["runAt"], "organisation": "B", "sourceUrl": "https://example.com/b", "country": "B"},
+        {"role": "Assistant Coach", "detectedAt": "2026-07-23T00:00:00+00:00", "organisation": "C", "sourceUrl": "https://example.com/c", "country": "C"},
+    ]
+    latest, candidates = current_candidates(updates, opportunities)
+    assert [item["organisation"] for item in candidates] == ["A"]
+    assert "Head Coach: A" in summary_markdown(latest, candidates)
 
 
 def test_pipeline_accepts_only_target_roles():

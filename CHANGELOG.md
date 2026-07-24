@@ -30,6 +30,7 @@
 - LinkedIn watch is limited to Head Coach and Assistant Coach vacancies and verified coach-change signals
 - Fitness Coach summary was removed from the current opportunity view
 - Incomplete HTTP responses now fail safely without stopping other sources
+- Added a concise GitHub Actions summary and no-noise issue alerts for new Head Coach or Assistant Coach candidates only
 - Reviewed the first four generated contacts: two verified, one historical, and one still requiring verification
 - Verified New Zealand Football careers/general contacts and the FCRF general contact; Singapore recruitment remains pending verification
 

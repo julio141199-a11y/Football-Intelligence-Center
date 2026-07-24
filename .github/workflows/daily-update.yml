@@ -10,12 +10,14 @@ on:
     paths:
       - ".github/workflows/daily-update.yml"
       - "run_pipeline.py"
+      - "scripts/publish_action_summary.py"
       - "scripts/validate_pipeline.py"
       - "sources/sources.json"
       - "tests/test_fic.py"
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: fic-daily-update
@@ -46,6 +48,22 @@ jobs:
           python scripts/validate_pipeline.py
           python scripts/validate_repository.py
           pytest -q
+
+      - name: Publish concise run summary
+        id: alert
+        env:
+          FIC_ALERT_PATH: ${{ runner.temp }}/fic-alert.md
+        run: python scripts/publish_action_summary.py
+
+      - name: Notify only for new coaching candidates
+        if: steps.alert.outputs.new_candidates != '0'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "[FIC Alert] ${{ steps.alert.outputs.new_candidates }} new coaching candidate(s) — ${{ steps.alert.outputs.run_date }}" \
+            --body-file "${{ runner.temp }}/fic-alert.md"
 
       - name: Commit generated data when changed
         run: |

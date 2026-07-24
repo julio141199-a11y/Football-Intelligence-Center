@@ -27,9 +27,10 @@
 - [x] Run first controlled local pipeline cycle
 - [x] Verify GitHub Actions commit
 - [x] Verify GitHub Pages deployment
-- [ ] Verify notification behaviour
+- [x] Verify no-noise notification logic for new Head Coach / Assistant Coach candidates
+- [ ] Confirm delivery when the first real candidate is detected
 - [ ] Observe for seven days and tune false positives
 - [x] Review the first generated official contact candidates
 
 ## Current next task
-Observe the expanded official federation sources, review new contact candidates, and tune only confirmed false positives.
+Observe the expanded official federation sources and confirm the first real GitHub candidate alert.

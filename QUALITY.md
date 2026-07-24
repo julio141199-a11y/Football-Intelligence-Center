@@ -44,3 +44,4 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - Contact collection is limited to public role-based addresses on official organisation pages.
 - Automatically detected contacts start as `To Verify`; a reviewed contact may become `Verified` or `Historical` only with a public-source note.
 - LinkedIn sources must be official organisation profiles. Do not store personal profiles or claim that gated posts were automatically reviewed.
+- Notifications are allowed only for newly detected Head Coach or Assistant Coach candidates and must label them `To Verify`.
