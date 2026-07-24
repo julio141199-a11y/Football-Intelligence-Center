@@ -49,13 +49,13 @@ jobs:
 
       - name: Commit generated data when changed
         run: |
-          if git diff --quiet -- data/opportunities.json data/contacts.json data/updates.json; then
+          if git diff --quiet -- data/opportunities.json data/contacts.json data/social_sources.json data/updates.json; then
             echo "No generated data changes."
             exit 0
           fi
 
           git config user.name "fic-ai-employee"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/opportunities.json data/contacts.json data/updates.json
+          git add data/opportunities.json data/contacts.json data/social_sources.json data/updates.json
           git commit -m "FIC daily update: refresh opportunity watch"
           git push

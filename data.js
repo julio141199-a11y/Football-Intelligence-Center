@@ -4,6 +4,7 @@ const DATABASES = {
   jobs: "jobs.json",
   contacts: "contacts.json",
   pipelineContacts: "data/contacts.json",
+  socialSources: "data/social_sources.json",
   coachNetwork: "coach_network.json",
   countries: "countries.json",
   licences: "pro_licence_watch.json",
@@ -12,7 +13,7 @@ const DATABASES = {
   updateSchedule: "update_schedule.json"
 };
 
-const state = { jobs: [], contacts: [], pipelineContacts: [], coachNetwork: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
+const state = { jobs: [], contacts: [], pipelineContacts: [], socialSources: [], coachNetwork: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
 const text = (value) => {
   if (Array.isArray(value)) return value.join(", ");
   return value === undefined || value === null || value === "" ? "To verify" : String(value);
@@ -255,7 +256,7 @@ function jobMatchesFilter(item, filter) {
   return item.continent === filter;
 }
 function renderJobStats() {
-  const stats = [["Verified Open", state.jobs.filter((item) => item.status === "Open" && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["Fitness Coach", state.jobs.filter((item) => item.roleType === "Fitness Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
+  const stats = [["Verified Open", state.jobs.filter((item) => item.status === "Open" && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && ["Open", "Closing Soon"].includes(item.status)).length], ["Official LinkedIn", state.socialSources.filter((item) => item.platform === "LinkedIn").length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
   document.querySelector("#jobsStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
 }
 function renderJobs(filter = "All", query = "") {
@@ -428,6 +429,40 @@ async function loadDatabases() {
       notes: "Automatically detected public role-based email. Verify the recipient before sending a CV."
     });
     existingContactKeys.add(key);
+  });
+  const contactsByOrganisation = new Map(state.contacts.map((item) => [text(item.organization).toLowerCase(), item]));
+  state.socialSources.forEach((item) => {
+    const organisationKey = text(item.organisation).toLowerCase();
+    const field = item.platform === "LinkedIn" ? "linkedin" : "instagram";
+    const existing = contactsByOrganisation.get(organisationKey);
+    if (existing) {
+      existing[field] = item.profileUrl;
+      return;
+    }
+    const contact = {
+      id: `social-${item.id}`,
+      continent: item.region,
+      country: item.country,
+      organization: item.organisation,
+      type: "Official social profile",
+      role: "Head Coach / Assistant Coach watch",
+      person: "Official organisation account",
+      email: "Not Public",
+      phone: "Not Public",
+      website: "Not Public",
+      facebook: "Not Public",
+      instagram: field === "instagram" ? item.profileUrl : "Not Public",
+      linkedin: field === "linkedin" ? item.profileUrl : "Not Public",
+      applicationPage: "Not Public",
+      priority: "Monitor",
+      source: `${item.platform} official page`,
+      sourceUrl: item.profileUrl,
+      lastChecked: item.lastVerified,
+      accuracyLevel: "Official profile",
+      notes: `Monitor only for: ${(item.watchFor || []).join(", ")}. Gated post content may require manual login.`
+    };
+    state.contacts.push(contact);
+    contactsByOrganisation.set(organisationKey, contact);
   });
   if (generalFailed) {
     const notice = document.querySelector("#databaseMessage");

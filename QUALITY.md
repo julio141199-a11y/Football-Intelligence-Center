@@ -42,3 +42,4 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - Generated opportunities are deduplicated by source URL, role, and organisation.
 - Contact collection is limited to public role-based addresses on official organisation pages.
 - Automatically detected contacts remain `To Verify`; personal-looking addresses are not collected.
+- LinkedIn sources must be official organisation profiles. Do not store personal profiles or claim that gated posts were automatically reviewed.

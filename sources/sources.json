@@ -282,6 +282,84 @@
       "official": true,
       "enabled": true,
       "collectionMode": "registry-only"
+    },
+    {
+      "id": "afc-linkedin",
+      "name": "Asian Football Confederation (AFC) Official LinkedIn",
+      "country": "Regional",
+      "region": "AFC",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/theafcdotcom",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "ofc-linkedin",
+      "name": "Oceania Football Confederation Official LinkedIn",
+      "country": "Regional",
+      "region": "Oceania",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/oceania-football-confederation",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "concacaf-linkedin",
+      "name": "CONCACAF Official LinkedIn",
+      "country": "Regional",
+      "region": "Central America and Caribbean",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/concacaf",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "canada-soccer-linkedin",
+      "name": "Canada Soccer Official LinkedIn",
+      "country": "Canada",
+      "region": "Canada",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/canada-soccer",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "liga-portugal-linkedin",
+      "name": "Liga Portugal Official LinkedIn",
+      "country": "Portugal",
+      "region": "Portugal",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/ligaportugal",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
+    },
+    {
+      "id": "auckland-city-linkedin",
+      "name": "Auckland City Football Club Official LinkedIn",
+      "country": "New Zealand",
+      "region": "Oceania",
+      "type": "official-linkedin",
+      "url": "https://www.linkedin.com/company/auckland-city-football-club",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only",
+      "monitoring": "Manual content check when LinkedIn requires login",
+      "lastVerified": "2026-07-24"
     }
   ]
 }

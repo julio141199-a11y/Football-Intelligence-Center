@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from run_pipeline import extract_role_emails, match_candidate
+from run_pipeline import build_social_registry, extract_role_emails, match_candidate
 
 
 def test_jobs_json_parses():
@@ -43,3 +43,14 @@ def test_pipeline_accepts_only_target_roles():
 def test_pipeline_collects_only_role_based_public_emails():
     document = "info@example.com coach.name@example.com hr@example.com noreply@example.com"
     assert extract_role_emails(document) == ["hr@example.com", "info@example.com"]
+
+
+def test_social_registry_keeps_only_official_supported_profiles():
+    sources = [
+        {"id": "one", "name": "Example Official LinkedIn", "country": "A", "region": "AFC", "type": "official-linkedin", "url": "https://www.linkedin.com/company/example", "official": True, "enabled": True},
+        {"id": "two", "name": "Unofficial", "country": "A", "region": "AFC", "type": "official-linkedin", "url": "https://www.linkedin.com/company/unofficial", "official": False, "enabled": True},
+    ]
+    result = build_social_registry(sources, "2026-07-24T00:00:00+00:00")
+    assert len(result) == 1
+    assert result[0]["platform"] == "LinkedIn"
+    assert result[0]["organisation"] == "Example"

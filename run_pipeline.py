@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parent
 SOURCES_PATH = ROOT / "sources" / "sources.json"
 OPPORTUNITIES_PATH = ROOT / "data" / "opportunities.json"
 CONTACTS_PATH = ROOT / "data" / "contacts.json"
+SOCIAL_SOURCES_PATH = ROOT / "data" / "social_sources.json"
 UPDATES_PATH = ROOT / "data" / "updates.json"
 MAX_RESPONSE_BYTES = 2_000_000
 CONTACT_LINK_PATTERN = re.compile(
@@ -222,6 +223,36 @@ def deduplicate_contacts(items: list[dict]) -> list[dict]:
     return sorted(unique.values(), key=lambda item: (item.get("region", ""), item.get("organisation", "")))
 
 
+def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
+    """Publish verified official social profiles without scraping gated posts."""
+    records: list[dict] = []
+    for source in sources:
+        source_type = str(source.get("type", ""))
+        if not source.get("enabled", True) or not source.get("official"):
+            continue
+        if source_type not in {"official-linkedin", "official-instagram", "official-club-instagram"}:
+            continue
+        platform = "LinkedIn" if source_type == "official-linkedin" else "Instagram"
+        records.append(
+            {
+                "id": source["id"],
+                "platform": platform,
+                "country": source.get("country", "Regional"),
+                "region": source.get("region", "International"),
+                "organisation": source["name"].removesuffix(" Official LinkedIn").removesuffix(" Official Instagram"),
+                "profileUrl": source["url"],
+                "official": True,
+                "monitoring": source.get("monitoring", "Registry only"),
+                "watchFor": source.get(
+                    "watchFor",
+                    ["Head Coach", "Assistant Coach", "Vacancy", "Resigned", "Dismissed", "Appointed"],
+                ),
+                "lastVerified": source.get("lastVerified", generated_at[:10]),
+            }
+        )
+    return sorted(records, key=lambda item: (item["platform"], item["region"], item["organisation"]))
+
+
 def main() -> int:
     config = read_json(SOURCES_PATH)
     opportunities = read_json(OPPORTUNITIES_PATH)
@@ -235,6 +266,7 @@ def main() -> int:
     contacts_added = 0
     warnings: list[str] = []
     run_at = now_iso()
+    social_sources = build_social_registry(config.get("sources", []), run_at)
 
     settings = config.get("settings", {})
     timeout = int(settings.get("requestTimeoutSeconds", 15))
@@ -321,6 +353,7 @@ def main() -> int:
         "registryOnlySources": skipped,
         "newCandidates": added,
         "newContacts": contacts_added,
+        "socialProfiles": len(social_sources),
         "warnings": warnings,
     }
     updates.insert(0, update)
@@ -328,6 +361,7 @@ def main() -> int:
 
     write_json(OPPORTUNITIES_PATH, opportunities)
     write_json(CONTACTS_PATH, contacts)
+    write_json(SOCIAL_SOURCES_PATH, social_sources)
     write_json(UPDATES_PATH, updates)
 
     print(f"Sources checked: {checked}")

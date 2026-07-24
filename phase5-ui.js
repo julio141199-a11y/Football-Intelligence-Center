@@ -183,7 +183,7 @@
       date: item.runAt,
       type: "Pipeline",
       title: "Daily opportunity scan",
-      summary: `${item.sourcesChecked || 0} sources checked · ${item.newCandidates || 0} new candidate(s) · ${item.newContacts || 0} new contact(s)`
+      summary: `${item.sourcesChecked || 0} sources checked · ${item.newCandidates || 0} new candidate(s) · ${item.newContacts || 0} new contact(s) · ${item.socialProfiles || 0} official social profile(s)`
     }));
     renderMarketPulse([...updates, ...pipelinePulse]);
     renderBrief(researchState, [...inbox, ...pendingPipeline], schedule);

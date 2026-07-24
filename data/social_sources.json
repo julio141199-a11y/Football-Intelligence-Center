@@ -1,0 +1,325 @@
+[
+  {
+    "id": "afc-instagram",
+    "platform": "Instagram",
+    "country": "Regional",
+    "region": "AFC",
+    "organisation": "AFC",
+    "profileUrl": "https://www.instagram.com/theafchub/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "bali-united-instagram",
+    "platform": "Instagram",
+    "country": "Indonesia",
+    "region": "AFC",
+    "organisation": "Bali United",
+    "profileUrl": "https://www.instagram.com/baliunitedfc/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "buriram-instagram",
+    "platform": "Instagram",
+    "country": "Thailand",
+    "region": "AFC",
+    "organisation": "Buriram United",
+    "profileUrl": "https://www.instagram.com/buriramunitedofficial/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "johor-instagram",
+    "platform": "Instagram",
+    "country": "Malaysia",
+    "region": "AFC",
+    "organisation": "Johor Darul Ta'zim",
+    "profileUrl": "https://www.instagram.com/officialjohor/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "phnom-penh-crown-instagram",
+    "platform": "Instagram",
+    "country": "Cambodia",
+    "region": "AFC",
+    "organisation": "Phnom Penh Crown",
+    "profileUrl": "https://www.instagram.com/ppcrownfc/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "canada-soccer-instagram",
+    "platform": "Instagram",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Canada Soccer",
+    "profileUrl": "https://www.instagram.com/canadasoccer/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "forge-fc-instagram",
+    "platform": "Instagram",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Forge FC",
+    "profileUrl": "https://www.instagram.com/forgefc/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "concacaf-instagram",
+    "platform": "Instagram",
+    "country": "Regional",
+    "region": "Central America and Caribbean",
+    "organisation": "Concacaf",
+    "profileUrl": "https://www.instagram.com/concacaf/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "auckland-city-instagram",
+    "platform": "Instagram",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "Auckland City FC",
+    "profileUrl": "https://www.instagram.com/aucklandcity_fc/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "ofc-instagram",
+    "platform": "Instagram",
+    "country": "Regional",
+    "region": "Oceania",
+    "organisation": "OFC",
+    "profileUrl": "https://www.instagram.com/ofcfootball/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "liga-portugal-instagram",
+    "platform": "Instagram",
+    "country": "Portugal",
+    "region": "Portugal",
+    "organisation": "Liga Portugal",
+    "profileUrl": "https://www.instagram.com/ligaportugal/",
+    "official": true,
+    "monitoring": "Registry only",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "afc-linkedin",
+    "platform": "LinkedIn",
+    "country": "Regional",
+    "region": "AFC",
+    "organisation": "Asian Football Confederation (AFC)",
+    "profileUrl": "https://www.linkedin.com/company/theafcdotcom",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "canada-soccer-linkedin",
+    "platform": "LinkedIn",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Canada Soccer",
+    "profileUrl": "https://www.linkedin.com/company/canada-soccer",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "concacaf-linkedin",
+    "platform": "LinkedIn",
+    "country": "Regional",
+    "region": "Central America and Caribbean",
+    "organisation": "CONCACAF",
+    "profileUrl": "https://www.linkedin.com/company/concacaf",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "auckland-city-linkedin",
+    "platform": "LinkedIn",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "organisation": "Auckland City Football Club",
+    "profileUrl": "https://www.linkedin.com/company/auckland-city-football-club",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "ofc-linkedin",
+    "platform": "LinkedIn",
+    "country": "Regional",
+    "region": "Oceania",
+    "organisation": "Oceania Football Confederation",
+    "profileUrl": "https://www.linkedin.com/company/oceania-football-confederation",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  },
+  {
+    "id": "liga-portugal-linkedin",
+    "platform": "LinkedIn",
+    "country": "Portugal",
+    "region": "Portugal",
+    "organisation": "Liga Portugal",
+    "profileUrl": "https://www.linkedin.com/company/ligaportugal",
+    "official": true,
+    "monitoring": "Manual content check when LinkedIn requires login",
+    "watchFor": [
+      "Head Coach",
+      "Assistant Coach",
+      "Vacancy",
+      "Resigned",
+      "Dismissed",
+      "Appointed"
+    ],
+    "lastVerified": "2026-07-24"
+  }
+]

@@ -22,6 +22,7 @@ def main() -> int:
     sources = load(ROOT / "sources" / "sources.json")
     opportunities = load(ROOT / "data" / "opportunities.json")
     contacts = load(ROOT / "data" / "contacts.json")
+    social_sources = load(ROOT / "data" / "social_sources.json")
     updates = load(ROOT / "data" / "updates.json")
 
     if not isinstance(sources.get("sources"), list):
@@ -32,6 +33,8 @@ def main() -> int:
         errors.append("data/updates.json must be an array.")
     if not isinstance(contacts, list):
         errors.append("data/contacts.json must be an array.")
+    if not isinstance(social_sources, list):
+        errors.append("data/social_sources.json must be an array.")
 
     source_ids: set[str] = set()
     allowed_modes = {"automatic", "registry-only"}
@@ -71,6 +74,23 @@ def main() -> int:
         parsed = urlparse(str(item.get("sourceUrl", "")))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
             errors.append(f"{label}.sourceUrl is invalid.")
+
+    social_ids: set[str] = set()
+    social_urls: set[str] = set()
+    for index, item in enumerate(social_sources):
+        label = f"data/social_sources.json[{index}]"
+        if item.get("platform") not in {"Instagram", "LinkedIn"}:
+            errors.append(f"{label}.platform is invalid.")
+        if item.get("id") in social_ids:
+            errors.append(f"Duplicate social source id: {item.get('id')}")
+        social_ids.add(item.get("id"))
+        url = str(item.get("profileUrl", "")).rstrip("/").casefold()
+        if url in social_urls:
+            errors.append(f"Duplicate social source URL: {url}")
+        social_urls.add(url)
+        parsed = urlparse(str(item.get("profileUrl", "")))
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            errors.append(f"{label}.profileUrl is invalid.")
 
     contact_ids: set[str] = set()
     contact_keys: set[tuple[str, str]] = set()

@@ -31,4 +31,4 @@
 - [ ] Observe for seven days and tune false positives
 
 ## Current next task
-Review the first generated official contact candidates and expand verified club website sources conservatively.
+Review official LinkedIn and generated email candidates, then expand verified federation and professional-club profiles conservatively.
