@@ -31,6 +31,7 @@
 - [ ] Confirm delivery when the first real candidate is detected
 - [ ] Observe for seven days and tune false positives
 - [x] Review the first generated official contact candidates
+- [x] Add verified Philippines federation and Auckland City decision-maker contact routes
 
 ## Current next task
-Observe the expanded official federation sources and confirm the first real GitHub candidate alert.
+Observe the expanded official sources and confirm the first real GitHub candidate alert. Until then, verify only high-value public contacts that can receive or route a coaching enquiry.

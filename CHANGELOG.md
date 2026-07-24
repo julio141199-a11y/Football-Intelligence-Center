@@ -33,6 +33,7 @@
 - Added a concise GitHub Actions summary and no-noise issue alerts for new Head Coach or Assistant Coach candidates only
 - Reviewed the first four generated contacts: two verified, one historical, and one still requiring verification
 - Verified New Zealand Football careers/general contacts and the FCRF general contact; Singapore recruitment remains pending verification
+- Added the verified Philippine Football Federation secretariat, retained its older HR address as historical only, and added Auckland City FC's publicly listed General Manager contact
 
 ### Pending
 - Review generated contact candidates before using them for applications
