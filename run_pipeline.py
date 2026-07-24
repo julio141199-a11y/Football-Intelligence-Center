@@ -22,8 +22,36 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SOURCES_PATH = ROOT / "sources" / "sources.json"
 OPPORTUNITIES_PATH = ROOT / "data" / "opportunities.json"
+CONTACTS_PATH = ROOT / "data" / "contacts.json"
 UPDATES_PATH = ROOT / "data" / "updates.json"
 MAX_RESPONSE_BYTES = 2_000_000
+CONTACT_LINK_PATTERN = re.compile(
+    r"\b(contact|contact us|careers?|vacanc(?:y|ies)|jobs?|recruitment|about us|"
+    r"contato|contactos?|contacto|contacto-nos)\b",
+    re.IGNORECASE,
+)
+EMAIL_PATTERN = re.compile(
+    r"(?<![\w.+-])([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})(?![\w.-])",
+    re.IGNORECASE,
+)
+ROLE_EMAIL_PREFIXES = {
+    "admin",
+    "administration",
+    "careers",
+    "club",
+    "communications",
+    "contact",
+    "enquiries",
+    "enquiry",
+    "football",
+    "general",
+    "hello",
+    "hr",
+    "info",
+    "office",
+    "recruitment",
+    "secretariat",
+}
 
 ROLE_PATTERNS = {
     "Head Coach": re.compile(
@@ -123,6 +151,27 @@ def extract_links(base_url: str, document: str) -> list[tuple[str, str]]:
     return list(unique.items())[:250]
 
 
+def contact_page_links(base_url: str, links: list[tuple[str, str]]) -> list[str]:
+    base_host = urllib.parse.urlsplit(base_url).netloc.casefold().removeprefix("www.")
+    matches: list[str] = []
+    for url, title in links:
+        host = urllib.parse.urlsplit(url).netloc.casefold().removeprefix("www.")
+        text = f"{title} {urllib.parse.unquote(url)}"
+        if host == base_host and CONTACT_LINK_PATTERN.search(text) and url not in matches:
+            matches.append(url)
+    return matches[:3]
+
+
+def extract_role_emails(document: str) -> list[str]:
+    emails: set[str] = set()
+    for email in EMAIL_PATTERN.findall(document):
+        normalized = email.strip(".,;:()[]{}<>").casefold()
+        prefix = normalized.split("@", 1)[0].split("+", 1)[0]
+        if prefix in ROLE_EMAIL_PREFIXES:
+            emails.add(normalized)
+    return sorted(emails)
+
+
 def match_candidate(title: str, url: str) -> tuple[str, str] | None:
     text = f"{title} {urllib.parse.unquote(url)}"
     if EXCLUDED_PATTERN.search(text) or not EVENT_PATTERN.search(text):
@@ -143,6 +192,11 @@ def candidate_id(source_id: str, url: str, role: str) -> str:
     return f"opportunity-{digest}"
 
 
+def contact_id(source_id: str, email: str) -> str:
+    digest = hashlib.sha256(f"{source_id}|{email}".encode()).hexdigest()[:16]
+    return f"contact-{digest}"
+
+
 def deduplicate(items: list[dict]) -> list[dict]:
     strongest: dict[tuple[str, str, str], dict] = {}
     for item in items:
@@ -157,14 +211,28 @@ def deduplicate(items: list[dict]) -> list[dict]:
     return sorted(strongest.values(), key=lambda item: item.get("detectedAt", ""), reverse=True)
 
 
+def deduplicate_contacts(items: list[dict]) -> list[dict]:
+    unique: dict[tuple[str, str], dict] = {}
+    for item in items:
+        key = (
+            str(item.get("organisation", "")).casefold(),
+            str(item.get("email", "")).casefold(),
+        )
+        unique.setdefault(key, item)
+    return sorted(unique.values(), key=lambda item: (item.get("region", ""), item.get("organisation", "")))
+
+
 def main() -> int:
     config = read_json(SOURCES_PATH)
     opportunities = read_json(OPPORTUNITIES_PATH)
+    contacts = read_json(CONTACTS_PATH)
     updates = read_json(UPDATES_PATH)
     existing_ids = {item.get("id") for item in opportunities}
+    existing_contact_ids = {item.get("id") for item in contacts}
     checked = 0
     skipped = 0
     added = 0
+    contacts_added = 0
     warnings: list[str] = []
     run_at = now_iso()
 
@@ -181,7 +249,8 @@ def main() -> int:
         try:
             document = fetch_text(source["url"], timeout, user_agent)
             checked += 1
-            for url, title in extract_links(source["url"], document):
+            links = extract_links(source["url"], document)
+            for url, title in links:
                 match = match_candidate(title, url)
                 if not match:
                     continue
@@ -208,27 +277,63 @@ def main() -> int:
                 )
                 existing_ids.add(item_id)
                 added += 1
+
+            if source.get("official") and source.get("type") in {"federation", "league", "club"}:
+                pages = [(source["url"], document)]
+                for contact_url in contact_page_links(source["url"], links):
+                    try:
+                        pages.append((contact_url, fetch_text(contact_url, timeout, user_agent)))
+                    except (urllib.error.URLError, TimeoutError, ValueError, OSError) as exc:
+                        warnings.append(f"{source['id']} contact page: {exc}")
+                for contact_url, contact_document in pages:
+                    for email in extract_role_emails(contact_document):
+                        item_id = contact_id(source["id"], email)
+                        if item_id in existing_contact_ids:
+                            continue
+                        contacts.append(
+                            {
+                                "id": item_id,
+                                "status": "To Verify",
+                                "country": source.get("country", "Regional"),
+                                "region": source["region"],
+                                "organisation": source["name"],
+                                "organisationType": source["type"].title(),
+                                "email": email,
+                                "website": source["url"],
+                                "contactPage": contact_url,
+                                "sourceUrl": contact_url,
+                                "official": True,
+                                "detectedAt": run_at,
+                                "lastVerified": "Needs verification",
+                            }
+                        )
+                        existing_contact_ids.add(item_id)
+                        contacts_added += 1
         except (urllib.error.URLError, TimeoutError, ValueError, OSError) as exc:
             warnings.append(f"{source['id']}: {exc}")
 
     opportunities = deduplicate(opportunities)
+    contacts = deduplicate_contacts(contacts)
     update = {
         "runAt": run_at,
         "status": "completed_with_warnings" if warnings else "completed",
         "sourcesChecked": checked,
         "registryOnlySources": skipped,
         "newCandidates": added,
+        "newContacts": contacts_added,
         "warnings": warnings,
     }
     updates.insert(0, update)
     updates = updates[:30]
 
     write_json(OPPORTUNITIES_PATH, opportunities)
+    write_json(CONTACTS_PATH, contacts)
     write_json(UPDATES_PATH, updates)
 
     print(f"Sources checked: {checked}")
     print(f"Registry-only sources: {skipped}")
     print(f"New candidates: {added}")
+    print(f"New contacts: {contacts_added}")
     print(f"Warnings: {len(warnings)}")
     return 0
 

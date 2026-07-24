@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from run_pipeline import match_candidate
+from run_pipeline import extract_role_emails, match_candidate
 
 
 def test_jobs_json_parses():
@@ -38,3 +38,8 @@ def test_pipeline_accepts_only_target_roles():
     assert match_candidate("Head Coach vacancy", "https://example.com/jobs") == ("Head Coach", "Vacancy")
     assert match_candidate("Assistant Coach recruitment", "https://example.com/jobs") == ("Assistant Coach", "Vacancy")
     assert match_candidate("Fitness Coach vacancy", "https://example.com/jobs") is None
+
+
+def test_pipeline_collects_only_role_based_public_emails():
+    document = "info@example.com coach.name@example.com hr@example.com noreply@example.com"
+    assert extract_role_emails(document) == ["hr@example.com", "info@example.com"]

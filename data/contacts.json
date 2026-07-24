@@ -1,0 +1,62 @@
+[
+  {
+    "id": "contact-4e3c44191683058d",
+    "status": "To Verify",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Canada Soccer",
+    "organisationType": "Federation",
+    "email": "info@canadasoccer.com",
+    "website": "https://canadasoccer.com/",
+    "contactPage": "https://canadasoccer.com/careers/",
+    "sourceUrl": "https://canadasoccer.com/careers/",
+    "official": true,
+    "detectedAt": "2026-07-24T01:27:32+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
+    "id": "contact-b3e802aa38bcab7e",
+    "status": "To Verify",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Canadian Premier League",
+    "organisationType": "League",
+    "email": "careers@canpl.ca",
+    "website": "https://canpl.ca/",
+    "contactPage": "https://canpl.ca/careers",
+    "sourceUrl": "https://canpl.ca/careers",
+    "official": true,
+    "detectedAt": "2026-07-24T01:27:32+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
+    "id": "contact-d305839d6dee10b5",
+    "status": "To Verify",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Canadian Premier League",
+    "organisationType": "League",
+    "email": "careers@cplsoccer.com",
+    "website": "https://canpl.ca/",
+    "contactPage": "https://canpl.ca/careers",
+    "sourceUrl": "https://canpl.ca/careers",
+    "official": true,
+    "detectedAt": "2026-07-24T01:27:32+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
+    "id": "contact-f61e77a24d9cbdc6",
+    "status": "To Verify",
+    "country": "Regional",
+    "region": "Central America and Caribbean",
+    "organisation": "Concacaf",
+    "organisationType": "Federation",
+    "email": "contact@concacaf.org",
+    "website": "https://www.concacaf.com/",
+    "contactPage": "https://www.concacaf.com/",
+    "sourceUrl": "https://www.concacaf.com/",
+    "official": true,
+    "detectedAt": "2026-07-24T01:27:32+00:00",
+    "lastVerified": "Needs verification"
+  }
+]

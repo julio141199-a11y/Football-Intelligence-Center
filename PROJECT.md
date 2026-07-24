@@ -41,4 +41,5 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 - `run_pipeline.py` checks a small registry of generic public sources.
 - Automated discoveries remain `To Verify`; they are never promoted directly into `jobs.json`.
 - Official Instagram accounts are registry-only because reliable automated access requires platform authentication.
+- Public role-based emails found on official federation, league, and club pages are stored separately as `To Verify`.
 - GitHub commits generated files only when they change.

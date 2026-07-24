@@ -183,7 +183,7 @@
       date: item.runAt,
       type: "Pipeline",
       title: "Daily opportunity scan",
-      summary: `${item.sourcesChecked || 0} sources checked · ${item.newCandidates || 0} new candidate(s)`
+      summary: `${item.sourcesChecked || 0} sources checked · ${item.newCandidates || 0} new candidate(s) · ${item.newContacts || 0} new contact(s)`
     }));
     renderMarketPulse([...updates, ...pipelinePulse]);
     renderBrief(researchState, [...inbox, ...pendingPipeline], schedule);

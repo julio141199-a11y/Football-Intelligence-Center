@@ -119,6 +119,50 @@
       "collectionMode": "automatic"
     },
     {
+      "id": "buriram-united",
+      "name": "Buriram United",
+      "country": "Thailand",
+      "region": "AFC",
+      "type": "club",
+      "url": "https://www.buriramunited.com/th/home",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "bali-united",
+      "name": "Bali United",
+      "country": "Indonesia",
+      "region": "AFC",
+      "type": "club",
+      "url": "https://baliutd.com/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "auckland-city",
+      "name": "Auckland City FC",
+      "country": "New Zealand",
+      "region": "Oceania",
+      "type": "club",
+      "url": "https://www.aucklandcityfc.com/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "forge-fc",
+      "name": "Forge FC",
+      "country": "Canada",
+      "region": "Canada",
+      "type": "club",
+      "url": "https://forgefc.canpl.ca/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
       "id": "afc-instagram",
       "name": "AFC Official Instagram",
       "country": "Regional",

@@ -21,6 +21,7 @@ def main() -> int:
     errors: list[str] = []
     sources = load(ROOT / "sources" / "sources.json")
     opportunities = load(ROOT / "data" / "opportunities.json")
+    contacts = load(ROOT / "data" / "contacts.json")
     updates = load(ROOT / "data" / "updates.json")
 
     if not isinstance(sources.get("sources"), list):
@@ -29,6 +30,8 @@ def main() -> int:
         errors.append("data/opportunities.json must be an array.")
     if not isinstance(updates, list):
         errors.append("data/updates.json must be an array.")
+    if not isinstance(contacts, list):
+        errors.append("data/contacts.json must be an array.")
 
     source_ids: set[str] = set()
     allowed_modes = {"automatic", "registry-only"}
@@ -65,6 +68,29 @@ def main() -> int:
         if key in keys:
             errors.append(f"Duplicate opportunity: {key}")
         keys.add(key)
+        parsed = urlparse(str(item.get("sourceUrl", "")))
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            errors.append(f"{label}.sourceUrl is invalid.")
+
+    contact_ids: set[str] = set()
+    contact_keys: set[tuple[str, str]] = set()
+    for index, item in enumerate(contacts):
+        label = f"data/contacts.json[{index}]"
+        if item.get("status") != "To Verify":
+            errors.append(f"{label}.status must remain To Verify.")
+        if item.get("id") in contact_ids:
+            errors.append(f"Duplicate contact id: {item.get('id')}")
+        contact_ids.add(item.get("id"))
+        key = (
+            str(item.get("organisation", "")).casefold(),
+            str(item.get("email", "")).casefold(),
+        )
+        if key in contact_keys:
+            errors.append(f"Duplicate generated contact: {key}")
+        contact_keys.add(key)
+        email = str(item.get("email", ""))
+        if email.count("@") != 1 or " " in email:
+            errors.append(f"{label}.email is invalid.")
         parsed = urlparse(str(item.get("sourceUrl", "")))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
             errors.append(f"{label}.sourceUrl is invalid.")

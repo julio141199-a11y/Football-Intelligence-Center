@@ -12,6 +12,7 @@
 - Generic, fail-safe opportunity collector and pipeline validator
 - Starter public-source registry for priority regions and official Instagram accounts
 - Generated `data/opportunities.json` and `data/updates.json`
+- Generated public professional contact candidate database
 
 ### Changed
 - Vacancy scope limited to Head Coach and Assistant Coach
@@ -22,8 +23,8 @@
 - Existing maintenance and research workflows changed to manual-only to prevent duplicate schedules
 - Existing website now reads the generated pipeline JSON without changing the visual design
 - Pipeline configuration pushes trigger one immediate verification run
+- Existing Contacts page merges role-based email candidates detected on official pages
 
 ### Pending
-- Confirm repository Workflow permissions allow `GITHUB_TOKEN` write access
-- Run the workflow once from GitHub Actions
-- Confirm the generated JSON is reachable through GitHub Pages
+- Review generated contact candidates before using them for applications
+- Expand official professional-club website coverage conservatively

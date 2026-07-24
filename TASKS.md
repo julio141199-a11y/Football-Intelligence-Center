@@ -7,7 +7,7 @@
 - [x] Add operating files to repository
 - [x] Replace four-day schedule with daily operation
 - [x] Remove Fitness Coach, Technical Director, and Coach Education from collection scope
-- [ ] Confirm GitHub Pages deployment health after the first pushed workflow run
+- [x] Confirm GitHub Pages deployment health after the first pushed workflow run
 
 ## Phase 2 — Data standardisation
 - [ ] Document jobs.json fields
@@ -21,14 +21,14 @@
 - [x] Duplicate ID validation
 - [ ] Deadline/status consistency check
 - [x] URL format validation
-- [ ] Lightweight site smoke test
+- [x] Lightweight site smoke test
 
 ## Phase 4 — Daily operation
 - [x] Run first controlled local pipeline cycle
-- [ ] Verify GitHub Actions commit
-- [ ] Verify GitHub Pages deployment
+- [x] Verify GitHub Actions commit
+- [x] Verify GitHub Pages deployment
 - [ ] Verify notification behaviour
 - [ ] Observe for seven days and tune false positives
 
 ## Current next task
-Enable read/write Workflow permissions if needed, run `FIC Daily Update` manually once, and confirm GitHub Pages serves the generated JSON.
+Review the first generated official contact candidates and expand verified club website sources conservatively.

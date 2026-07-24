@@ -40,3 +40,5 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - Automated candidates are always `To Verify`.
 - Official social accounts that require authentication remain registry-only.
 - Generated opportunities are deduplicated by source URL, role, and organisation.
+- Contact collection is limited to public role-based addresses on official organisation pages.
+- Automatically detected contacts remain `To Verify`; personal-looking addresses are not collected.

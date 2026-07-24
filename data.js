@@ -3,6 +3,7 @@
 const DATABASES = {
   jobs: "jobs.json",
   contacts: "contacts.json",
+  pipelineContacts: "data/contacts.json",
   coachNetwork: "coach_network.json",
   countries: "countries.json",
   licences: "pro_licence_watch.json",
@@ -11,7 +12,7 @@ const DATABASES = {
   updateSchedule: "update_schedule.json"
 };
 
-const state = { jobs: [], contacts: [], coachNetwork: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
+const state = { jobs: [], contacts: [], pipelineContacts: [], coachNetwork: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
 const text = (value) => {
   if (Array.isArray(value)) return value.join(", ");
   return value === undefined || value === null || value === "" ? "To verify" : String(value);
@@ -395,10 +396,39 @@ async function loadDatabases() {
     if (result.status === "fulfilled") state[result.value[0]] = result.value[1];
     else console.error("Database loading failed:", Object.values(DATABASES)[index], result.reason);
   });
-  const generalFailed = entries.slice(0, -3).some((result) => result.status === "rejected");
-  const leagueFailed = entries[entries.length - 3].status === "rejected";
-  const updatesFailed = entries[entries.length - 2].status === "rejected";
-  const scheduleFailed = entries[entries.length - 1].status === "rejected";
+  const resultByKey = Object.fromEntries(Object.keys(DATABASES).map((key, index) => [key, entries[index]]));
+  const generalFailed = ["jobs", "contacts", "coachNetwork", "countries", "licences"].some((key) => resultByKey[key].status === "rejected");
+  const leagueFailed = resultByKey.leagueIntelligence.status === "rejected";
+  const updatesFailed = resultByKey.updates.status === "rejected";
+  const scheduleFailed = resultByKey.updateSchedule.status === "rejected";
+  const existingContactKeys = new Set(state.contacts.map((item) => `${text(item.organization).toLowerCase()}|${text(item.email).toLowerCase()}`));
+  state.pipelineContacts.forEach((item) => {
+    const key = `${text(item.organisation).toLowerCase()}|${text(item.email).toLowerCase()}`;
+    if (existingContactKeys.has(key)) return;
+    state.contacts.push({
+      id: item.id,
+      continent: item.region,
+      country: item.country,
+      organization: item.organisation,
+      type: item.organisationType,
+      role: "Official contact",
+      person: "Not publicly listed",
+      email: item.email,
+      phone: "Not Public",
+      website: item.website,
+      facebook: "To verify",
+      instagram: "To verify",
+      linkedin: "To verify",
+      applicationPage: item.contactPage,
+      priority: "High",
+      source: "Official organisation page",
+      sourceUrl: item.sourceUrl,
+      lastChecked: text(item.detectedAt).slice(0, 10),
+      accuracyLevel: "To verify",
+      notes: "Automatically detected public role-based email. Verify the recipient before sending a CV."
+    });
+    existingContactKeys.add(key);
+  });
   if (generalFailed) {
     const notice = document.querySelector("#databaseMessage");
     notice.hidden = false;
