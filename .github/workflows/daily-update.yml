@@ -1,19 +1,21 @@
-name: FIC Daily Maintenance
+name: FIC Daily Update
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 23 * * *" # 08:00 Asia/Seoul
 
 permissions:
   contents: write
 
 concurrency:
-  group: fic-daily-maintenance
+  group: fic-daily-update
   cancel-in-progress: false
 
 jobs:
-  maintain:
+  update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -27,24 +29,24 @@ jobs:
       - name: Install test dependencies
         run: python -m pip install -r requirements.txt
 
-      - name: Update deadline-derived fields
-        run: python scripts/update_deadline_status.py
+      - name: Run daily pipeline
+        run: python run_pipeline.py
 
       - name: Validate repository
-        run: python scripts/validate_repository.py
-
-      - name: Run tests
-        run: pytest -q
-
-      - name: Commit verified maintenance changes
         run: |
-          if git diff --quiet; then
-            echo "No meaningful maintenance changes."
+          python scripts/validate_pipeline.py
+          python scripts/validate_repository.py
+          pytest -q
+
+      - name: Commit generated data when changed
+        run: |
+          if git diff --quiet -- data/opportunities.json data/updates.json; then
+            echo "No generated data changes."
             exit 0
           fi
 
           git config user.name "fic-ai-employee"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add jobs.json
-          git commit -m "FIC daily update: refresh deadline status"
+          git add data/opportunities.json data/updates.json
+          git commit -m "FIC daily update: refresh opportunity watch"
           git push

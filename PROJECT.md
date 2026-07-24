@@ -34,3 +34,10 @@ AFC, Oceania, Portugal, Canada, selected Africa, Central America, the Caribbean,
 
 ## Definition of success
 Relevant opportunities are found early, verified, deduplicated, safely committed, published without breaking GitHub Pages, and reported only when useful.
+
+## Daily automation
+- `.github/workflows/daily-update.yml` runs at 08:00 Asia/Seoul (`0 23 * * *` UTC).
+- `run_pipeline.py` checks a small registry of generic public sources.
+- Automated discoveries remain `To Verify`; they are never promoted directly into `jobs.json`.
+- Official Instagram accounts are registry-only because reliable automated access requires platform authentication.
+- GitHub commits generated files only when they change.

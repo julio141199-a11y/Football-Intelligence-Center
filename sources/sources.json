@@ -1,0 +1,243 @@
+{
+  "settings": {
+    "requestTimeoutSeconds": 15,
+    "userAgent": "FIC-Opportunity-Watch/1.0 (+verified-public-sources)",
+    "scope": [
+      "Head Coach",
+      "Assistant Coach"
+    ]
+  },
+  "sources": [
+    {
+      "id": "afc-official",
+      "name": "Asian Football Confederation",
+      "country": "Regional",
+      "region": "AFC",
+      "type": "federation",
+      "url": "https://www.the-afc.com/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "ofc-official",
+      "name": "Oceania Football Confederation",
+      "country": "Regional",
+      "region": "Oceania",
+      "type": "federation",
+      "url": "https://www.oceaniafootball.com/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "concacaf-official",
+      "name": "Concacaf",
+      "country": "Regional",
+      "region": "Central America and Caribbean",
+      "type": "federation",
+      "url": "https://www.concacaf.com/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "canada-soccer",
+      "name": "Canada Soccer",
+      "country": "Canada",
+      "region": "Canada",
+      "type": "federation",
+      "url": "https://canadasoccer.com/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "fpf-portugal",
+      "name": "Portuguese Football Federation",
+      "country": "Portugal",
+      "region": "Portugal",
+      "type": "federation",
+      "url": "https://www.fpf.pt/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "liga-portugal",
+      "name": "Liga Portugal",
+      "country": "Portugal",
+      "region": "Portugal",
+      "type": "league",
+      "url": "https://www.ligaportugal.pt/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "canadian-premier-league",
+      "name": "Canadian Premier League",
+      "country": "Canada",
+      "region": "Canada",
+      "type": "league",
+      "url": "https://canpl.ca/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "jobs-in-football",
+      "name": "Jobs In Football",
+      "country": "International",
+      "region": "International",
+      "type": "job-site",
+      "url": "https://jobsinfootball.com/jobs/",
+      "official": false,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "teamwork-online",
+      "name": "TeamWork Online",
+      "country": "Canada and North America",
+      "region": "Canada",
+      "type": "job-site",
+      "url": "https://www.teamworkonline.com/soccer-jobs/",
+      "official": false,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "bbc-football",
+      "name": "BBC Sport Football",
+      "country": "International",
+      "region": "International",
+      "type": "trusted-news",
+      "url": "https://www.bbc.com/sport/football",
+      "official": false,
+      "enabled": true,
+      "collectionMode": "automatic"
+    },
+    {
+      "id": "afc-instagram",
+      "name": "AFC Official Instagram",
+      "country": "Regional",
+      "region": "AFC",
+      "type": "official-instagram",
+      "url": "https://www.instagram.com/theafchub/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "ofc-instagram",
+      "name": "OFC Official Instagram",
+      "country": "Regional",
+      "region": "Oceania",
+      "type": "official-instagram",
+      "url": "https://www.instagram.com/ofcfootball/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "canada-soccer-instagram",
+      "name": "Canada Soccer Official Instagram",
+      "country": "Canada",
+      "region": "Canada",
+      "type": "official-instagram",
+      "url": "https://www.instagram.com/canadasoccer/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "concacaf-instagram",
+      "name": "Concacaf Official Instagram",
+      "country": "Regional",
+      "region": "Central America and Caribbean",
+      "type": "official-instagram",
+      "url": "https://www.instagram.com/concacaf/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "liga-portugal-instagram",
+      "name": "Liga Portugal Official Instagram",
+      "country": "Portugal",
+      "region": "Portugal",
+      "type": "official-instagram",
+      "url": "https://www.instagram.com/ligaportugal/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "buriram-instagram",
+      "name": "Buriram United Official Instagram",
+      "country": "Thailand",
+      "region": "AFC",
+      "type": "official-club-instagram",
+      "url": "https://www.instagram.com/buriramunitedofficial/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "johor-instagram",
+      "name": "Johor Darul Ta'zim Official Instagram",
+      "country": "Malaysia",
+      "region": "AFC",
+      "type": "official-club-instagram",
+      "url": "https://www.instagram.com/officialjohor/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "bali-united-instagram",
+      "name": "Bali United Official Instagram",
+      "country": "Indonesia",
+      "region": "AFC",
+      "type": "official-club-instagram",
+      "url": "https://www.instagram.com/baliunitedfc/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "phnom-penh-crown-instagram",
+      "name": "Phnom Penh Crown Official Instagram",
+      "country": "Cambodia",
+      "region": "AFC",
+      "type": "official-club-instagram",
+      "url": "https://www.instagram.com/ppcrownfc/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "auckland-city-instagram",
+      "name": "Auckland City FC Official Instagram",
+      "country": "New Zealand",
+      "region": "Oceania",
+      "type": "official-club-instagram",
+      "url": "https://www.instagram.com/aucklandcity_fc/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    },
+    {
+      "id": "forge-fc-instagram",
+      "name": "Forge FC Official Instagram",
+      "country": "Canada",
+      "region": "Canada",
+      "type": "official-club-instagram",
+      "url": "https://www.instagram.com/forgefc/",
+      "official": true,
+      "enabled": true,
+      "collectionMode": "registry-only"
+    }
+  ]
+}

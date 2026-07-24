@@ -2,8 +2,6 @@ name: FIC Research Watch
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "15 23 * * *"
 
 permissions:
   contents: write

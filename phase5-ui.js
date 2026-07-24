@@ -163,18 +163,30 @@
   }
 
   async function init() {
-    const [jobs, updates, inbox, researchState, schedule] = await Promise.all([
+    const [jobs, updates, inbox, researchState, schedule, pipelineOpportunities, pipelineUpdates] = await Promise.all([
       fetchJson("jobs.json", []),
       fetchJson("updates.json", []),
       fetchJson("data/research_inbox.json", []),
       fetchJson("data/research_state.json", {}),
-      fetchJson("update_schedule.json", {})
+      fetchJson("update_schedule.json", {}),
+      fetchJson("data/opportunities.json", []),
+      fetchJson("data/updates.json", [])
     ]);
 
-    renderMetrics(jobs, updates, inbox);
+    const pendingPipeline = pipelineOpportunities.map((item) => ({
+      status: item.status,
+      sourceUrl: item.sourceUrl
+    }));
+    renderMetrics(jobs, updates, [...inbox, ...pendingPipeline]);
     renderPriorityJobs(jobs);
-    renderMarketPulse(updates);
-    renderBrief(researchState, inbox, schedule);
+    const pipelinePulse = pipelineUpdates.slice(0, 3).map((item) => ({
+      date: item.runAt,
+      type: "Pipeline",
+      title: "Daily opportunity scan",
+      summary: `${item.sourcesChecked || 0} sources checked · ${item.newCandidates || 0} new candidate(s)`
+    }));
+    renderMarketPulse([...updates, ...pipelinePulse]);
+    renderBrief(researchState, [...inbox, ...pendingPipeline], schedule);
     connectJumpButtons();
   }
 

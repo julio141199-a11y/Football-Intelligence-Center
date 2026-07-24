@@ -4,10 +4,10 @@
 - [x] Define final project scope
 - [x] Define AI employee roles
 - [x] Define workflow and quality gates
-- [ ] Add operating files to repository
-- [ ] Replace four-day schedule with daily operation
-- [ ] Remove Fitness Coach, Technical Director, and Coach Education from priorities
-- [ ] Confirm GitHub Pages deployment health
+- [x] Add operating files to repository
+- [x] Replace four-day schedule with daily operation
+- [x] Remove Fitness Coach, Technical Director, and Coach Education from collection scope
+- [ ] Confirm GitHub Pages deployment health after the first pushed workflow run
 
 ## Phase 2 — Data standardisation
 - [ ] Document jobs.json fields
@@ -17,18 +17,18 @@
 - [ ] Validate updates.json structure
 
 ## Phase 3 — Automated QA
-- [ ] JSON parse validation
-- [ ] Duplicate ID validation
+- [x] JSON parse validation
+- [x] Duplicate ID validation
 - [ ] Deadline/status consistency check
-- [ ] URL validation
+- [x] URL format validation
 - [ ] Lightweight site smoke test
 
 ## Phase 4 — Daily operation
-- [ ] Run first controlled research cycle
-- [ ] Verify GitHub commit
+- [x] Run first controlled local pipeline cycle
+- [ ] Verify GitHub Actions commit
 - [ ] Verify GitHub Pages deployment
 - [ ] Verify notification behaviour
 - [ ] Observe for seven days and tune false positives
 
 ## Current next task
-Commit the AI OS files and align update_schedule.json with the approved daily scope.
+Enable read/write Workflow permissions if needed, run `FIC Daily Update` manually once, and confirm GitHub Pages serves the generated JSON.

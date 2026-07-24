@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+"""Validate the generated FIC opportunity-watch files."""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+from urllib.parse import urlparse
+
+ROOT = Path(__file__).resolve().parents[1]
+ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
+ALLOWED_STATUSES = {"To Verify", "Verified Open", "Closed", "Filled"}
+
+
+def load(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def main() -> int:
+    errors: list[str] = []
+    sources = load(ROOT / "sources" / "sources.json")
+    opportunities = load(ROOT / "data" / "opportunities.json")
+    updates = load(ROOT / "data" / "updates.json")
+
+    if not isinstance(sources.get("sources"), list):
+        errors.append("sources/sources.json.sources must be an array.")
+    if not isinstance(opportunities, list):
+        errors.append("data/opportunities.json must be an array.")
+    if not isinstance(updates, list):
+        errors.append("data/updates.json must be an array.")
+
+    source_ids: set[str] = set()
+    allowed_modes = {"automatic", "registry-only"}
+    for index, source in enumerate(sources.get("sources", [])):
+        label = f"sources/sources.json.sources[{index}]"
+        source_id = source.get("id")
+        if not source_id:
+            errors.append(f"{label}.id is required.")
+        elif source_id in source_ids:
+            errors.append(f"Duplicate source id: {source_id}")
+        source_ids.add(source_id)
+        if source.get("collectionMode") not in allowed_modes:
+            errors.append(f"{label}.collectionMode is invalid: {source.get('collectionMode')}")
+        parsed = urlparse(str(source.get("url", "")))
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            errors.append(f"{label}.url is invalid.")
+
+    ids: set[str] = set()
+    keys: set[tuple[str, str, str]] = set()
+    for index, item in enumerate(opportunities):
+        label = f"data/opportunities.json[{index}]"
+        if item.get("role") not in ALLOWED_ROLES:
+            errors.append(f"{label}.role is outside scope: {item.get('role')}")
+        if item.get("status") not in ALLOWED_STATUSES:
+            errors.append(f"{label}.status is invalid: {item.get('status')}")
+        if item.get("id") in ids:
+            errors.append(f"Duplicate opportunity id: {item.get('id')}")
+        ids.add(item.get("id"))
+        key = (
+            str(item.get("sourceUrl", "")).rstrip("/").casefold(),
+            str(item.get("role", "")).casefold(),
+            str(item.get("organisation", "")).casefold(),
+        )
+        if key in keys:
+            errors.append(f"Duplicate opportunity: {key}")
+        keys.add(key)
+        parsed = urlparse(str(item.get("sourceUrl", "")))
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            errors.append(f"{label}.sourceUrl is invalid.")
+
+    if errors:
+        print("Pipeline validation failed:")
+        for error in errors:
+            print(f"- {error}")
+        return 1
+    print("Pipeline validation passed.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

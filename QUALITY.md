@@ -32,3 +32,11 @@ Organisation + team + role + vacancy period matching indicates a probable duplic
 
 ## Failure policy
 Do not commit invalid data. Preserve the last known-good version and report the exact blocker.
+
+## Pipeline gate
+- One generic collector; no country-specific parser.
+- A source failure must not stop other sources.
+- Only Head Coach and Assistant Coach terms may create candidates.
+- Automated candidates are always `To Verify`.
+- Official social accounts that require authentication remain registry-only.
+- Generated opportunities are deduplicated by source URL, role, and organisation.
