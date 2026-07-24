@@ -1,5 +1,15 @@
 [
   {
+    "runAt": "2026-07-24T01:14:22+00:00",
+    "status": "completed_with_warnings",
+    "sourcesChecked": 9,
+    "registryOnlySources": 11,
+    "newCandidates": 0,
+    "warnings": [
+      "fpf-portugal: HTTP Error 403: Forbidden"
+    ]
+  },
+  {
     "runAt": "2026-07-24T01:05:58+00:00",
     "status": "completed_with_warnings",
     "sourcesChecked": 9,
