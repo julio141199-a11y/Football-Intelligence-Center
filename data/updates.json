@@ -1,5 +1,18 @@
 [
   {
+    "runAt": "2026-07-24T01:45:06+00:00",
+    "status": "completed_with_warnings",
+    "sourcesChecked": 12,
+    "registryOnlySources": 17,
+    "newCandidates": 0,
+    "newContacts": 0,
+    "socialProfiles": 17,
+    "warnings": [
+      "fpf-portugal: HTTP Error 403: Forbidden",
+      "forge-fc: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)>"
+    ]
+  },
+  {
     "runAt": "2026-07-24T01:43:34+00:00",
     "status": "completed_with_warnings",
     "sourcesChecked": 12,
