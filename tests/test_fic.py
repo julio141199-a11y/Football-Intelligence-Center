@@ -3,9 +3,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-from run_pipeline import match_candidate
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from run_pipeline import match_candidate
 
 
 def test_jobs_json_parses():

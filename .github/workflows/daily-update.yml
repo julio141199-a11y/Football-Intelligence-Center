@@ -12,6 +12,7 @@ on:
       - "run_pipeline.py"
       - "scripts/validate_pipeline.py"
       - "sources/sources.json"
+      - "tests/test_fic.py"
 
 permissions:
   contents: write
