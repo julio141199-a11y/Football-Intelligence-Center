@@ -34,6 +34,9 @@
 - [x] Add verified Philippines federation and Auckland City decision-maker contact routes
 - [x] Remove repeated source-access noise and replace two broken club URLs with working official pages
 - [x] Enter stable daily-operation mode and document when manual action is required
+- [x] Apply the pre-Pro target order from the AFC 2026 minimum coaching requirements
+- [x] Remove Coach Network from the live site and managed databases
+- [x] Remove Fitness Coach from League Intelligence and job filters
 
 ## Current next task
-No further development phase is required. Allow the daily automation to operate. Act only on a real candidate alert, a failed workflow, or a high-value contact/application task.
+Verify official domestic licence rules for high-probability Southeast Asian, Central American, and Oceanian first divisions before marking AFC A Head Coach eligibility.

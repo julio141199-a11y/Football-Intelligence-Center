@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from run_pipeline import apply_source_overrides, build_social_registry, extract_role_emails, match_candidate
+from run_pipeline import apply_source_overrides, build_social_registry, career_priority, extract_role_emails, match_candidate
 from scripts.publish_action_summary import current_candidates, summary_markdown
 
 
@@ -52,6 +52,7 @@ def test_action_alert_includes_only_current_target_roles():
     latest, candidates = current_candidates(updates, opportunities)
     assert [item["organisation"] for item in candidates] == ["A"]
     assert "Head Coach: A" in summary_markdown(latest, candidates)
+    assert "Monitor · To Verify" in summary_markdown(latest, candidates)
 
 
 def test_pipeline_accepts_only_target_roles():
@@ -97,3 +98,33 @@ def test_source_access_overrides_are_small_and_known():
     applied = apply_source_overrides(registry["sources"])
     forge = next(source for source in applied if source["id"] == "forge-fc")
     assert forge["url"] == "https://www.canpl.ca/forgefc"
+
+
+def test_pre_pro_career_priorities_are_rule_based():
+    assert career_priority(
+        "National U20 Head Coach vacancy",
+        "https://example.com/u20-head-coach",
+        "Head Coach",
+        "federation",
+    )[0] == "Priority 1"
+    assert career_priority(
+        "Senior National Team Assistant Coach vacancy",
+        "https://example.com/national-team-assistant",
+        "Assistant Coach",
+        "federation",
+    )[0] == "Priority 1"
+    priority, note = career_priority(
+        "First Team Head Coach vacancy",
+        "https://example.com/head-coach",
+        "Head Coach",
+        "club",
+    )
+    assert priority == "Priority 2"
+    assert "must be verified" in note
+
+
+def test_coach_network_is_removed_from_live_site():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    javascript = (ROOT / "data.js").read_text(encoding="utf-8")
+    assert 'data-page="coach-network"' not in html
+    assert "coach_network.json" not in javascript

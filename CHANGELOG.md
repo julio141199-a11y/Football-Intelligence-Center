@@ -17,6 +17,7 @@
 - Verified LinkedIn organisation pages for AFC, OFC, Concacaf, Canada Soccer, Liga Portugal, and Auckland City FC
 - Automatic official-website monitoring for the Malaysia, Singapore, Philippines, Indonesia, New Zealand, and Costa Rica federations
 - Stable-operations guide defining daily automation and the limited cases that require manual work
+- Pre-Pro career profile based on the AFC Competition Operations Manual 2026
 
 ### Changed
 - Vacancy scope limited to Head Coach and Assistant Coach
@@ -37,6 +38,10 @@
 - Added the verified Philippine Football Federation secretariat, retained its older HR address as historical only, and added Auckland City FC's publicly listed General Manager contact
 - Added a small source-access override layer: three access-blocked federation sites now remain manual official registries, while Forge FC and Auckland City use working official pages
 - Declared the first FIC daily-automation release feature-complete; future work now prioritises verified applications over additional features
+- Prioritised senior national-team Assistant Coach, national U20 Head Coach, and officially verified AFC A-compatible professional-club Head Coach opportunities
+- Removed Coach Network from the site and managed databases
+- Removed Fitness Coach from live job and League Intelligence filters
+- Renamed the user-facing League Intelligence page to League & Licence and clarified that unverified data is not proof of eligibility
 
 ### Pending
 - Review generated contact candidates before using them for applications

@@ -9,6 +9,7 @@ Track only:
 - Assistant Coach
 - Men's national teams
 - Women's national teams
+- Men's and women's national U20 teams
 - Men's professional clubs
 
 Exclude:
@@ -19,6 +20,7 @@ Exclude:
 - Analyst roles
 - Women's professional clubs
 - Academy-only roles
+- Coach Network
 
 ## Priority regions
 AFC, Oceania, Portugal, Canada, selected Africa, Central America, the Caribbean, and realistic Europe Watch markets.
@@ -49,3 +51,13 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 
 FIC is feature-complete for its first stable daily-operation release. See `OPERATIONS.md`.
 Further work should focus on verified opportunities, high-value contacts, and application preparation rather than adding features.
+
+## Pre-Pro career priorities
+
+Until Julio obtains the AFC Pro Diploma:
+
+1. Senior national-team Assistant Coach
+2. National U20 Head Coach
+3. Men's professional-club Head Coach only where official domestic or competition rules accept AFC A or an approved equivalent
+
+The AFC 2026 competition minimum confirms AFC A for senior national-team Assistant Coaches and national U20 Head Coaches. It does not automatically prove eligibility for every domestic first division; each federation, league, club-licensing rule, and recognition process must be checked.

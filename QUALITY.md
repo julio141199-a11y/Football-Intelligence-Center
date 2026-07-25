@@ -1,7 +1,7 @@
 # FIC Quality Standard
 
 ## Scope gate
-Only Head Coach and Assistant Coach roles for men's/women's national teams and men's professional clubs.
+Only Head Coach and Assistant Coach roles for senior national teams, national U20 teams, and men's professional clubs.
 
 ## Source gate
 Official sources are preferred. Store the source URL. Do not label uncertain information as verified.
@@ -19,6 +19,7 @@ Organisation + team + role + vacancy period matching indicates a probable duplic
 
 ## Accuracy gate
 - Do not infer licence recognition without evidence
+- Do not infer domestic first-division eligibility from an AFC competition minimum; verify domestic and club-licensing rules separately.
 - Separate public facts from Julio fit assessment
 - Salary is Not Public unless officially disclosed
 - Contacts must be publicly posted for professional use

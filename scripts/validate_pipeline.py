@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
 ALLOWED_STATUSES = {"To Verify", "Verified Open", "Closed", "Filled"}
 ALLOWED_CONTACT_STATUSES = {"To Verify", "Verified", "Historical"}
+ALLOWED_CAREER_PRIORITIES = {"Priority 1", "Priority 2", "Monitor"}
 
 
 def load(path: Path):
@@ -61,6 +62,8 @@ def main() -> int:
             errors.append(f"{label}.role is outside scope: {item.get('role')}")
         if item.get("status") not in ALLOWED_STATUSES:
             errors.append(f"{label}.status is invalid: {item.get('status')}")
+        if item.get("careerPriority") and item.get("careerPriority") not in ALLOWED_CAREER_PRIORITIES:
+            errors.append(f"{label}.careerPriority is invalid: {item.get('careerPriority')}")
         if item.get("id") in ids:
             errors.append(f"Duplicate opportunity id: {item.get('id')}")
         ids.add(item.get("id"))

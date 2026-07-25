@@ -33,7 +33,10 @@
     if (status.includes("closing soon")) score += 30;
     if (status.includes("verified open") || status === "open") score += 20;
     if (Number.isFinite(days) && days >= 0 && days <= 7) score += 20;
-    if (job.roleType === "Head Coach") score += 5;
+    const targetText = `${job.position || ""} ${job.teamType || ""}`.toLowerCase();
+    if (job.roleType === "Assistant Coach" && targetText.includes("national")) score += 25;
+    if (job.roleType === "Head Coach" && /u-?20|under-?20/.test(targetText)) score += 25;
+    if (job.roleType === "Head Coach" && targetText.includes("professional")) score += 10;
     return score;
   };
 
@@ -143,7 +146,7 @@
       : "Not run yet";
 
     target.innerHTML = `
-      <div class="brief-row"><span>Automation</span><strong>Daily at 08:00 / 08:15 KST</strong></div>
+      <div class="brief-row"><span>Automation</span><strong>Daily at 08:00 KST</strong></div>
       <div class="brief-row"><span>Last research run</span><strong>${esc(lastRun)}</strong></div>
       <div class="brief-row"><span>Sources checked</span><strong>${success}</strong></div>
       <div class="brief-row"><span>Source errors</span><strong>${errors}</strong></div>
@@ -177,7 +180,10 @@
       status: item.status,
       sourceUrl: item.sourceUrl
     }));
-    renderMetrics(jobs, updates, [...inbox, ...pendingPipeline]);
+    const scopedUpdates = updates.filter((item) =>
+      item.category !== "Coach Network" && item.relatedPage !== "Coach Network"
+    );
+    renderMetrics(jobs, scopedUpdates, [...inbox, ...pendingPipeline]);
     renderPriorityJobs(jobs);
     const pipelinePulse = pipelineUpdates.slice(0, 3).map((item) => ({
       date: item.runAt,
@@ -185,7 +191,7 @@
       title: "Daily opportunity scan",
       summary: `${item.sourcesChecked || 0} sources checked · ${item.newCandidates || 0} new candidate(s) · ${item.newContacts || 0} new contact(s) · ${item.socialProfiles || 0} official social profile(s)`
     }));
-    renderMarketPulse([...updates, ...pipelinePulse]);
+    renderMarketPulse([...scopedUpdates, ...pipelinePulse]);
     renderBrief(researchState, [...inbox, ...pendingPipeline], schedule);
     connectJumpButtons();
   }

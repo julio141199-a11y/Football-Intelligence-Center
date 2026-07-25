@@ -7,6 +7,7 @@ FIC is now in stable daily-operation mode.
 - GitHub Actions runs every day at 08:00 Asia/Seoul.
 - The pipeline checks the approved lightweight source set.
 - Only Head Coach and Assistant Coach candidates are accepted.
+- Before AFC Pro, target senior national-team Assistant Coach, national U20 Head Coach, and officially verified AFC A-compatible men's professional-club Head Coach roles.
 - New candidates remain `To Verify`.
 - Generated data is committed and published only after validation passes.
 - A GitHub Issue alert is created only when a new target-role candidate is detected.
@@ -20,6 +21,7 @@ Julio does not need to run the pipeline or request another development phase eac
 3. GitHub Actions reports a failed run.
 4. Julio wants to add or remove a priority market or official source.
 5. CV, portfolio, cover letter, or application preparation is required.
+6. A domestic league's AFC A recognition or club-licensing rule needs verification.
 
 ## Weekly check
 

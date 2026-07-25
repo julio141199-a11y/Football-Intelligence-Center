@@ -8,7 +8,6 @@
     "jobs.json",
     "updates.json",
     "contacts.json",
-    "coach_network.json",
     "countries.json",
     "pro_licence_watch.json",
     "league_intelligence.json"
@@ -20,6 +19,8 @@
   "includedTeams": [
     "Men's National Team",
     "Women's National Team",
+    "Men's National U20 Team",
+    "Women's National U20 Team",
     "Men's Professional Club"
   ],
   "excludedRolesAndTeams": [

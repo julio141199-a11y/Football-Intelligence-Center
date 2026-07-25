@@ -40,8 +40,11 @@ def summary_markdown(latest: dict, candidates: list[dict]) -> str:
         for item in candidates:
             lines.append(
                 f"- [{item.get('role')}: {item.get('organisation')}]"
-                f"({item.get('sourceUrl')}) — {item.get('country')} — **To Verify**"
+                f"({item.get('sourceUrl')}) — {item.get('country')} — "
+                f"**{item.get('careerPriority', 'Monitor')} · To Verify**"
             )
+            if item.get("licenceNote"):
+                lines.append(f"  - Licence note: {item['licenceNote']}")
     return "\n".join(lines) + "\n"
 
 

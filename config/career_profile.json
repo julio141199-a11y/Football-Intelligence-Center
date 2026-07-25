@@ -1,0 +1,45 @@
+{
+  "profileStage": "Before AFC Pro Diploma",
+  "currentLicences": [
+    "AFC A Licence",
+    "AFC Fitness Coaching Certificate Level 2"
+  ],
+  "targetRoles": [
+    "Head Coach",
+    "Assistant Coach"
+  ],
+  "priorityTargets": [
+    {
+      "priority": 1,
+      "team": "Senior National Team",
+      "role": "Assistant Coach",
+      "licenceFit": "AFC A meets the 2026 AFC competition minimum"
+    },
+    {
+      "priority": 1,
+      "team": "National U20 Team",
+      "role": "Head Coach",
+      "licenceFit": "AFC A meets the 2026 AFC competition minimum"
+    },
+    {
+      "priority": 2,
+      "team": "Men's Professional Club",
+      "role": "Head Coach",
+      "licenceFit": "Eligible only where the official domestic league or competition rules accept AFC A or an approved equivalent"
+    }
+  ],
+  "notEligibleUntilPro": [
+    "AFC National A Team Head Coach",
+    "AFC Men's U23 National Team Head Coach",
+    "AFC Champions League Elite Head Coach",
+    "AFC Champions League Two Head Coach"
+  ],
+  "competitionNotes": [
+    "AFC Challenge League Head Coach requires AFC A for 2025/26 through 2028/29.",
+    "AFC Women's Champions League Head Coach requires AFC A through 2027/28 and AFC Pro from 2028/29."
+  ],
+  "domesticLeagueRule": "Do not infer domestic first-division eligibility from the AFC competition minimum. Verify the relevant federation, league, club-licensing rule, and any recognition process for each vacancy.",
+  "officialSource": "https://assets.the-afc.com/downloads/miscellaneous-regulations/AFC-Competition-Operations-Manual-Edition-2026-7Mayupd.pdf",
+  "sourceSection": "Appendix 14: Minimum Coaching Requirements",
+  "lastVerified": "2026-07-25"
+}

@@ -11,6 +11,7 @@ on:
       - ".github/workflows/daily-update.yml"
       - "run_pipeline.py"
       - "config/source_access_overrides.json"
+      - "config/career_profile.json"
       - "scripts/publish_action_summary.py"
       - "scripts/validate_pipeline.py"
       - "sources/sources.json"

@@ -23,6 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SOURCES_PATH = ROOT / "sources" / "sources.json"
 SOURCE_OVERRIDES_PATH = ROOT / "config" / "source_access_overrides.json"
+CAREER_PROFILE_PATH = ROOT / "config" / "career_profile.json"
 OPPORTUNITIES_PATH = ROOT / "data" / "opportunities.json"
 CONTACTS_PATH = ROOT / "data" / "contacts.json"
 SOCIAL_SOURCES_PATH = ROOT / "data" / "social_sources.json"
@@ -66,6 +67,11 @@ ROLE_PATTERNS = {
         re.IGNORECASE,
     ),
 }
+U20_PATTERN = re.compile(r"\b(u[- ]?20|under[- ]?20|under 20)\b", re.IGNORECASE)
+NATIONAL_TEAM_PATTERN = re.compile(
+    r"\b(national team|senior national|seleção nacional|tim nasional)\b",
+    re.IGNORECASE,
+)
 EVENT_PATTERN = re.compile(
     r"\b(vacanc(?:y|ies)|recruit(?:ment|ing)|applications?|apply|hiring|seeking|"
     r"resigned?|dismissed?|sacked|depart(?:ed|ure)|interim|contract ended|"
@@ -203,6 +209,18 @@ def candidate_id(source_id: str, url: str, role: str) -> str:
     return f"opportunity-{digest}"
 
 
+def career_priority(title: str, url: str, role: str, source_type: str) -> tuple[str, str]:
+    """Apply Julio's pre-Pro target order without guessing licence recognition."""
+    text_value = f"{title} {urllib.parse.unquote(url)}"
+    if role == "Head Coach" and U20_PATTERN.search(text_value):
+        return "Priority 1", "National U20 Head Coach — AFC A minimum confirmed for AFC competition registration."
+    if role == "Assistant Coach" and NATIONAL_TEAM_PATTERN.search(text_value) and not U20_PATTERN.search(text_value):
+        return "Priority 1", "Senior national-team Assistant Coach — AFC A minimum confirmed for AFC competition registration."
+    if role == "Head Coach" and source_type in {"club", "league"}:
+        return "Priority 2", "Professional-club Head Coach — official domestic licence and recognition rules must be verified."
+    return "Monitor", "Target role detected; team level and licence fit require verification."
+
+
 def contact_id(source_id: str, email: str) -> str:
     digest = hashlib.sha256(f"{source_id}|{email}".encode()).hexdigest()[:16]
     return f"contact-{digest}"
@@ -268,6 +286,7 @@ def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
 def main() -> int:
     config = read_json(SOURCES_PATH)
     config["sources"] = apply_source_overrides(config.get("sources", []))
+    read_json(CAREER_PROFILE_PATH)
     opportunities = read_json(OPPORTUNITIES_PATH)
     contacts = read_json(CONTACTS_PATH)
     updates = read_json(UPDATES_PATH)
@@ -300,6 +319,7 @@ def main() -> int:
                 if not match:
                     continue
                 role, event_type = match
+                priority, licence_note = career_priority(title, url, role, source["type"])
                 item_id = candidate_id(source["id"], url, role)
                 if item_id in existing_ids:
                     continue
@@ -316,6 +336,8 @@ def main() -> int:
                         "sourceUrl": url,
                         "sourceType": source["type"],
                         "official": bool(source.get("official")),
+                        "careerPriority": priority,
+                        "licenceNote": licence_note,
                         "detectedAt": run_at,
                         "lastVerified": "Needs verification",
                     }

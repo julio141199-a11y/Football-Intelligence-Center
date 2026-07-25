@@ -6,6 +6,8 @@
   "includedTeams": [
     "Men's National Team",
     "Women's National Team",
+    "Men's National U20 Team",
+    "Women's National U20 Team",
     "Men's Professional Club"
   ],
   "excludedRolesAndTeams": [
