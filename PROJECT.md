@@ -46,6 +46,8 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 - Official LinkedIn organisation profiles are published as a focused watch list. Gated post content remains a manual check; only Head Coach and Assistant Coach hiring or coach-change signals are relevant.
 - Public role-based emails found on official federation, league, and club pages are stored separately as `To Verify`.
 - GitHub commits generated files only when they change.
+- The website merges `jobs.json`, generated `data/opportunities.json`, and Codex-reviewed `data/chat_opportunities.json` without changing the visual template.
+- GitHub Actions cannot read a private ChatGPT conversation directly. When Julio asks Codex to publish a chat-discovered vacancy, Codex must verify its public source, add it to `data/chat_opportunities.json`, and push the reviewed change.
 
 ## Current lifecycle
 

@@ -15,6 +15,19 @@ def test_jobs_json_parses():
     assert isinstance(data, list)
 
 
+def test_chat_opportunities_json_parses():
+    data = json.loads((ROOT / "data" / "chat_opportunities.json").read_text(encoding="utf-8"))
+    assert isinstance(data, list)
+
+
+def test_site_merges_pipeline_and_chat_opportunities():
+    javascript = (ROOT / "data.js").read_text(encoding="utf-8")
+    assert 'pipelineOpportunities: "data/opportunities.json"' in javascript
+    assert 'chatOpportunities: "data/chat_opportunities.json"' in javascript
+    assert "mergeOpportunityFeeds();" in javascript
+    assert 'cache: "no-store"' in javascript
+
+
 def test_repository_validator():
     result = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "validate_repository.py")],

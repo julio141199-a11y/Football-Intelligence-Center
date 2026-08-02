@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- Added a small `data/chat_opportunities.json` inbox for vacancies verified from Julio's ChatGPT/Codex conversations
 - FIC AI Employee operating-system design
 - Project charter
 - Agent roles and workflow
@@ -20,6 +21,8 @@
 - Pre-Pro career profile based on the AFC Competition Operations Manual 2026
 
 ### Changed
+- Connected generated and chat-reviewed opportunities to the existing Jobs page while preserving the current design
+- Added cache-bypassed JSON loading so newly deployed vacancy data appears immediately
 - Vacancy scope limited to Head Coach and Assistant Coach
 - Fitness Coach excluded
 - Technical Director excluded

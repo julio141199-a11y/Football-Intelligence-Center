@@ -48,3 +48,5 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - Automatically detected contacts start as `To Verify`; a reviewed contact may become `Verified` or `Historical` only with a public-source note.
 - LinkedIn sources must be official organisation profiles. Do not store personal profiles or claim that gated posts were automatically reviewed.
 - Notifications are allowed only for newly detected Head Coach or Assistant Coach candidates and must label them `To Verify`.
+- Chat-discovered vacancies require a public source URL and the same Head Coach / Assistant Coach scope gate before entering `data/chat_opportunities.json`.
+- The browser must load vacancy JSON with cache bypassing so a successful GitHub Pages deployment displays the latest data.

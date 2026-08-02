@@ -23,6 +23,7 @@ def main() -> int:
     errors: list[str] = []
     sources = load(ROOT / "sources" / "sources.json")
     opportunities = load(ROOT / "data" / "opportunities.json")
+    chat_opportunities = load(ROOT / "data" / "chat_opportunities.json")
     contacts = load(ROOT / "data" / "contacts.json")
     social_sources = load(ROOT / "data" / "social_sources.json")
     updates = load(ROOT / "data" / "updates.json")
@@ -31,6 +32,8 @@ def main() -> int:
         errors.append("sources/sources.json.sources must be an array.")
     if not isinstance(opportunities, list):
         errors.append("data/opportunities.json must be an array.")
+    if not isinstance(chat_opportunities, list):
+        errors.append("data/chat_opportunities.json must be an array.")
     if not isinstance(updates, list):
         errors.append("data/updates.json must be an array.")
     if not isinstance(contacts, list):
@@ -75,6 +78,20 @@ def main() -> int:
         if key in keys:
             errors.append(f"Duplicate opportunity: {key}")
         keys.add(key)
+        parsed = urlparse(str(item.get("sourceUrl", "")))
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            errors.append(f"{label}.sourceUrl is invalid.")
+
+    chat_ids: set[str] = set()
+    for index, item in enumerate(chat_opportunities):
+        label = f"data/chat_opportunities.json[{index}]"
+        if item.get("role") not in ALLOWED_ROLES:
+            errors.append(f"{label}.role is outside scope: {item.get('role')}")
+        if item.get("status") not in ALLOWED_STATUSES:
+            errors.append(f"{label}.status is invalid: {item.get('status')}")
+        if not item.get("id") or item.get("id") in chat_ids:
+            errors.append(f"{label}.id is missing or duplicated: {item.get('id')}")
+        chat_ids.add(item.get("id"))
         parsed = urlparse(str(item.get("sourceUrl", "")))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
             errors.append(f"{label}.sourceUrl is invalid.")

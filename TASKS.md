@@ -37,6 +37,9 @@
 - [x] Apply the pre-Pro target order from the AFC 2026 minimum coaching requirements
 - [x] Remove Coach Network from the live site and managed databases
 - [x] Remove Fitness Coach from League Intelligence and job filters
+- [x] Connect generated pipeline opportunities to the existing Jobs page
+- [x] Add a verified chat-opportunity input without changing the site design
+- [x] Bypass stale browser JSON cache after GitHub Pages deployment
 
 ## Current next task
 Verify official domestic licence rules for high-probability Southeast Asian, Central American, and Oceanian first divisions before marking AFC A Head Coach eligibility.
