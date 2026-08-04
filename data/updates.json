@@ -1,5 +1,15 @@
 [
   {
+    "runAt": "2026-08-04T00:01:39+00:00",
+    "status": "completed",
+    "sourcesChecked": 17,
+    "registryOnlySources": 27,
+    "newCandidates": 0,
+    "newContacts": 0,
+    "socialProfiles": 24,
+    "warnings": []
+  },
+  {
     "runAt": "2026-08-02T23:52:24+00:00",
     "status": "completed",
     "sourcesChecked": 17,
@@ -336,25 +346,6 @@
     "newCandidates": 0,
     "warnings": [
       "fpf-portugal: HTTP Error 403: Forbidden"
-    ]
-  },
-  {
-    "runAt": "2026-07-24T01:05:52+00:00",
-    "status": "completed_with_warnings",
-    "sourcesChecked": 0,
-    "registryOnlySources": 11,
-    "newCandidates": 0,
-    "warnings": [
-      "afc-official: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "ofc-official: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "concacaf-official: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "canada-soccer: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "fpf-portugal: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "liga-portugal: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "canadian-premier-league: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "jobs-in-football: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "teamwork-online: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-      "bbc-football: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
     ]
   }
 ]
