@@ -56,6 +56,13 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 - Deadlines are evaluated in Asia/Seoul and use `NEW`, `UPDATED`, `CLOSING_SOON`, `CLOSED`, `EXPIRED`, or `UNVERIFIED`.
 - Invalid roles, placeholder links, and missing organisation/country fields are rejected before publishing.
 
+## Decision-maker intelligence
+
+- FIFA official member-association pages refresh public federation email, phone, president, General Secretary, Technical Director, and national-team coach records.
+- Priority coverage is the 20 requested AFC markets and all 11 FIFA-member OFC associations.
+- Northern Mariana Islands is retained as a separate AFC research record because it is not a FIFA member.
+- Contacts are professional public routes only. FIC never stores private contact information and always asks the federation to confirm the correct CV recipient.
+
 ## Current lifecycle
 
 FIC is feature-complete for its first stable daily-operation release. See `OPERATIONS.md`.

@@ -6,6 +6,7 @@ FIC is now in stable daily-operation mode.
 
 - GitHub Actions runs every day at 08:00 and 18:00 Asia/Seoul.
 - The pipeline checks the approved lightweight source set.
+- The pipeline refreshes the focused AFC/OFC federation decision-maker directory from FIFA official pages.
 - Only Head Coach and Assistant Coach candidates are accepted.
 - Before AFC Pro, target senior national-team Assistant Coach, national U20 Head Coach, and officially verified AFC A-compatible men's professional-club Head Coach roles.
 - New candidates remain `To Verify`.

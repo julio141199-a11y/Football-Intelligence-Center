@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT))
 
 from run_pipeline import apply_source_overrides, build_social_registry, career_priority, extract_role_emails, match_candidate
 from scripts.publish_action_summary import current_candidates, summary_markdown
+from scripts.update_decision_makers import parse_fifa_page
 
 
 def test_jobs_json_parses():
@@ -35,6 +36,26 @@ def test_daily_workflow_runs_twice_and_validates_vacancies():
     assert 'cron: "0 9 * * *"' in workflow
     assert "python scripts/vacancy_manager.py --inbox --pipeline" in workflow
     assert "python scripts/validate_vacancies.py" in workflow
+    assert "python scripts/update_decision_makers.py" in workflow
+
+
+def test_fifa_decision_maker_parser_extracts_hiring_contacts():
+    document = ('"association":{"label":"Member Associations","value":"Example FA"}'
+                '"website":{"label":"Website","href":"https://fa.example","value":"fa.example"}'
+                '"phone":{"label":"Phone","data":"+1 234"},"email":{"label":"Email","data":"jobs@fa.example"}'
+                '{"name":"Alex TECH","roles":["Technical Director"],"country":"Example"}'
+                '{"name":"Sam GS","roles":["General Secretary"],"country":"Example"}'
+                '{"name":"Chris COACH","roles":["National Coach Men"],"country":"Example"}')
+    item = parse_fifa_page(document, {"country":"Example","fifaCode":"EXP","confederation":"AFC","priority":"High"}, "https://inside.fifa.com/example", "2026-08-04")
+    assert item["technicalDirector"] == "Alex TECH"
+    assert item["recommendedRecipient"] == "Alex TECH"
+    assert item["officialEmail"] == "jobs@fa.example"
+
+
+def test_site_loads_federation_decision_makers():
+    javascript = (ROOT / "data.js").read_text(encoding="utf-8")
+    assert 'decisionMakers: "data/decision_makers.json"' in javascript
+    assert "decisionMakerToContact" in javascript
 
 
 def test_repository_validator():

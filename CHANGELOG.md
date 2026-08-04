@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- Added 31 focused AFC/OFC federation decision-maker records sourced from FIFA's official directory
+- Added automatic refresh for Technical Directors, General Secretaries, national coaches, and official federation contacts
+- Added a decision-maker validator and existing Contacts-page integration without redesign
 - Added a standard vacancy database, history, closed archive, and change/error logs
 - Added reviewed JSON inbox/import commands and a fail-closed vacancy validator
 - Added stable vacancy IDs, source hashes, deduplication, KST deadline states, and unit tests

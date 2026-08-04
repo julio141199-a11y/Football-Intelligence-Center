@@ -54,3 +54,6 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - The standard vacancy validator must pass before automatic commit.
 - An unchanged source hash must not create a duplicate or false update.
 - Placeholder URLs and all roles other than Head Coach and Assistant Coach must fail closed.
+- Federation decision-maker records must come from FIFA, AFC/OFC, or the association's official site.
+- Store only public professional contacts; never infer or discover private personal addresses.
+- A named decision-maker is not automatically permission to send a CV. Use the official association route and confirm the intended recipient.

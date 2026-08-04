@@ -43,6 +43,9 @@
 - [x] Add reviewed JSON inbox and import commands
 - [x] Run automation at 08:00 and 18:00 Asia/Seoul
 - [x] Connect standardised vacancies to both site views without redesign
+- [x] Add FIFA official decision-maker collection for 20 requested AFC markets and all OFC FIFA members
+- [x] Publish federation Technical Director, General Secretary, national coach, and official contact routes on Contacts
+- [ ] Build and verify the top-division club roster and public decision-maker routes market by market
 
 ## Current next task
-Observe the first scheduled 08:00/18:00 run and verify that the GitHub token can push generated data on the protected default branch.
+Build the official top-division club roster for the requested markets, then verify club CEO/General Manager/Football Director and public CV routes in manageable country batches.

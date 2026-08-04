@@ -7,6 +7,7 @@ const DATABASES = {
   vacancies: "data/vacancies.json",
   contacts: "contacts.json",
   pipelineContacts: "data/contacts.json",
+  decisionMakers: "data/decision_makers.json",
   socialSources: "data/social_sources.json",
   countries: "countries.json",
   licences: "pro_licence_watch.json",
@@ -15,7 +16,7 @@ const DATABASES = {
   updateSchedule: "update_schedule.json"
 };
 
-const state = { jobs: [], pipelineOpportunities: [], chatOpportunities: [], vacancies: [], contacts: [], pipelineContacts: [], socialSources: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
+const state = { jobs: [], pipelineOpportunities: [], chatOpportunities: [], vacancies: [], contacts: [], pipelineContacts: [], decisionMakers: [], socialSources: [], countries: [], licences: [], leagueIntelligence: [], updates: [], updateSchedule: null };
 const text = (value) => {
   if (Array.isArray(value)) return value.join(", ");
   return value === undefined || value === null || value === "" ? "To verify" : String(value);
@@ -348,6 +349,20 @@ function renderContacts() {
   })).join("") || emptyState("No contacts recorded.");
 }
 
+function decisionMakerToContact(item) {
+  return {
+    id: item.id, continent: item.confederation === "OFC" ? "Oceania" : "Asia",
+    country: item.country, organization: item.association, type: "Federation Decision Makers",
+    role: "Technical Director / General Secretary", person: item.recommendedRecipient,
+    email: item.officialEmail, phone: item.officialPhone, website: item.officialWebsite,
+    facebook: "Not publicly listed", instagram: "Not publicly listed", linkedin: "Not publicly listed",
+    applicationPage: item.sourceUrl, priority: item.priority, source: item.sourceType,
+    sourceUrl: item.sourceUrl, lastChecked: item.lastVerified,
+    accuracyLevel: item.verificationStatus,
+    notes: `Technical Director: ${item.technicalDirector} · General Secretary: ${item.generalSecretary} · Men's National Coach: ${item.nationalCoachMen} · ${item.applicationRoute}`
+  };
+}
+
 function countryCard(item) {
   return card({
     label: item.continent, title: `${item.flag === "To verify" ? "" : item.flag + " "}${item.country}`,
@@ -452,6 +467,7 @@ async function loadDatabases() {
   state.updates = state.updates.filter((item) =>
     item.category !== "Coach Network" && item.relatedPage !== "Coach Network"
   );
+  state.contacts = [...state.contacts, ...state.decisionMakers.map(decisionMakerToContact)];
   mergeOpportunityFeeds();
   const resultByKey = Object.fromEntries(Object.keys(DATABASES).map((key, index) => [key, entries[index]]));
   const generalFailed = ["jobs", "contacts", "countries", "licences"].some((key) => resultByKey[key].status === "rejected");

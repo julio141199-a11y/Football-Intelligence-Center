@@ -13,6 +13,7 @@ on:
       - "run_pipeline.py"
       - "config/source_access_overrides.json"
       - "config/career_profile.json"
+      - "config/decision_maker_markets.json"
       - "data/chat_opportunities.json"
       - "data/inbox/**"
       - "data/vacancies.json"
@@ -20,6 +21,8 @@ on:
       - "scripts/publish_action_summary.py"
       - "scripts/validate_pipeline.py"
       - "scripts/vacancy_manager.py"
+      - "scripts/update_decision_makers.py"
+      - "scripts/validate_decision_makers.py"
       - "scripts/validate_vacancies.py"
       - "sources/sources.json"
       - "tests/test_fic.py"
@@ -55,11 +58,13 @@ jobs:
         run: |
           python run_pipeline.py
           python scripts/vacancy_manager.py --inbox --pipeline
+          python scripts/update_decision_makers.py
 
       - name: Validate repository
         run: |
           python scripts/validate_pipeline.py
           python scripts/validate_vacancies.py
+          python scripts/validate_decision_makers.py
           python scripts/validate_repository.py
           pytest -q
 
@@ -81,13 +86,13 @@ jobs:
 
       - name: Commit generated data when changed
         run: |
-          if git diff --quiet -- data/opportunities.json data/contacts.json data/social_sources.json data/updates.json data/vacancies.json data/vacancies_history.json data/archive/closed_vacancies.json data/logs/update_log.json data/logs/error_log.json; then
+          if git diff --quiet -- data/opportunities.json data/contacts.json data/decision_makers.json data/social_sources.json data/updates.json data/vacancies.json data/vacancies_history.json data/archive/closed_vacancies.json data/logs/update_log.json data/logs/error_log.json; then
             echo "No generated data changes."
             exit 0
           fi
 
           git config user.name "fic-ai-employee"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/opportunities.json data/contacts.json data/social_sources.json data/updates.json data/vacancies.json data/vacancies_history.json data/archive/closed_vacancies.json data/logs/update_log.json data/logs/error_log.json
-          git commit -m "chore(vacancies): update football coaching vacancies $(date -u +%F)"
+          git add data/opportunities.json data/contacts.json data/decision_makers.json data/social_sources.json data/updates.json data/vacancies.json data/vacancies_history.json data/archive/closed_vacancies.json data/logs/update_log.json data/logs/error_log.json
+          git commit -m "chore(intelligence): update coaching contacts and vacancies $(date -u +%F)"
           git push
