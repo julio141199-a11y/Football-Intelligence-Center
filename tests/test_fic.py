@@ -68,6 +68,21 @@ def test_contacts_are_grouped_by_exclusive_continent_and_country_accordions():
     assert 'directory.querySelectorAll(".contact-country[open]")' in javascript
 
 
+def test_countries_and_leagues_are_merged_and_show_essential_information():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    javascript = (ROOT / "data.js").read_text(encoding="utf-8")
+    assert 'data-page="countries"' not in html
+    assert 'Countries &amp; Leagues' in html
+    assert 'id="leagueGrid" class="market-directory"' in html
+    assert "function combinedMarkets()" in javascript
+    assert 'class="market-continent"' in javascript
+    assert 'class="market-country"' in javascript
+    assert 'row("Head Coach minimum licence"' in javascript
+    assert 'row("Assistant Coach"' in javascript
+    assert 'directory.querySelectorAll(".market-continent[open]")' in javascript
+    assert 'directory.querySelectorAll(".market-country[open]")' in javascript
+
+
 def test_repository_validator():
     result = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "validate_repository.py")],

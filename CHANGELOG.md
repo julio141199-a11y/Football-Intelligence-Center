@@ -27,6 +27,7 @@
 - Pre-Pro career profile based on the AFC Competition Operations Manual 2026
 
 ### Changed
+- Merged Countries and League & Licence into one essential Countries & Leagues accordion view.
 - Grouped Contacts into exclusive continent and country accordions for easier mobile browsing
 - Expanded the single daily workflow to 08:00 and 18:00 Asia/Seoul
 - Connected standardised vacancy JSON to the existing website and priority view without redesign

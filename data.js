@@ -100,57 +100,88 @@ function renderUpdateSchedule() {
   workflow.innerHTML = `<h3>Update Workflow</h3><ol>${steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`;
 }
 
-const leagueGroups = [
-  ["League Structure", ["association", "confederation", "leagueSystem", "topDivision", "professionalDivisions", "semiProfessionalDivisions", "totalKnownDivisions", "topDivisionTeams", "leagueFormat"]],
-  ["Competitions and Match Numbers", ["leagueMatchesPerClub", "regularSeasonMatches", "playoffMatches", "mainCupCompetitions", "superCup", "otherCompetitions", "seasonCalendar", "transferWindows"]],
-  ["Licence and Coaching Opportunity", ["foreignPlayerRules", "foreignCoachRules", "headCoachMinimumLicence", "afcAHeadCoachPossibility", "assistantCoachPossibility", "marketProfessionalLevel", "foreignCoachHiringFrequency", "englishWorkingEnvironment", "visaDifficulty"]],
-  ["Current and Previous National Team Coaches", ["nationalTeamCurrentCoach", "nationalTeamCurrentCoachNationality", "nationalTeamCurrentCoachStartDate", "nationalTeamPreviousCoach", "nationalTeamPreviousCoachNationality"]],
-  ["Coach Career Comparison", ["currentCoachCareerSummary", "previousCoachCareerSummary", "currentChampion", "currentChampionHeadCoach", "currentChampionCoachNationality", "previousChampionHeadCoach"]],
-  ["Korean / Japanese / Asian Coach History", ["recentKoreanCoaches", "recentJapaneseCoaches", "recentOtherAsianCoaches"]],
-  ["League and Club Budgets", ["leagueOperatingBudget", "leagueBudgetCurrency", "leagueBudgetStatus", "leagueBudgetSource", "clubBudgetRange", "clubBudgetCurrency", "clubBudgetStatus", "clubBudgetSource"]],
-  ["National Team Budget", ["nationalAssociationBudget", "nationalAssociationBudgetCurrency", "nationalAssociationBudgetStatus", "nationalAssociationBudgetSource", "nationalTeamOperatingBudget", "nationalTeamBudgetCurrency", "nationalTeamBudgetStatus", "nationalTeamBudgetSource"]],
-  ["Coach Salary Information", ["currentNationalTeamCoachSalary", "previousNationalTeamCoachSalary", "coachSalaryCurrency", "coachSalaryStatus", "coachSalarySource"]]
-];
-const titleCase = (key) => key.replace(/([A-Z])/g, " $1").replace(/^./, (char) => char.toUpperCase()).replace("Afc", "AFC");
-const leagueRow = (key, value) => row(titleCase(key), value);
-function leagueSources(item) {
-  const links = (item.officialSourceUrls || []).map((url, index) => row(`Official source ${index + 1}`, url, true));
-  return [row("Association website", item.officialAssociationWebsite, true), row("League website", item.officialLeagueWebsite, true), ...links, row("Last checked", item.lastChecked), row("Accuracy", item.accuracyLevel), row("Notes", item.notes)].join("");
+const countryKey = (value) => text(value).trim().toLowerCase();
+const preferKnown = (primary, fallback) => /^(to verify|not public|research required)$/i.test(text(primary)) ? fallback : primary;
+const displayContinent = (value) => ({ "Africa Watch": "Africa", "Europe Watch": "Europe", "Central America and Caribbean": "Central America & Caribbean" }[text(value)] || text(value));
+function combinedMarkets() {
+  const countryMap = new Map(state.countries.map((item) => [countryKey(item.country), item]));
+  const leagueMap = new Map(state.leagueIntelligence.map((item) => [countryKey(item.country), item]));
+  const keys = new Set([...countryMap.keys(), ...leagueMap.keys()]);
+  return [...keys].map((key) => {
+    const country = countryMap.get(key) || {};
+    const league = leagueMap.get(key) || {};
+    return {
+      ...country, ...league,
+      country: league.country || country.country,
+      continent: displayContinent(country.continent || league.continent || "Other"),
+      confederation: league.confederation || country.confederation,
+      association: league.association || country.association,
+      topDivision: league.topDivision || country.mainLeague,
+      afcAHeadCoachPossibility: preferKnown(league.afcAHeadCoachPossibility, country.afcAHeadCoachPossibility),
+      assistantCoachPossibility: preferKnown(league.assistantCoachPossibility, country.assistantCoachPossibility),
+      officialAssociationWebsite: league.officialAssociationWebsite || country.officialWebsite,
+      officialLeagueWebsite: league.officialLeagueWebsite || "To verify",
+      lastChecked: league.lastChecked || country.lastUpdated,
+      accuracyLevel: preferKnown(league.accuracyLevel, country.accuracyLevel)
+    };
+  });
 }
-function leagueCard(item) {
-  const summary = [
-    row("Top Division", item.topDivision), row("Known League Divisions", item.totalKnownDivisions), row("League Matches", item.leagueMatchesPerClub),
-    row("Main Cup", item.mainCupCompetitions), row("AFC A Head Coach", item.afcAHeadCoachPossibility), row("Head Coach Fit", item.headCoachFitScore),
-    row("Assistant Fit", item.assistantCoachFitScore), row("Last Checked", item.lastChecked)
-  ].join("");
-  const groups = leagueGroups.map(([heading, keys]) => `<h4>${escapeHtml(heading)}</h4>${keys.map((key) => leagueRow(key, item[key])).join("")}`).join("");
-  const fitRows = Object.entries(item.fitFactors || {}).map(([key, value]) => leagueRow(key, value)).join("");
-  const fit = `${leagueRow("headCoachFitScore", item.headCoachFitScore)}${leagueRow("assistantCoachFitScore", item.assistantCoachFitScore)}${leagueRow("overallOpportunityScore", item.overallOpportunityScore)}${fitRows}<p class="fit-note">This score is an internal comparison tool, not a prediction of employment. Domestic licence eligibility must be verified from official rules.</p>`;
-  return `<article class="card league-card"><div class="card-top"><span class="label">${escapeHtml(item.continent)}</span><span class="badge ${badgeClass(item.accuracyLevel)}">${escapeHtml(item.accuracyLevel)}</span></div><h3>${item.flag === "To verify" ? "" : escapeHtml(item.flag) + " "}${escapeHtml(item.marketName || item.country)}</h3><dl class="league-summary">${summary}</dl><details><summary>View Details</summary><dl>${groups}<h4>Official Sources</h4>${leagueSources(item)}<h4>Julio Fit Analysis</h4>${fit}</dl></details></article>`;
+
+function essentialMarketCard(item) {
+  const officialSources = (item.officialSourceUrls || []).filter((url) => safeUrl(url));
+  const rows = [
+    row("Association", item.association), row("Top division", item.topDivision),
+    row("Head Coach minimum licence", item.headCoachMinimumLicence || item.licenceNote),
+    row("AFC A Head Coach", item.afcAHeadCoachPossibility), row("Assistant Coach", item.assistantCoachPossibility),
+    row("Foreign-coach environment", item.foreignCoachHiringFrequency || item.foreignCoachRules),
+    row("Korean coaches", item.recentKoreanCoaches), row("Japanese coaches", item.recentJapaneseCoaches),
+    row("Working language", item.englishWorkingEnvironment),
+    row("Association website", item.officialAssociationWebsite, true), row("League website", item.officialLeagueWebsite, true),
+    ...officialSources.slice(0, 2).map((url, index) => row(`Official rule ${index + 1}`, url, true)),
+    row("Last checked", item.lastChecked), row("Accuracy", item.accuracyLevel), row("Notes", item.notes)
+  ];
+  return `<article class="card league-card"><div class="card-top"><span class="label">${escapeHtml(item.confederation)}</span><span class="badge ${badgeClass(item.accuracyLevel)}">${escapeHtml(item.accuracyLevel)}</span></div><h3>${item.flag === "To verify" ? "" : escapeHtml(item.flag) + " "}${escapeHtml(item.country)}</h3><p class="meta">${escapeHtml(item.topDivision)} · ${escapeHtml(item.association)}</p><dl class="league-summary">${row("AFC A Head Coach", item.afcAHeadCoachPossibility)}${row("Assistant Coach", item.assistantCoachPossibility)}</dl>${details(rows)}</article>`;
 }
-const leagueFilterNames = ["All", "Asia", "Oceania", "Canada", "Africa Watch", "Europe Watch", "AFC A Head Coach", "Assistant Coach", "Verified", "To Verify"];
+const leagueFilterNames = ["All", "Asia", "Oceania", "Central America", "Caribbean", "Canada", "Africa", "Europe", "AFC A Head Coach", "Assistant Coach", "Verified", "To Verify"];
 function leagueMatchesFilter(item, filter) {
   if (filter === "All") return true;
-  if (["Asia", "Oceania", "Canada", "Africa Watch", "Europe Watch"].includes(filter)) return item.continent === filter;
+  if (["Asia", "Oceania", "Canada", "Africa", "Europe"].includes(filter)) return item.continent === filter;
+  if (["Central America", "Caribbean"].includes(filter)) return item.continent.includes(filter);
   if (filter === "Verified") return /verified|official|audited/i.test(item.accuracyLevel);
   if (filter === "To Verify") return /to verify|research required/i.test(item.accuracyLevel);
   const field = { "AFC A Head Coach": "afcAHeadCoachPossibility", "Assistant Coach": "assistantCoachPossibility" }[filter];
   return /high|medium|open|suitable/i.test(text(item[field]));
 }
 function renderLeagueStats() {
-  const data = state.leagueIntelligence;
+  const data = combinedMarkets();
   const countMarkets = (field) => data.filter((item) => /high|medium|open|suitable/i.test(text(item[field]))).length;
-  const verifiedStatuses = new Set(["Official", "Audited Report"]);
   const uniqueCountries = new Set(data.map((item) => item.country)).size;
-  const stats = [["Countries Covered", uniqueCountries], ["AFC A Head Coach Markets", countMarkets("afcAHeadCoachPossibility")], ["Assistant Coach Markets", countMarkets("assistantCoachPossibility")], ["Budgets Verified", data.filter((item) => verifiedStatuses.has(item.leagueBudgetStatus) || verifiedStatuses.has(item.nationalAssociationBudgetStatus) || verifiedStatuses.has(item.nationalTeamBudgetStatus) || verifiedStatuses.has(item.clubBudgetStatus)).length], ["Salaries Verified", data.filter((item) => verifiedStatuses.has(item.coachSalaryStatus)).length], ["Research Required", data.filter((item) => /research required|to verify/i.test(item.accuracyLevel)).length]];
+  const stats = [["Countries Covered", uniqueCountries], ["AFC A Head Coach Markets", countMarkets("afcAHeadCoachPossibility")], ["Assistant Coach Markets", countMarkets("assistantCoachPossibility")], ["Research Required", data.filter((item) => /research required|to verify/i.test(item.accuracyLevel)).length]];
   document.querySelector("#leagueStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
 }
 function renderLeagueIntelligence(filter = "All", query = "") {
   const normalized = query.trim().toLowerCase();
-  const list = state.leagueIntelligence.filter((item) => leagueMatchesFilter(item, filter) && (!normalized || [item.country, item.marketName, item.topDivision, item.association, item.nationalTeamCurrentCoach, item.nationalTeamPreviousCoach, item.currentChampionHeadCoach].join(" ").toLowerCase().includes(normalized)));
-  document.querySelector("#leagueCount").textContent = `${list.length} markets`;
-  document.querySelector("#leagueGrid").innerHTML = list.map(leagueCard).join("") || emptyState("No markets match this search and filter.");
+  const list = combinedMarkets().filter((item) => leagueMatchesFilter(item, filter) && (!normalized || [item.country, item.topDivision, item.association].join(" ").toLowerCase().includes(normalized)));
+  document.querySelector("#leagueCount").textContent = `${list.length} countries`;
+  const grouped = new Map();
+  list.sort((a, b) => text(a.country).localeCompare(text(b.country))).forEach((item) => {
+    const continent = text(item.continent);
+    if (!grouped.has(continent)) grouped.set(continent, []);
+    grouped.get(continent).push(item);
+  });
+  document.querySelector("#leagueGrid").innerHTML = [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([continent, items]) => `<details class="market-continent"><summary><span>${escapeHtml(continent)}</span><span class="contact-group-meta">${items.length} countries</span></summary><div class="market-country-list">${items.map((item) => `<details class="market-country"><summary><span>${item.flag === "To verify" ? "" : escapeHtml(item.flag) + " "}${escapeHtml(item.country)}</span><span class="contact-group-count">${escapeHtml(item.topDivision)}</span></summary><div class="market-country-card">${essentialMarketCard(item)}</div></details>`).join("")}</div></details>`).join("") || emptyState("No countries match this search and filter.");
+  setupMarketAccordions();
   document.querySelector("#leagueFilters").innerHTML = leagueFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-league-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
+}
+
+function setupMarketAccordions() {
+  const directory = document.querySelector("#leagueGrid");
+  directory.querySelectorAll(".market-continent").forEach((item) => item.addEventListener("toggle", () => {
+    if (item.open) directory.querySelectorAll(".market-continent[open]").forEach((other) => { if (other !== item) other.open = false; });
+  }));
+  directory.querySelectorAll(".market-country").forEach((item) => item.addEventListener("toggle", () => {
+    if (item.open) directory.querySelectorAll(".market-country[open]").forEach((other) => { if (other !== item) other.open = false; });
+  }));
 }
 
 const updateFilterNames = ["All", "New", "Changed", "Verified", "Jobs", "Contacts", "League Intelligence", "Pro Licence", "Deadline Soon", "Research Required"];
@@ -420,30 +451,6 @@ function decisionMakerToContact(item) {
   };
 }
 
-function countryCard(item) {
-  return card({
-    label: item.continent, title: `${item.flag === "To verify" ? "" : item.flag + " "}${item.country}`,
-    meta: `${item.confederation} · ${item.association}`,
-    badges: [item.priority, item.status],
-    body: `Opportunity score ${item.opportunityScore}`,
-    rows: [
-      row("Main league", item.mainLeague), row("National team", item.nationalTeam),
-      row("Target roles", item.targetRoles), row("Licence note", item.licenceNote),
-      row("Last updated", item.lastUpdated), row("Accuracy", item.accuracyLevel), row("Notes", item.notes)
-    ]
-  });
-}
-
-function renderCountries(filter = "All") {
-  const list = filter === "All" ? state.countries : state.countries.filter((item) => item.continent === filter);
-  document.querySelector("#countriesCount").textContent = `${list.length} records`;
-  document.querySelector("#countriesGrid").innerHTML = list.map(countryCard).join("");
-  const filters = ["All", ...new Set(state.countries.map((item) => item.continent))];
-  document.querySelector("#countryFilters").innerHTML = filters.map((name) =>
-    `<button class="${name === filter ? "active" : ""}" data-country-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`
-  ).join("");
-}
-
 function renderLicences() {
   document.querySelector("#licenceCount").textContent = `${state.licences.length} records`;
   document.querySelector("#licenceGrid").innerHTML = state.licences.map((item) => card({
@@ -471,10 +478,6 @@ function setupNavigation() {
     document.querySelectorAll(".main-nav button").forEach((item) => item.classList.toggle("active", item === button));
     document.querySelectorAll(".page").forEach((page) => page.classList.toggle("active", page.id === button.dataset.page));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-  document.querySelector("#countryFilters").addEventListener("click", (event) => {
-    const button = event.target.closest("[data-country-filter]");
-    if (button) renderCountries(button.dataset.countryFilter);
   });
   document.querySelector("#jobsFilters").addEventListener("click", (event) => {
     const button = event.target.closest("[data-job-filter]");
@@ -613,7 +616,7 @@ async function loadDatabases() {
     notice.hidden = false;
     notice.textContent = "Update schedule could not be loaded. Run the project with Live Server or GitHub Pages.";
   }
-  prepareJobs(); renderUpdateSchedule(); renderDashboard(); renderJobStats(); renderJobs(); renderContacts(); renderCountries(); renderLicences(); renderLeagueStats(); renderLeagueIntelligence(); renderUpdateStats(); renderUpdates();
+  prepareJobs(); renderUpdateSchedule(); renderDashboard(); renderJobStats(); renderJobs(); renderContacts(); renderLicences(); renderLeagueStats(); renderLeagueIntelligence(); renderUpdateStats(); renderUpdates();
 }
 
 document.querySelector("#todayDate").textContent = new Intl.DateTimeFormat("en", { dateStyle: "long" }).format(new Date());

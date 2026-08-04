@@ -45,18 +45,22 @@ main { max-width: 1200px; min-height: 75vh; margin: auto; padding: 22px 18px 48p
 .section-heading h3 { margin: 0; font-size: 16px; }
 
 .card-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-.contact-directory { display: grid; gap: 12px; }
-.contact-continent, .contact-country { margin: 0; border: 1px solid var(--line); border-radius: 14px; background: #fff; overflow: hidden; }
-.contact-continent > summary, .contact-country > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 14px 16px; color: var(--ink); font-size: 14px; list-style: none; }
-.contact-continent > summary::-webkit-details-marker, .contact-country > summary::-webkit-details-marker { display: none; }
-.contact-continent > summary::before, .contact-country > summary::before { content: "+"; flex: 0 0 auto; width: 22px; color: var(--accent); font-size: 18px; line-height: 1; }
-.contact-continent[open] > summary::before, .contact-country[open] > summary::before { content: "−"; }
-.contact-continent > summary > span:first-of-type, .contact-country > summary > span:first-of-type { margin-right: auto; font-weight: 850; }
+.contact-directory, .market-directory { display: grid; gap: 12px; }
+.contact-continent, .contact-country, .market-continent, .market-country { margin: 0; border: 1px solid var(--line); border-radius: 14px; background: #fff; overflow: hidden; }
+.contact-continent > summary, .contact-country > summary, .market-continent > summary, .market-country > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 14px 16px; color: var(--ink); font-size: 14px; list-style: none; }
+.contact-continent > summary::-webkit-details-marker, .contact-country > summary::-webkit-details-marker, .market-continent > summary::-webkit-details-marker, .market-country > summary::-webkit-details-marker { display: none; }
+.contact-continent > summary::before, .contact-country > summary::before, .market-continent > summary::before, .market-country > summary::before { content: "+"; flex: 0 0 auto; width: 22px; color: var(--accent); font-size: 18px; line-height: 1; }
+.contact-continent[open] > summary::before, .contact-country[open] > summary::before, .market-continent[open] > summary::before, .market-country[open] > summary::before { content: "−"; }
+.contact-continent > summary > span:first-of-type, .contact-country > summary > span:first-of-type, .market-continent > summary > span:first-of-type, .market-country > summary > span:first-of-type { margin-right: auto; font-weight: 850; }
 .contact-group-meta, .contact-group-count { color: var(--muted); font-size: 11px; font-weight: 750; white-space: nowrap; }
 .contact-country-list { display: grid; gap: 9px; padding: 0 12px 12px; }
 .contact-country { border-radius: 10px; background: var(--soft); }
 .contact-country > summary { min-height: 46px; padding: 11px 13px; }
 .contact-country-cards { padding: 0 10px 10px; }
+.market-country-list { display: grid; gap: 9px; padding: 0 12px 12px; }
+.market-country { border-radius: 10px; background: var(--soft); }
+.market-country > summary { min-height: 46px; padding: 11px 13px; }
+.market-country-card { padding: 0 10px 10px; }
 .card, .stat-card {
   min-width: 0; padding: 14px; background: #fff; border: 1px solid var(--line);
   border-radius: var(--radius); box-shadow: 0 2px 8px rgba(40,20,20,.045);
