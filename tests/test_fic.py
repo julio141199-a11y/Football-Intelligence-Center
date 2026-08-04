@@ -58,6 +58,16 @@ def test_site_loads_federation_decision_makers():
     assert "decisionMakerToContact" in javascript
 
 
+def test_contacts_are_grouped_by_exclusive_continent_and_country_accordions():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    javascript = (ROOT / "data.js").read_text(encoding="utf-8")
+    assert 'id="contactsGrid" class="contact-directory"' in html
+    assert 'class="contact-continent"' in javascript
+    assert 'class="contact-country"' in javascript
+    assert 'directory.querySelectorAll(".contact-continent[open]")' in javascript
+    assert 'directory.querySelectorAll(".contact-country[open]")' in javascript
+
+
 def test_repository_validator():
     result = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "validate_repository.py")],

@@ -333,9 +333,8 @@ function renderJobs(filter = "All", query = "") {
   document.querySelector("#jobsFilters").innerHTML = jobFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-job-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
 }
 
-function renderContacts() {
-  document.querySelector("#contactsCount").textContent = `${state.contacts.length} records`;
-  document.querySelector("#contactsGrid").innerHTML = state.contacts.map((item) => card({
+function contactCard(item) {
+  return card({
     label: item.type, title: item.organization, meta: `${item.country} · ${item.role}`,
     badges: [item.priority, badgeClass(item.accuracyLevel) === "good" ? "Verified" : "To verify"],
     body: item.person,
@@ -346,7 +345,65 @@ function renderContacts() {
       row("Source", item.source), row("Source URL", item.sourceUrl, true),
       row("Last checked", item.lastChecked), row("Accuracy", item.accuracyLevel), row("Notes", item.notes)
     ]
-  })).join("") || emptyState("No contacts recorded.");
+  });
+}
+
+function setupContactAccordions() {
+  const directory = document.querySelector("#contactsGrid");
+  directory.querySelectorAll(".contact-continent").forEach((section) => {
+    section.addEventListener("toggle", () => {
+      if (!section.open) return;
+      directory.querySelectorAll(".contact-continent[open]").forEach((other) => {
+        if (other !== section) other.open = false;
+      });
+      directory.querySelectorAll(".contact-country[open]").forEach((country) => {
+        if (!section.contains(country)) country.open = false;
+      });
+    });
+  });
+  directory.querySelectorAll(".contact-country").forEach((section) => {
+    section.addEventListener("toggle", () => {
+      if (!section.open) return;
+      directory.querySelectorAll(".contact-country[open]").forEach((other) => {
+        if (other !== section) other.open = false;
+      });
+    });
+  });
+}
+
+function renderContacts() {
+  document.querySelector("#contactsCount").textContent = `${state.contacts.length} records`;
+  if (!state.contacts.length) {
+    document.querySelector("#contactsGrid").innerHTML = emptyState("No contacts recorded.");
+    return;
+  }
+  const continents = new Map();
+  state.contacts.forEach((item) => {
+    const continent = text(item.continent);
+    if (!continents.has(continent)) continents.set(continent, new Map());
+    const countries = continents.get(continent);
+    const country = text(item.country);
+    if (!countries.has(country)) countries.set(country, []);
+    countries.get(country).push(item);
+  });
+  const continentOrder = ["Asia", "Oceania", "Central America", "Caribbean", "Africa", "Europe", "Canada"];
+  const sortedContinents = [...continents.entries()].sort(([a], [b]) => {
+    const ai = continentOrder.indexOf(a), bi = continentOrder.indexOf(b);
+    return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi) || a.localeCompare(b);
+  });
+  document.querySelector("#contactsGrid").innerHTML = sortedContinents.map(([continent, countries]) => {
+    const continentCount = [...countries.values()].reduce((total, items) => total + items.length, 0);
+    const countrySections = [...countries.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([country, items]) => `
+      <details class="contact-country">
+        <summary><span>${escapeHtml(country)}</span><span class="contact-group-count">${items.length}</span></summary>
+        <div class="card-grid contact-country-cards">${items.map(contactCard).join("")}</div>
+      </details>`).join("");
+    return `<details class="contact-continent">
+      <summary><span>${escapeHtml(continent)}</span><span class="contact-group-meta">${countries.size} countries · ${continentCount} contacts</span></summary>
+      <div class="contact-country-list">${countrySections}</div>
+    </details>`;
+  }).join("");
+  setupContactAccordions();
 }
 
 function decisionMakerToContact(item) {
