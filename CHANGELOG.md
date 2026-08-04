@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- Added a standard vacancy database, history, closed archive, and change/error logs
+- Added reviewed JSON inbox/import commands and a fail-closed vacancy validator
+- Added stable vacancy IDs, source hashes, deduplication, KST deadline states, and unit tests
 - Added a small `data/chat_opportunities.json` inbox for vacancies verified from Julio's ChatGPT/Codex conversations
 - FIC AI Employee operating-system design
 - Project charter
@@ -21,6 +24,9 @@
 - Pre-Pro career profile based on the AFC Competition Operations Manual 2026
 
 ### Changed
+- Expanded the single daily workflow to 08:00 and 18:00 Asia/Seoul
+- Connected standardised vacancy JSON to the existing website and priority view without redesign
+- Automatic vacancy commits now include only generated files and occur only after validation
 - Connected generated and chat-reviewed opportunities to the existing Jobs page while preserving the current design
 - Added cache-bypassed JSON loading so newly deployed vacancy data appears immediately
 - Vacancy scope limited to Head Coach and Assistant Coach

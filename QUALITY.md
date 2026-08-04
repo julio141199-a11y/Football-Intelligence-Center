@@ -25,11 +25,12 @@ Organisation + team + role + vacancy period matching indicates a probable duplic
 - Contacts must be publicly posted for professional use
 
 ## Status rules
-- Verified Open
-- Closing Soon
-- To Verify
-- Closed
-- Filled
+- `NEW`: newly accepted verified input
+- `UPDATED`: a meaningful source field changed
+- `CLOSING_SOON`: verified deadline is within seven calendar days in Asia/Seoul
+- `CLOSED`: official closure was supplied
+- `EXPIRED`: verified deadline has passed
+- `UNVERIFIED`: automated candidate awaiting human verification
 
 ## Failure policy
 Do not commit invalid data. Preserve the last known-good version and report the exact blocker.
@@ -50,3 +51,6 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - Notifications are allowed only for newly detected Head Coach or Assistant Coach candidates and must label them `To Verify`.
 - Chat-discovered vacancies require a public source URL and the same Head Coach / Assistant Coach scope gate before entering `data/chat_opportunities.json`.
 - The browser must load vacancy JSON with cache bypassing so a successful GitHub Pages deployment displays the latest data.
+- The standard vacancy validator must pass before automatic commit.
+- An unchanged source hash must not create a duplicate or false update.
+- Placeholder URLs and all roles other than Head Coach and Assistant Coach must fail closed.

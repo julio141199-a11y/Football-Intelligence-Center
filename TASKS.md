@@ -10,16 +10,16 @@
 - [x] Confirm GitHub Pages deployment health after the first pushed workflow run
 
 ## Phase 2 — Data standardisation
-- [ ] Document jobs.json fields
-- [ ] Standardise statuses
-- [ ] Add duplicate rules
-- [ ] Check existing records against final scope
-- [ ] Validate updates.json structure
+- [x] Add a standard generated vacancy schema
+- [x] Standardise generated vacancy statuses
+- [x] Add stable-ID and source-hash duplicate rules
+- [x] Migrate the existing official Cook Islands record
+- [x] Add update history, archive, and concise logs
 
 ## Phase 3 — Automated QA
 - [x] JSON parse validation
 - [x] Duplicate ID validation
-- [ ] Deadline/status consistency check
+- [x] Deadline/status consistency check
 - [x] URL format validation
 - [x] Lightweight site smoke test
 
@@ -40,6 +40,9 @@
 - [x] Connect generated pipeline opportunities to the existing Jobs page
 - [x] Add a verified chat-opportunity input without changing the site design
 - [x] Bypass stale browser JSON cache after GitHub Pages deployment
+- [x] Add reviewed JSON inbox and import commands
+- [x] Run automation at 08:00 and 18:00 Asia/Seoul
+- [x] Connect standardised vacancies to both site views without redesign
 
 ## Current next task
-Verify official domestic licence rules for high-probability Southeast Asian, Central American, and Oceanian first divisions before marking AFC A Head Coach eligibility.
+Observe the first scheduled 08:00/18:00 run and verify that the GitHub token can push generated data on the protected default branch.

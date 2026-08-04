@@ -38,7 +38,7 @@ AFC, Oceania, Portugal, Canada, selected Africa, Central America, the Caribbean,
 Relevant opportunities are found early, verified, deduplicated, safely committed, published without breaking GitHub Pages, and reported only when useful.
 
 ## Daily automation
-- `.github/workflows/daily-update.yml` runs at 08:00 Asia/Seoul (`0 23 * * *` UTC).
+- `.github/workflows/daily-update.yml` runs at 08:00 and 18:00 Asia/Seoul (`0 23 * * *` and `0 9 * * *` UTC).
 - Pipeline code or source-registry changes also trigger one verification run after push.
 - `run_pipeline.py` checks a small registry of generic public sources.
 - Automated discoveries remain `To Verify`; they are never promoted directly into `jobs.json`.
@@ -46,8 +46,15 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 - Official LinkedIn organisation profiles are published as a focused watch list. Gated post content remains a manual check; only Head Coach and Assistant Coach hiring or coach-change signals are relevant.
 - Public role-based emails found on official federation, league, and club pages are stored separately as `To Verify`.
 - GitHub commits generated files only when they change.
-- The website merges `jobs.json`, generated `data/opportunities.json`, and Codex-reviewed `data/chat_opportunities.json` without changing the visual template.
+- The website merges `jobs.json`, generated `data/opportunities.json`, Codex-reviewed `data/chat_opportunities.json`, and standardised `data/vacancies.json` without changing the visual template.
 - GitHub Actions cannot read a private ChatGPT conversation directly. When Julio asks Codex to publish a chat-discovered vacancy, Codex must verify its public source, add it to `data/chat_opportunities.json`, and push the reviewed change.
+
+## Standard vacancy update
+
+- `scripts/vacancy_manager.py` accepts reviewed JSON from `data/inbox/` and pipeline candidates.
+- Every record has a stable ID and source hash; unchanged records are not rewritten as updates.
+- Deadlines are evaluated in Asia/Seoul and use `NEW`, `UPDATED`, `CLOSING_SOON`, `CLOSED`, `EXPIRED`, or `UNVERIFIED`.
+- Invalid roles, placeholder links, and missing organisation/country fields are rejected before publishing.
 
 ## Current lifecycle
 

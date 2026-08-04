@@ -2,7 +2,7 @@
   "updateCycleDays": 1,
   "cycleName": "FIC Daily Update",
   "timezone": "Asia/Seoul",
-  "plannedRunTime": "08:00",
+  "plannedRunTime": "08:00 and 18:00",
   "updateStatus": "Daily research and verified-change update",
   "managedFiles": [
     "jobs.json",
@@ -10,7 +10,9 @@
     "contacts.json",
     "countries.json",
     "pro_licence_watch.json",
-    "league_intelligence.json"
+    "league_intelligence.json",
+    "data/vacancies.json",
+    "data/vacancies_history.json"
   ],
   "trackedRoles": [
     "Head Coach",

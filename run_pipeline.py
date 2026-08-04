@@ -251,9 +251,10 @@ def deduplicate_contacts(items: list[dict]) -> list[dict]:
     return sorted(unique.values(), key=lambda item: (item.get("region", ""), item.get("organisation", "")))
 
 
-def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
+def build_social_registry(sources: list[dict], generated_at: str, existing: list[dict] | None = None) -> list[dict]:
     """Publish verified official social profiles without scraping gated posts."""
     records: list[dict] = []
+    existing_by_id = {item.get("id"): item for item in (existing or [])}
     for source in sources:
         source_type = str(source.get("type", ""))
         if not source.get("enabled", True) or not source.get("official"):
@@ -277,7 +278,7 @@ def build_social_registry(sources: list[dict], generated_at: str) -> list[dict]:
                     "watchFor",
                     ["Head Coach", "Assistant Coach", "Vacancy", "Resigned", "Dismissed", "Appointed"],
                 ),
-                "lastVerified": source.get("lastVerified", generated_at[:10]),
+                "lastVerified": source.get("lastVerified") or existing_by_id.get(source["id"], {}).get("lastVerified") or "Needs verification",
             }
         )
     return sorted(records, key=lambda item: (item["platform"], item["region"], item["organisation"]))
@@ -298,7 +299,8 @@ def main() -> int:
     contacts_added = 0
     warnings: list[str] = []
     run_at = now_iso()
-    social_sources = build_social_registry(config.get("sources", []), run_at)
+    previous_social_sources = read_json(SOCIAL_SOURCES_PATH)
+    social_sources = build_social_registry(config.get("sources", []), run_at, previous_social_sources)
 
     settings = config.get("settings", {})
     timeout = int(settings.get("requestTimeoutSeconds", 15))
@@ -391,7 +393,9 @@ def main() -> int:
         "socialProfiles": len(social_sources),
         "warnings": warnings,
     }
-    updates.insert(0, update)
+    meaningful_change = bool(added or contacts_added or social_sources != previous_social_sources)
+    if meaningful_change:
+        updates.insert(0, update)
     updates = updates[:30]
 
     write_json(OPPORTUNITIES_PATH, opportunities)

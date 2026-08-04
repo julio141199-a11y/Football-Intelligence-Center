@@ -31,7 +31,7 @@
     const status = statusText(job.status);
     let score = fit;
     if (status.includes("closing soon")) score += 30;
-    if (status.includes("verified open") || status === "open") score += 20;
+    if (status.includes("verified open") || ["open", "new", "updated"].includes(status)) score += 20;
     if (Number.isFinite(days) && days >= 0 && days <= 7) score += 20;
     const targetText = `${job.position || ""} ${job.teamType || ""}`.toLowerCase();
     if (job.roleType === "Assistant Coach" && targetText.includes("national")) score += 25;
@@ -43,7 +43,7 @@
   function renderMetrics(jobs, updates, inbox) {
     const open = jobs.filter((job) => {
       const s = statusText(job.status);
-      return s.includes("verified open") || s === "open" || s.includes("closing soon");
+      return s.includes("verified open") || ["open", "new", "updated"].includes(s) || s.includes("closing soon");
     });
     const closing = open.filter((job) => statusText(job.status).includes("closing soon") || (Number(job.daysUntilDeadline) >= 0 && Number(job.daysUntilDeadline) <= 3));
     const newUpdates = updates.filter((item) => {
@@ -83,7 +83,7 @@
     const active = jobs
       .filter((job) => {
         const s = statusText(job.status);
-        return s.includes("verified open") || s === "open" || s.includes("closing soon");
+        return s.includes("verified open") || ["open", "new", "updated"].includes(s) || s.includes("closing soon");
       })
       .sort((a, b) => jobPriority(b) - jobPriority(a))
       .slice(0, 3);
@@ -146,7 +146,7 @@
       : "Not run yet";
 
     target.innerHTML = `
-      <div class="brief-row"><span>Automation</span><strong>Daily at 08:00 KST</strong></div>
+      <div class="brief-row"><span>Automation</span><strong>Daily at 08:00 and 18:00 KST</strong></div>
       <div class="brief-row"><span>Last research run</span><strong>${esc(lastRun)}</strong></div>
       <div class="brief-row"><span>Sources checked</span><strong>${success}</strong></div>
       <div class="brief-row"><span>Source errors</span><strong>${errors}</strong></div>
@@ -166,15 +166,28 @@
   }
 
   async function init() {
-    const [jobs, updates, inbox, researchState, schedule, pipelineOpportunities, pipelineUpdates] = await Promise.all([
+    const [jobs, updates, inbox, researchState, schedule, pipelineOpportunities, pipelineUpdates, vacancies] = await Promise.all([
       fetchJson("jobs.json", []),
       fetchJson("updates.json", []),
       fetchJson("data/research_inbox.json", []),
       fetchJson("data/research_state.json", {}),
       fetchJson("update_schedule.json", {}),
       fetchJson("data/opportunities.json", []),
-      fetchJson("data/updates.json", [])
+      fetchJson("data/updates.json", []),
+      fetchJson("data/vacancies.json", [])
     ]);
+
+    const vacancyJobs = vacancies.map((item) => ({
+      id: item.id, roleType: item.role, position: `${item.organization} ${item.role}`,
+      organization: item.organization, country: item.country, teamType: item.team_level,
+      status: ({ NEW: "New", UPDATED: "Updated", CLOSING_SOON: "Closing Soon", CLOSED: "Closed", EXPIRED: "Expired", UNVERIFIED: "To Verify" })[item.status] || "To Verify",
+      deadline: item.deadline || "To verify", fitScore: item.fit_score,
+      shortSummary: `${item.role} vacancy record from ${item.source_type || "official source"}.`,
+      sourceUrl: item.official_source_url
+    }));
+    const mergedJobs = [...jobs, ...vacancyJobs].filter((item, index, all) =>
+      index === all.findIndex((candidate) => candidate.id === item.id)
+    );
 
     const pendingPipeline = pipelineOpportunities.map((item) => ({
       status: item.status,
@@ -183,8 +196,8 @@
     const scopedUpdates = updates.filter((item) =>
       item.category !== "Coach Network" && item.relatedPage !== "Coach Network"
     );
-    renderMetrics(jobs, scopedUpdates, [...inbox, ...pendingPipeline]);
-    renderPriorityJobs(jobs);
+    renderMetrics(mergedJobs, scopedUpdates, [...inbox, ...pendingPipeline]);
+    renderPriorityJobs(mergedJobs);
     const pipelinePulse = pipelineUpdates.slice(0, 3).map((item) => ({
       date: item.runAt,
       type: "Pipeline",

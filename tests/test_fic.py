@@ -24,8 +24,17 @@ def test_site_merges_pipeline_and_chat_opportunities():
     javascript = (ROOT / "data.js").read_text(encoding="utf-8")
     assert 'pipelineOpportunities: "data/opportunities.json"' in javascript
     assert 'chatOpportunities: "data/chat_opportunities.json"' in javascript
+    assert 'vacancies: "data/vacancies.json"' in javascript
     assert "mergeOpportunityFeeds();" in javascript
     assert 'cache: "no-store"' in javascript
+
+
+def test_daily_workflow_runs_twice_and_validates_vacancies():
+    workflow = (ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
+    assert 'cron: "0 23 * * *"' in workflow
+    assert 'cron: "0 9 * * *"' in workflow
+    assert "python scripts/vacancy_manager.py --inbox --pipeline" in workflow
+    assert "python scripts/validate_vacancies.py" in workflow
 
 
 def test_repository_validator():

@@ -1,0 +1,39 @@
+[
+  {
+    "vacancy_id": "vacancy-3bfcbc4bac96bbc1",
+    "action": "CREATED",
+    "at": "2026-08-04T03:20:53+00:00",
+    "after": {
+      "id": "vacancy-3bfcbc4bac96bbc1",
+      "role": "Head Coach",
+      "organization": "Cook Islands Football Association",
+      "country": "Cook Islands",
+      "region": "Oceania",
+      "team_gender": "",
+      "team_level": "National Team",
+      "league": "",
+      "source_type": "Instagram",
+      "official_source_url": "https://www.instagram.com/p/DZ-yLspz5wq/",
+      "application_url": "To verify",
+      "contact_email": "mii.joseph@cisoccer.org.ck",
+      "contact_phone": "To verify",
+      "posted_date": "",
+      "deadline": "2026-07-10",
+      "licence_requirement": "Recognised OFC/FIFA coaching qualification. C Licence and above stated in vacancy post.",
+      "language_requirement": "",
+      "contract_type": "",
+      "salary": "",
+      "housing": "",
+      "visa": "",
+      "flights": "",
+      "status": "CLOSED",
+      "accuracy_level": "Verified from official association social media post.",
+      "fit_score": "96",
+      "fit_assessment": "AFC A Licence, AFC Fitness Coach Level 2, Laos National Team experience, foreign professional club experience, international tournament experience, and English-speaking environment adaptability.",
+      "last_checked": "2026-07-11",
+      "created_at": "2026-08-04T03:20:53+00:00",
+      "updated_at": "2026-08-04T03:20:53+00:00",
+      "source_hash": "9dbe7e35dccb6cbfdcbf4d2410d34ebeead479f35609445bd45b27f239688608"
+    }
+  }
+]
