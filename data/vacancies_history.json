@@ -35,5 +35,42 @@
       "updated_at": "2026-08-04T03:20:53+00:00",
       "source_hash": "9dbe7e35dccb6cbfdcbf4d2410d34ebeead479f35609445bd45b27f239688608"
     }
+  },
+  {
+    "vacancy_id": "vacancy-6086bdc08c576294",
+    "action": "CREATED",
+    "at": "2026-08-07T01:41:00+00:00",
+    "after": {
+      "id": "vacancy-6086bdc08c576294",
+      "role": "Head Coach",
+      "organization": "BBC Sport Football",
+      "country": "International",
+      "region": "International",
+      "team_gender": "",
+      "team_level": "",
+      "league": "",
+      "source_type": "trusted-news",
+      "official_source_url": "https://www.bbc.com/sport/football/articles/clyrddd2y2no",
+      "application_url": "",
+      "contact_email": "",
+      "contact_phone": "",
+      "posted_date": "2026-08-07",
+      "deadline": "",
+      "licence_requirement": "Target role detected; team level and licence fit require verification.",
+      "language_requirement": "",
+      "contract_type": "",
+      "salary": "",
+      "housing": "",
+      "visa": "",
+      "flights": "",
+      "status": "UNVERIFIED",
+      "accuracy_level": "",
+      "fit_score": "",
+      "fit_assessment": "Target role detected; team level and licence fit require verification.",
+      "last_checked": "2026-08-07",
+      "created_at": "2026-08-07T01:41:00+00:00",
+      "updated_at": "2026-08-07T01:41:00+00:00",
+      "source_hash": "82de928427e320fb3df4489ce63f7ea3815e8ff6992745b4a9949d7de680a8be"
+    }
   }
 ]

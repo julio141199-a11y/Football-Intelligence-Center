@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "id": "opportunity-f585ea5a2a7d7dbc",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Coach Change",
+    "country": "International",
+    "region": "International",
+    "organisation": "BBC Sport Football",
+    "title": "Forlan agrees to become interim Uruguay head coach",
+    "sourceUrl": "https://www.bbc.com/sport/football/articles/clyrddd2y2no",
+    "sourceType": "trusted-news",
+    "official": false,
+    "careerPriority": "Monitor",
+    "licenceNote": "Target role detected; team level and licence fit require verification.",
+    "detectedAt": "2026-08-07T01:40:12+00:00",
+    "lastVerified": "Needs verification"
+  }
+]

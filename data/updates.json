@@ -1,5 +1,15 @@
 [
   {
+    "runAt": "2026-08-07T01:40:12+00:00",
+    "status": "completed",
+    "sourcesChecked": 17,
+    "registryOnlySources": 27,
+    "newCandidates": 1,
+    "newContacts": 0,
+    "socialProfiles": 24,
+    "warnings": []
+  },
+  {
     "runAt": "2026-08-04T00:01:39+00:00",
     "status": "completed",
     "sourcesChecked": 17,
@@ -330,16 +340,6 @@
   },
   {
     "runAt": "2026-07-24T01:14:22+00:00",
-    "status": "completed_with_warnings",
-    "sourcesChecked": 9,
-    "registryOnlySources": 11,
-    "newCandidates": 0,
-    "warnings": [
-      "fpf-portugal: HTTP Error 403: Forbidden"
-    ]
-  },
-  {
-    "runAt": "2026-07-24T01:05:58+00:00",
     "status": "completed_with_warnings",
     "sourcesChecked": 9,
     "registryOnlySources": 11,
