@@ -37,6 +37,7 @@ def test_daily_workflow_runs_twice_and_validates_vacancies():
     assert "python scripts/import_chat_vacancies.py --file data/chat_opportunities.json" in workflow
     assert "python scripts/import_chat_vacancies.py --inbox" in workflow
     assert "python scripts/vacancy_manager.py --pipeline" in workflow
+    assert "git pull --rebase origin main" in workflow
     assert '"scripts/import_chat_vacancies.py"' in workflow
     assert "python scripts/validate_vacancies.py" in workflow
     assert "python scripts/update_decision_makers.py" in workflow
