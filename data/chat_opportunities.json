@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "id": "chat-3bfcbc4bac96bbc1",
+    "status": "Closed",
+    "role": "Head Coach",
+    "eventType": "Vacancy",
+    "country": "Cook Islands",
+    "region": "Oceania",
+    "organisation": "Cook Islands Football Association",
+    "title": "Cook Islands National Men's Head Coach",
+    "teamType": "National Team",
+    "team_gender": "",
+    "league": "",
+    "sourceUrl": "https://www.instagram.com/p/DZ-yLspz5wq/",
+    "sourceType": "Instagram",
+    "official": true,
+    "deadline": "2026-07-10",
+    "licenceRequirement": "Recognised OFC/FIFA coaching qualification. C Licence and above stated in vacancy post.",
+    "applicationLink": "To verify",
+    "contactEmail": "mii.joseph@cisoccer.org.ck",
+    "contactPhone": "To verify",
+    "careerPriority": "Monitor",
+    "licenceNote": "AFC A Licence, AFC Fitness Coach Level 2, Laos National Team experience, foreign professional club experience, international tournament experience, and English-speaking environment adaptability.",
+    "fitScore": "96",
+    "fitReason": "AFC A Licence, AFC Fitness Coach Level 2, Laos National Team experience, foreign professional club experience, international tournament experience, and English-speaking environment adaptability.",
+    "accuracyLevel": "Verified from official association social media post.",
+    "posted_date": "",
+    "detectedAt": "2026-07-03T00:00:00+00:00",
+    "lastVerified": "2026-07-11",
+    "notes": "Reviewed chat vacancy retained as a closed bridge example and historical record."
+  }
+]

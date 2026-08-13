@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
+ALLOWED_ROLES = {"Head Coach", "Assistant Coach", "Fitness Coach"}
 ALLOWED_STATUSES = {"To Verify", "Verified Open", "Closed", "Filled"}
 ALLOWED_CONTACT_STATUSES = {"To Verify", "Verified", "Historical"}
 ALLOWED_CAREER_PRIORITIES = {"Priority 1", "Priority 2", "Monitor"}

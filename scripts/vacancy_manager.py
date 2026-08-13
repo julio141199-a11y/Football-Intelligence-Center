@@ -20,6 +20,9 @@ UPDATE_LOG_PATH = ROOT / "data" / "logs" / "update_log.json"
 ERROR_LOG_PATH = ROOT / "data" / "logs" / "error_log.json"
 INBOX_PATH = ROOT / "data" / "inbox"
 PIPELINE_PATH = ROOT / "data" / "opportunities.json"
+CHAT_PATH = ROOT / "data" / "chat_opportunities.json"
+
+ALLOWED_ROLES = {"Head Coach", "Assistant Coach", "Fitness Coach"}
 
 STATUSES = {"NEW", "UPDATED", "CLOSING_SOON", "CLOSED", "EXPIRED", "UNVERIFIED"}
 FIELDS = [
@@ -74,11 +77,29 @@ def valid_url(value: str) -> bool:
 
 def canonical_role(value: str) -> str:
     lowered = value.casefold()
+    if "fitness coach" in lowered or "physical coach" in lowered or "preparador físico" in lowered:
+        return "Fitness Coach"
     if "assistant" in lowered or "adjunto" in lowered or "asistente" in lowered:
         return "Assistant Coach"
     if "head coach" in lowered or "manager" in lowered or "treinador principal" in lowered:
         return "Head Coach"
-    raise VacancyError("Only Head Coach and Assistant Coach vacancies are allowed.")
+    raise VacancyError("Only Head Coach, Assistant Coach, and Fitness Coach vacancies are allowed.")
+
+
+def validate_scope(raw: dict, role: str) -> None:
+    combined = " ".join(clean(raw.get(key)) for key in (
+        "organization", "organisation", "team_level", "teamType", "league", "title", "position"
+    )).casefold()
+    gender = clean(raw.get("team_gender") or raw.get("teamGender")).casefold()
+    if role not in ALLOWED_ROLES:
+        raise VacancyError(f"Role is outside scope: {role}")
+    if "academy" in combined and not any(term in combined for term in ("first team", "national team", "senior")):
+        raise VacancyError("Academy-only vacancies are excluded.")
+    professional_club = any(term in combined for term in ("professional club", "pro club", "first team", "league club"))
+    women = gender in {"women", "women's", "female"} or any(term in combined for term in ("women's club", "women club", "female club"))
+    national_team = "national team" in combined
+    if professional_club and women and not national_team:
+        raise VacancyError("Women's professional-club vacancies are excluded.")
 
 
 def stable_id(item: dict) -> str:
@@ -133,7 +154,7 @@ def normalise(raw: dict, *, today: date, origin: str = "chat") -> dict:
         "application_url": raw.get("application_url") or raw.get("applicationLink"),
         "contact_email": raw.get("contact_email") or raw.get("contactEmail"),
         "contact_phone": raw.get("contact_phone") or raw.get("contactPhone"),
-        "posted_date": raw.get("posted_date") or clean(raw.get("detectedAt"))[:10],
+        "posted_date": raw.get("posted_date") if "posted_date" in raw else clean(raw.get("detectedAt"))[:10],
         "deadline": raw.get("deadline"),
         "licence_requirement": raw.get("licence_requirement") or raw.get("licenceRequirement") or raw.get("licenceNote"),
         "language_requirement": raw.get("language_requirement"), "contract_type": raw.get("contract_type"),
@@ -144,8 +165,10 @@ def normalise(raw: dict, *, today: date, origin: str = "chat") -> dict:
         "last_checked": raw.get("last_checked") or raw.get("lastChecked") or today.isoformat(),
     }
     item.update({key: clean(value) for key, value in aliases.items()})
+    role = canonical_role(clean(raw.get("role") or raw.get("roleType") or raw.get("title")))
+    validate_scope(raw, role)
     item.update({
-        "role": canonical_role(clean(raw.get("role") or raw.get("roleType") or raw.get("title"))),
+        "role": role,
         "organization": organization,
         "country": country,
         "official_source_url": source_url,
@@ -172,6 +195,8 @@ def normalise(raw: dict, *, today: date, origin: str = "chat") -> dict:
 
 def upsert(vacancies: list[dict], incoming: dict, history: list[dict], *, today: date) -> str:
     existing = next((item for item in vacancies if item.get("id") == incoming["id"]), None)
+    if existing is None:
+        existing = next((item for item in vacancies if item.get("source_hash") == incoming["source_hash"]), None)
     if existing is None:
         vacancies.append(incoming)
         history.append({"vacancy_id": incoming["id"], "action": "CREATED", "at": incoming["created_at"], "after": incoming})
@@ -208,12 +233,14 @@ def process_records(records: list[dict], vacancies: list[dict], history: list[di
     return result
 
 
-def run(*, files: list[Path], include_pipeline: bool, today_value: str | None = None) -> dict:
+def run(*, files: list[Path], include_pipeline: bool, include_chat: bool = True, today_value: str | None = None) -> dict:
     today = today_seoul(today_value)
     vacancies = read_json(VACANCIES_PATH, [])
     history = read_json(HISTORY_PATH, [])
     summary = {"created": 0, "updated": 0, "unchanged": 0, "rejected": 0, "errors": []}
     inputs: list[tuple[list[dict], str]] = []
+    if include_chat:
+        inputs.append((read_json(CHAT_PATH, []), "chat"))
     for path in files:
         payload = read_json(path, [])
         inputs.append((payload if isinstance(payload, list) else [payload], "chat"))
@@ -254,12 +281,13 @@ def main() -> int:
     parser.add_argument("--file", action="append", type=Path, default=[])
     parser.add_argument("--inbox", action="store_true")
     parser.add_argument("--pipeline", action="store_true")
+    parser.add_argument("--chat", action="store_true", help="Explicitly include the reviewed chat feed (included by default).")
     parser.add_argument("--today")
     args = parser.parse_args()
     files = list(args.file)
     if args.inbox:
         files.extend(sorted(INBOX_PATH.glob("*.json")))
-    summary = run(files=files, include_pipeline=args.pipeline, today_value=args.today)
+    summary = run(files=files, include_pipeline=args.pipeline, include_chat=True, today_value=args.today)
     print(json.dumps(summary, ensure_ascii=False))
     return 1 if summary["rejected"] else 0
 

@@ -10,7 +10,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--file", required=True)
     args = parser.parse_args()
-    summary = run(files=[__import__("pathlib").Path(args.file)], include_pipeline=False)
+    summary = run(files=[__import__("pathlib").Path(args.file)], include_pipeline=False, include_chat=False)
     print(summary)
     return 1 if summary["rejected"] else 0
 

@@ -34,7 +34,8 @@ def test_daily_workflow_runs_twice_and_validates_vacancies():
     workflow = (ROOT / ".github" / "workflows" / "daily-update.yml").read_text(encoding="utf-8")
     assert 'cron: "0 23 * * *"' in workflow
     assert 'cron: "0 9 * * *"' in workflow
-    assert "python scripts/vacancy_manager.py --inbox --pipeline" in workflow
+    assert "python scripts/vacancy_manager.py --chat --inbox --pipeline" in workflow
+    assert '"scripts/import_chat_opportunities.py"' in workflow
     assert "python scripts/validate_vacancies.py" in workflow
     assert "python scripts/update_decision_makers.py" in workflow
 
@@ -114,19 +115,22 @@ def test_action_alert_includes_only_current_target_roles():
     updates = [{"runAt": "2026-07-24T00:00:00+00:00", "sourcesChecked": 3}]
     opportunities = [
         {"role": "Head Coach", "detectedAt": updates[0]["runAt"], "organisation": "A", "sourceUrl": "https://example.com/a", "country": "A"},
-        {"role": "Fitness Coach", "detectedAt": updates[0]["runAt"], "organisation": "B", "sourceUrl": "https://example.com/b", "country": "B"},
+        {"role": "Technical Director", "detectedAt": updates[0]["runAt"], "organisation": "B", "sourceUrl": "https://example.com/b", "country": "B"},
+        {"role": "Fitness Coach", "detectedAt": updates[0]["runAt"], "organisation": "Fitness A", "sourceUrl": "https://example.com/fitness", "country": "A"},
         {"role": "Assistant Coach", "detectedAt": "2026-07-23T00:00:00+00:00", "organisation": "C", "sourceUrl": "https://example.com/c", "country": "C"},
     ]
     latest, candidates = current_candidates(updates, opportunities)
-    assert [item["organisation"] for item in candidates] == ["A"]
+    assert [item["organisation"] for item in candidates] == ["A", "Fitness A"]
     assert "Head Coach: A" in summary_markdown(latest, candidates)
+    assert "Fitness Coach: Fitness A" in summary_markdown(latest, candidates)
     assert "Monitor · To Verify" in summary_markdown(latest, candidates)
 
 
 def test_pipeline_accepts_only_target_roles():
     assert match_candidate("Head Coach vacancy", "https://example.com/jobs") == ("Head Coach", "Vacancy")
     assert match_candidate("Assistant Coach recruitment", "https://example.com/jobs") == ("Assistant Coach", "Vacancy")
-    assert match_candidate("Fitness Coach vacancy", "https://example.com/jobs") is None
+    assert match_candidate("Fitness Coach vacancy", "https://example.com/jobs") == ("Fitness Coach", "Vacancy")
+    assert match_candidate("Technical Director vacancy", "https://example.com/jobs") is None
 
 
 def test_pipeline_collects_only_role_based_public_emails():

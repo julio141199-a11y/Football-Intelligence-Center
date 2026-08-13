@@ -66,6 +66,10 @@ ROLE_PATTERNS = {
         r"\b(assistant coach|assistant manager|treinador adjunto|asistente técnico|entraîneur adjoint)\b",
         re.IGNORECASE,
     ),
+    "Fitness Coach": re.compile(
+        r"\b(fitness coach|physical coach|preparador físico|preparador fisico)\b",
+        re.IGNORECASE,
+    ),
 }
 U20_PATTERN = re.compile(r"\b(u[- ]?20|under[- ]?20|under 20)\b", re.IGNORECASE)
 NATIONAL_TEAM_PATTERN = re.compile(
@@ -79,9 +83,9 @@ EVENT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 EXCLUDED_PATTERN = re.compile(
-    r"\b(fitness coach|goalkeeper coach|performance coach|sport scientist|"
+    r"\b(goalkeeper coach|performance coach|sport scientist|"
     r"performance analyst|video analyst|data analyst|technical director|"
-    r"sporting director|academy coach|youth coach)\b",
+    r"sporting director|academy coach|youth coach|coach education|women(?:'s)? (?:professional )?club)\b",
     re.IGNORECASE,
 )
 
@@ -276,7 +280,7 @@ def build_social_registry(sources: list[dict], generated_at: str, existing: list
                 "monitoring": source.get("monitoring", "Registry only"),
                 "watchFor": source.get(
                     "watchFor",
-                    ["Head Coach", "Assistant Coach", "Vacancy", "Resigned", "Dismissed", "Appointed"],
+                    ["Head Coach", "Assistant Coach", "Fitness Coach", "Vacancy", "Resigned", "Dismissed", "Appointed"],
                 ),
                 "lastVerified": source.get("lastVerified") or existing_by_id.get(source["id"], {}).get("lastVerified") or "Needs verification",
             }

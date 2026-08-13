@@ -231,7 +231,7 @@ function renderUpdates(filter = "All", query = "", period = "All History") {
   document.querySelector("#updatesFilters").innerHTML = updateFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-update-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
 }
 
-const jobFilterNames = ["All", "New", "Updated", "Open", "Closing Soon", "Head Coach", "Assistant Coach", "National Team", "Professional Club", "AFC", "OFC", "Africa", "Canada", "Central America", "Verified", "To Verify", "Closed", "Expired"];
+const jobFilterNames = ["All", "New", "Updated", "Open", "Closing Soon", "Head Coach", "Assistant Coach", "Fitness Coach", "National Team", "Professional Club", "AFC", "OFC", "Africa", "Canada", "Central America", "Verified", "To Verify", "Closed", "Expired"];
 const verifiedJobPlatforms = new Set(["Official Website", "Instagram", "Facebook", "TikTok", "LinkedIn", "X", "FIFA", "AFC", "OFC", "CAF", "UEFA", "CONCACAF", "FutbolJobs", "Jobs4Football", "LinkedIn Jobs"]);
 const socialJobPlatforms = new Set(["Instagram", "Facebook", "TikTok", "LinkedIn", "X"]);
 const recruitmentPlatforms = new Set(["FutbolJobs", "Jobs4Football", "LinkedIn Jobs"]);
@@ -343,7 +343,7 @@ function jobCard(item) {
 function jobMatchesFilter(item, filter) {
   if (filter === "All") return true;
   if (["New", "Updated", "Open", "Closing Soon", "To Verify", "Closed", "Expired"].includes(filter)) return item.status === filter;
-  if (["Head Coach", "Assistant Coach"].includes(filter)) return item.roleType === filter;
+  if (["Head Coach", "Assistant Coach", "Fitness Coach"].includes(filter)) return item.roleType === filter;
   if (["National Team", "Professional Club"].includes(filter)) return item.teamType === filter;
   if (filter === "Verified") return hasVerifiedJobSource(item);
   if (filter === "AFC") return item.continent === "Asia" || item.sourcePlatform === "AFC";
@@ -353,7 +353,7 @@ function jobMatchesFilter(item, filter) {
 }
 function renderJobStats() {
   const active = new Set(["New", "Updated", "Open", "Closing Soon"]);
-  const stats = [["Active", state.jobs.filter((item) => active.has(item.status) && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && active.has(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && active.has(item.status)).length], ["Official LinkedIn", state.socialSources.filter((item) => item.platform === "LinkedIn").length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
+  const stats = [["Active", state.jobs.filter((item) => active.has(item.status) && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && active.has(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && active.has(item.status)).length], ["Fitness Coach", state.jobs.filter((item) => item.roleType === "Fitness Coach" && active.has(item.status)).length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
   document.querySelector("#jobsStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
 }
 function renderJobs(filter = "All", query = "") {
@@ -577,7 +577,7 @@ async function loadDatabases() {
       country: item.country,
       organization: item.organisation,
       type: "Official social profile",
-      role: "Head Coach / Assistant Coach watch",
+      role: "Head Coach / Assistant Coach / Fitness Coach watch",
       person: "Official organisation account",
       email: "Not Public",
       phone: "Not Public",

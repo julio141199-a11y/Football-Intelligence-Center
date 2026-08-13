@@ -21,6 +21,7 @@ on:
       - "scripts/publish_action_summary.py"
       - "scripts/validate_pipeline.py"
       - "scripts/vacancy_manager.py"
+      - "scripts/import_chat_opportunities.py"
       - "scripts/update_decision_makers.py"
       - "scripts/validate_decision_makers.py"
       - "scripts/validate_vacancies.py"
@@ -57,7 +58,7 @@ jobs:
       - name: Run daily pipeline
         run: |
           python run_pipeline.py
-          python scripts/vacancy_manager.py --inbox --pipeline
+          python scripts/vacancy_manager.py --chat --inbox --pipeline
           python scripts/update_decision_makers.py
 
       - name: Validate repository

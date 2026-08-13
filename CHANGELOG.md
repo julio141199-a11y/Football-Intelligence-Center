@@ -3,6 +3,9 @@
 ## [Unreleased]
 
 ### Added
+- Added the Work/ChatGPT reviewed-vacancy bridge and single import command.
+- Added Fitness Coach to the accepted vacancy roles while retaining organisation-scope exclusions.
+- Added chat-feed-to-vacancy-to-website integration coverage.
 - Added 31 focused AFC/OFC federation decision-maker records sourced from FIFA's official directory
 - Added automatic refresh for Technical Directors, General Secretaries, national coaches, and official federation contacts
 - Added a decision-maker validator and existing Contacts-page integration without redesign
@@ -27,6 +30,8 @@
 - Pre-Pro career profile based on the AFC Competition Operations Manual 2026
 
 ### Changed
+- Daily vacancy processing now consumes chat opportunities, reviewed inbox files, and pipeline opportunities together.
+- Vacancy deduplication now checks both stable IDs and source hashes.
 - Merged Countries and League & Licence into one essential Countries & Leagues accordion view.
 - Grouped Contacts into exclusive continent and country accordions for easier mobile browsing
 - Expanded the single daily workflow to 08:00 and 18:00 Asia/Seoul

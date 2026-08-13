@@ -6,7 +6,7 @@
 - [x] Define workflow and quality gates
 - [x] Add operating files to repository
 - [x] Replace four-day schedule with daily operation
-- [x] Remove Fitness Coach, Technical Director, and Coach Education from collection scope
+- [x] Limit collection to Head Coach, Assistant Coach, and Fitness Coach; exclude Technical Director and Coach Education
 - [x] Confirm GitHub Pages deployment health after the first pushed workflow run
 
 ## Phase 2 — Data standardisation
@@ -37,8 +37,10 @@
 - [x] Apply the pre-Pro target order from the AFC 2026 minimum coaching requirements
 - [x] Remove Coach Network from the live site and managed databases
 - [x] Remove Fitness Coach from League Intelligence and job filters
+- [x] Restore Fitness Coach to the reviewed vacancy bridge and live Jobs filters
 - [x] Connect generated pipeline opportunities to the existing Jobs page
 - [x] Add a verified chat-opportunity input without changing the site design
+- [x] Bridge reviewed Work/ChatGPT vacancies into the standard vacancy database
 - [x] Bypass stale browser JSON cache after GitHub Pages deployment
 - [x] Add reviewed JSON inbox and import commands
 - [x] Run automation at 08:00 and 18:00 Asia/Seoul

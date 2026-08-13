@@ -25,7 +25,7 @@
 12. Report only meaningful outcomes
 
 ## Rules
-- Track only Head Coach and Assistant Coach
+- Track only Head Coach, Assistant Coach, and Fitness Coach within PROJECT.md organisation scope
 - Never fabricate vacancies, contacts, requirements, salary, or licence recognition
 - Never publish rumours as verified
 - Preserve existing records unless correcting them with stronger evidence

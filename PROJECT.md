@@ -7,19 +7,18 @@ Maintain a mobile-first intelligence system that helps Julio Park find, verify, 
 Track only:
 - Head Coach
 - Assistant Coach
+- Fitness Coach
 - Men's national teams
 - Women's national teams
-- Men's and women's national U20 teams
 - Men's professional clubs
 
 Exclude:
-- Fitness Coach
 - Technical Director
-- Coach Education
 - Sporting Director
 - Analyst roles
 - Women's professional clubs
 - Academy-only roles
+- Coach Education by default
 - Coach Network
 
 ## Priority regions
@@ -43,7 +42,7 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 - `run_pipeline.py` checks a small registry of generic public sources.
 - Automated discoveries remain `To Verify`; they are never promoted directly into `jobs.json`.
 - Official Instagram accounts are registry-only because reliable automated access requires platform authentication.
-- Official LinkedIn organisation profiles are published as a focused watch list. Gated post content remains a manual check; only Head Coach and Assistant Coach hiring or coach-change signals are relevant.
+- Official LinkedIn organisation profiles are published as a focused watch list. Gated post content remains a manual check; only Head Coach, Assistant Coach, and Fitness Coach hiring or coach-change signals are relevant.
 - Public role-based emails found on official federation, league, and club pages are stored separately as `To Verify`.
 - GitHub commits generated files only when they change.
 - The website merges `jobs.json`, generated `data/opportunities.json`, Codex-reviewed `data/chat_opportunities.json`, and standardised `data/vacancies.json` without changing the visual template.
@@ -51,7 +50,8 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 
 ## Standard vacancy update
 
-- `scripts/vacancy_manager.py` accepts reviewed JSON from `data/inbox/` and pipeline candidates.
+- `scripts/vacancy_manager.py` accepts the reviewed `data/chat_opportunities.json` feed, reviewed JSON from `data/inbox/`, and pipeline candidates.
+- `scripts/import_chat_opportunities.py --file reviewed.json` is the single Work/ChatGPT bridge command; it validates and upserts the reviewed feed before rebuilding `data/vacancies.json`.
 - Every record has a stable ID and source hash; unchanged records are not rewritten as updates.
 - Deadlines are evaluated in Asia/Seoul and use `NEW`, `UPDATED`, `CLOSING_SOON`, `CLOSED`, `EXPIRED`, or `UNVERIFIED`.
 - Invalid roles, placeholder links, and missing organisation/country fields are rejected before publishing.
