@@ -1,5 +1,15 @@
 [
   {
+    "runAt": "2026-08-13T06:08:01+00:00",
+    "status": "completed",
+    "sourcesChecked": 17,
+    "registryOnlySources": 27,
+    "newCandidates": 0,
+    "newContacts": 0,
+    "socialProfiles": 24,
+    "warnings": []
+  },
+  {
     "runAt": "2026-08-12T09:54:53+00:00",
     "status": "completed",
     "sourcesChecked": 17,
@@ -334,18 +344,6 @@
       "fpf-portugal: HTTP Error 403: Forbidden",
       "auckland-city contact page: Remote end closed connection without response",
       "forge-fc: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)>"
-    ]
-  },
-  {
-    "runAt": "2026-07-24T01:27:32+00:00",
-    "status": "completed_with_warnings",
-    "sourcesChecked": 12,
-    "registryOnlySources": 11,
-    "newCandidates": 0,
-    "newContacts": 4,
-    "warnings": [
-      "fpf-portugal: HTTP Error 403: Forbidden",
-      "forge-fc: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1129)>"
     ]
   }
 ]
