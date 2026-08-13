@@ -4,7 +4,7 @@
 
 ### Added
 - Added the Work/ChatGPT reviewed-vacancy bridge and single import command.
-- Added Fitness Coach to the accepted vacancy roles while retaining organisation-scope exclusions.
+- Added the single `import_chat_vacancies.py` reviewed-input interface with file, inline JSON, and inbox modes.
 - Added chat-feed-to-vacancy-to-website integration coverage.
 - Added 31 focused AFC/OFC federation decision-maker records sourced from FIFA's official directory
 - Added automatic refresh for Technical Directors, General Secretaries, national coaches, and official federation contacts
@@ -31,6 +31,7 @@
 
 ### Changed
 - Daily vacancy processing now consumes chat opportunities, reviewed inbox files, and pipeline opportunities together.
+- Work/Chat imports now allow only Head Coach and Assistant Coach and fail closed for Fitness Coach and all other roles.
 - Vacancy deduplication now checks both stable IDs and source hashes.
 - Merged Countries and League & Licence into one essential Countries & Leagues accordion view.
 - Grouped Contacts into exclusive continent and country accordions for easier mobile browsing

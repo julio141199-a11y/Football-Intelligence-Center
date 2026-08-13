@@ -19,7 +19,7 @@ def main() -> int:
         if item.get("id") in ids:
             errors.append(f"record {index}: duplicate id {item.get('id')}")
         ids.add(item.get("id"))
-        if item.get("role") not in {"Head Coach", "Assistant Coach", "Fitness Coach"}:
+        if item.get("role") not in {"Head Coach", "Assistant Coach"}:
             errors.append(f"record {index}: invalid role")
         if item.get("status") not in STATUSES:
             errors.append(f"record {index}: invalid status")

@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_ROLES = {"Head Coach", "Assistant Coach", "Fitness Coach"}
+ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
 ALLOWED_STATUSES = {"To Verify", "Verified Open", "Closed", "Filled"}
 ALLOWED_CONTACT_STATUSES = {"To Verify", "Verified", "Historical"}
 ALLOWED_CAREER_PRIORITIES = {"Priority 1", "Priority 2", "Monitor"}
@@ -63,7 +63,7 @@ def main() -> int:
         label = f"data/opportunities.json[{index}]"
         if item.get("role") not in ALLOWED_ROLES:
             errors.append(f"{label}.role is outside scope: {item.get('role')}")
-        if item.get("status") not in ALLOWED_STATUSES:
+        if item.get("status") not in ALLOWED_STATUSES | {"NEW", "UPDATED", "CLOSING_SOON", "CLOSED", "EXPIRED", "UNVERIFIED"}:
             errors.append(f"{label}.status is invalid: {item.get('status')}")
         if item.get("careerPriority") and item.get("careerPriority") not in ALLOWED_CAREER_PRIORITIES:
             errors.append(f"{label}.careerPriority is invalid: {item.get('careerPriority')}")
@@ -78,23 +78,23 @@ def main() -> int:
         if key in keys:
             errors.append(f"Duplicate opportunity: {key}")
         keys.add(key)
-        parsed = urlparse(str(item.get("sourceUrl", "")))
+        parsed = urlparse(str(item.get("official_source_url") or item.get("sourceUrl", "")))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-            errors.append(f"{label}.sourceUrl is invalid.")
+            errors.append(f"{label}.official source URL is invalid.")
 
     chat_ids: set[str] = set()
     for index, item in enumerate(chat_opportunities):
         label = f"data/chat_opportunities.json[{index}]"
         if item.get("role") not in ALLOWED_ROLES:
             errors.append(f"{label}.role is outside scope: {item.get('role')}")
-        if item.get("status") not in ALLOWED_STATUSES:
+        if item.get("status") not in {"NEW", "UPDATED", "CLOSING_SOON", "CLOSED", "EXPIRED", "UNVERIFIED"}:
             errors.append(f"{label}.status is invalid: {item.get('status')}")
         if not item.get("id") or item.get("id") in chat_ids:
             errors.append(f"{label}.id is missing or duplicated: {item.get('id')}")
         chat_ids.add(item.get("id"))
-        parsed = urlparse(str(item.get("sourceUrl", "")))
+        parsed = urlparse(str(item.get("official_source_url") or item.get("sourceUrl", "")))
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-            errors.append(f"{label}.sourceUrl is invalid.")
+            errors.append(f"{label}.official source URL is invalid.")
 
     social_ids: set[str] = set()
     social_urls: set[str] = set()

@@ -22,7 +22,25 @@ INBOX_PATH = ROOT / "data" / "inbox"
 PIPELINE_PATH = ROOT / "data" / "opportunities.json"
 CHAT_PATH = ROOT / "data" / "chat_opportunities.json"
 
-ALLOWED_ROLES = {"Head Coach", "Assistant Coach", "Fitness Coach"}
+ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
+EXCLUDED_ROLE_LABELS = {
+    "fitness coach": "Fitness Coach",
+    "preparador físico": "Fitness Coach",
+    "preparador fisico": "Fitness Coach",
+    "physical coach": "Fitness Coach",
+    "performance coach": "Performance Coach",
+    "strength and conditioning coach": "Strength and Conditioning Coach",
+    "technical director": "Technical Director",
+    "diretor técnico": "Technical Director",
+    "diretor tecnico": "Technical Director",
+    "sporting director": "Sporting Director",
+    "director of football": "Director of Football",
+    "performance analyst": "Performance Analyst",
+    "analyst": "Analyst",
+    "scout": "Scout",
+    "coach educator": "Coach Education",
+    "coach education": "Coach Education",
+}
 
 STATUSES = {"NEW", "UPDATED", "CLOSING_SOON", "CLOSED", "EXPIRED", "UNVERIFIED"}
 FIELDS = [
@@ -77,16 +95,17 @@ def valid_url(value: str) -> bool:
 
 def canonical_role(value: str) -> str:
     lowered = value.casefold()
-    if "fitness coach" in lowered or "physical coach" in lowered or "preparador físico" in lowered:
-        return "Fitness Coach"
-    if "assistant" in lowered or "adjunto" in lowered or "asistente" in lowered:
+    for term, label in EXCLUDED_ROLE_LABELS.items():
+        if term in lowered:
+            raise VacancyError(f"Rejected role: {label} is excluded from FIC vacancy tracking.")
+    if any(term in lowered for term in ("assistant coach", "assistant manager", "treinador adjunto", "entrenador asistente", "asistente técnico", "asistente tecnico", "adjunto")):
         return "Assistant Coach"
-    if "head coach" in lowered or "manager" in lowered or "treinador principal" in lowered:
+    if any(term in lowered for term in ("head coach", "manager", "treinador principal", "entrenador principal")):
         return "Head Coach"
-    raise VacancyError("Only Head Coach, Assistant Coach, and Fitness Coach vacancies are allowed.")
+    raise VacancyError(f"Rejected role: {clean(value) or 'Missing role'} is excluded from FIC vacancy tracking.")
 
 
-def validate_scope(raw: dict, role: str) -> None:
+def validate_scope(raw: dict, role: str, *, origin: str) -> None:
     combined = " ".join(clean(raw.get(key)) for key in (
         "organization", "organisation", "team_level", "teamType", "league", "title", "position"
     )).casefold()
@@ -96,10 +115,17 @@ def validate_scope(raw: dict, role: str) -> None:
     if "academy" in combined and not any(term in combined for term in ("first team", "national team", "senior")):
         raise VacancyError("Academy-only vacancies are excluded.")
     professional_club = any(term in combined for term in ("professional club", "pro club", "first team", "league club"))
-    women = gender in {"women", "women's", "female"} or any(term in combined for term in ("women's club", "women club", "female club"))
-    national_team = "national team" in combined
+    women = gender in {"women", "women's", "female"} or any(term in combined for term in ("women's club", "women club", "female club", "women's team"))
+    national_team = any(term in combined for term in (
+        "national team", "senior national", "national u23", "national u20",
+        "u23 national", "u20 national", "under 23 national", "under 20 national",
+    ))
     if professional_club and women and not national_team:
         raise VacancyError("Women's professional-club vacancies are excluded.")
+    if any(term in combined for term in ("u17", "u-17", "under 17", "u16", "u-16", "under 16", "youth team")):
+        raise VacancyError("Only senior, U23, and U20 national teams are allowed.")
+    if origin != "pipeline" and not (national_team or professional_club):
+        raise VacancyError("team_level must identify an allowed national team or men's professional first team.")
 
 
 def stable_id(item: dict) -> str:
@@ -166,7 +192,7 @@ def normalise(raw: dict, *, today: date, origin: str = "chat") -> dict:
     }
     item.update({key: clean(value) for key, value in aliases.items()})
     role = canonical_role(clean(raw.get("role") or raw.get("roleType") or raw.get("title")))
-    validate_scope(raw, role)
+    validate_scope(raw, role, origin=origin)
     item.update({
         "role": role,
         "organization": organization,
@@ -183,6 +209,8 @@ def normalise(raw: dict, *, today: date, origin: str = "chat") -> dict:
         supplied = "NEW"
     if supplied == "TO_VERIFY":
         supplied = "UNVERIFIED"
+    if supplied in {"FILLED", "OFFICIAL_CLOSED", "APPOINTED", "APPOINTMENT_COMPLETE"}:
+        supplied = "CLOSED"
     status = supplied if supplied in STATUSES else ("UNVERIFIED" if origin == "pipeline" else "NEW")
     item["status"] = deadline_status(item["deadline"], status, today)
     timestamp = now_iso()
@@ -195,6 +223,19 @@ def normalise(raw: dict, *, today: date, origin: str = "chat") -> dict:
 
 def upsert(vacancies: list[dict], incoming: dict, history: list[dict], *, today: date) -> str:
     existing = next((item for item in vacancies if item.get("id") == incoming["id"]), None)
+    if existing is None:
+        natural_key = (
+            clean(incoming.get("official_source_url")).rstrip("/").casefold(),
+            clean(incoming.get("role")).casefold(),
+            clean(incoming.get("organization")).casefold(),
+            clean(incoming.get("country")).casefold(),
+        )
+        existing = next((item for item in vacancies if (
+            clean(item.get("official_source_url")).rstrip("/").casefold(),
+            clean(item.get("role")).casefold(),
+            clean(item.get("organization")).casefold(),
+            clean(item.get("country")).casefold(),
+        ) == natural_key), None)
     if existing is None:
         existing = next((item for item in vacancies if item.get("source_hash") == incoming["source_hash"]), None)
     if existing is None:

@@ -20,7 +20,7 @@ def current_candidates(updates: list[dict], opportunities: list[dict]) -> tuple[
     candidates = [
         item
         for item in opportunities
-        if run_at and item.get("detectedAt") == run_at and item.get("role") in {"Head Coach", "Assistant Coach", "Fitness Coach"}
+        if run_at and item.get("detectedAt") == run_at and item.get("role") in {"Head Coach", "Assistant Coach"}
     ]
     return latest, candidates
 
@@ -31,7 +31,7 @@ def summary_markdown(latest: dict, candidates: list[dict]) -> str:
         "",
         f"- Sources checked: {latest.get('sourcesChecked', 0)}",
         f"- Official social profiles: {latest.get('socialProfiles', 0)}",
-        f"- New Head/Assistant/Fitness Coach candidates: {len(candidates)}",
+        f"- New Head/Assistant Coach candidates: {len(candidates)}",
         f"- New contact candidates: {latest.get('newContacts', 0)}",
         f"- Warnings: {len(latest.get('warnings', []))}",
     ]

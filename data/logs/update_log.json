@@ -1,5 +1,13 @@
 [
   {
+    "run_at": "2026-08-13T23:26:04+00:00",
+    "today_kst": "2026-08-14",
+    "created": 0,
+    "updated": 1,
+    "unchanged": 0,
+    "rejected": 0
+  },
+  {
     "run_at": "2026-08-12T09:55:38+00:00",
     "today_kst": "2026-08-12",
     "created": 2,

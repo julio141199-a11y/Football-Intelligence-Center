@@ -6,7 +6,7 @@
 - [x] Define workflow and quality gates
 - [x] Add operating files to repository
 - [x] Replace four-day schedule with daily operation
-- [x] Limit collection to Head Coach, Assistant Coach, and Fitness Coach; exclude Technical Director and Coach Education
+- [x] Limit collection to Head Coach and Assistant Coach; exclude Technical Director and Coach Education
 - [x] Confirm GitHub Pages deployment health after the first pushed workflow run
 
 ## Phase 2 — Data standardisation
@@ -37,7 +37,7 @@
 - [x] Apply the pre-Pro target order from the AFC 2026 minimum coaching requirements
 - [x] Remove Coach Network from the live site and managed databases
 - [x] Remove Fitness Coach from League Intelligence and job filters
-- [x] Restore Fitness Coach to the reviewed vacancy bridge and live Jobs filters
+- [x] Keep Fitness Coach excluded from the reviewed vacancy bridge and live Jobs filters
 - [x] Connect generated pipeline opportunities to the existing Jobs page
 - [x] Add a verified chat-opportunity input without changing the site design
 - [x] Bridge reviewed Work/ChatGPT vacancies into the standard vacancy database
@@ -50,4 +50,4 @@
 - [ ] Build and verify the top-division club roster and public decision-maker routes market by market
 
 ## Current next task
-Build the official top-division club roster for the requested markets, then verify club CEO/General Manager/Football Director and public CV routes in manageable country batches.
+Operate the reviewed Work-to-GitHub vacancy bridge and verify the first live Head Coach or Assistant Coach vacancy import.

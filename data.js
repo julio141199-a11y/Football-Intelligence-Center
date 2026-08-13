@@ -231,7 +231,7 @@ function renderUpdates(filter = "All", query = "", period = "All History") {
   document.querySelector("#updatesFilters").innerHTML = updateFilterNames.map((name) => `<button class="${name === filter ? "active" : ""}" data-update-filter="${escapeHtml(name)}">${escapeHtml(name)}</button>`).join("");
 }
 
-const jobFilterNames = ["All", "New", "Updated", "Open", "Closing Soon", "Head Coach", "Assistant Coach", "Fitness Coach", "National Team", "Professional Club", "AFC", "OFC", "Africa", "Canada", "Central America", "Verified", "To Verify", "Closed", "Expired"];
+const jobFilterNames = ["All", "New", "Updated", "Open", "Closing Soon", "Head Coach", "Assistant Coach", "National Team", "Professional Club", "AFC", "OFC", "Africa", "Canada", "Central America", "Verified", "To Verify", "Closed", "Expired"];
 const verifiedJobPlatforms = new Set(["Official Website", "Instagram", "Facebook", "TikTok", "LinkedIn", "X", "FIFA", "AFC", "OFC", "CAF", "UEFA", "CONCACAF", "FutbolJobs", "Jobs4Football", "LinkedIn Jobs"]);
 const socialJobPlatforms = new Set(["Instagram", "Facebook", "TikTok", "LinkedIn", "X"]);
 const recruitmentPlatforms = new Set(["FutbolJobs", "Jobs4Football", "LinkedIn Jobs"]);
@@ -310,7 +310,8 @@ function vacancyToJob(item) {
   };
 }
 function mergeOpportunityFeeds() {
-  const merged = [...state.jobs, ...state.pipelineOpportunities.map(pipelineOpportunityToJob), ...state.chatOpportunities.map(pipelineOpportunityToJob), ...state.vacancies.map(vacancyToJob)];
+  const chatJobs = state.chatOpportunities.map((item) => item.official_source_url ? vacancyToJob(item) : pipelineOpportunityToJob(item));
+  const merged = [...state.jobs, ...state.pipelineOpportunities.map(pipelineOpportunityToJob), ...chatJobs, ...state.vacancies.map(vacancyToJob)];
   const unique = new Map();
   merged.forEach((item) => {
     const key = safeUrl(item.sourceUrl)
@@ -319,7 +320,18 @@ function mergeOpportunityFeeds() {
     const current = unique.get(key);
     if (!current || /verified/i.test(text(item.accuracyLevel))) unique.set(key, item);
   });
-  state.jobs = [...unique.values()].sort((a, b) => text(b.dateAdded).localeCompare(text(a.dateAdded)));
+  const rank = (item) => {
+    const team = text(item.teamType).toLowerCase();
+    const senior = team.includes("senior") || team === "national team";
+    const ageNational = /u-?(20|23)|under (20|23)/.test(team);
+    const club = team.includes("professional") || team.includes("first team");
+    const licence = `${text(item.licenceRequirement)} ${text(item.afcALicenceFit)}`.toLowerCase();
+    const aHead = item.roleType === "Head Coach" && /afc\s*a|\ba licence\b/.test(licence) && !/pro required|pro licence required|not suitable/.test(licence);
+    if (aHead) return 0;
+    if (item.roleType === "Head Coach") return senior ? 1 : club ? 2 : ageNational ? 3 : 4;
+    return senior ? 10 : club ? 11 : ageNational ? 12 : 13;
+  };
+  state.jobs = [...unique.values()].sort((a, b) => rank(a) - rank(b) || text(b.dateAdded).localeCompare(text(a.dateAdded)));
 }
 function prepareJobs() {
   state.jobs.forEach((item) => {
@@ -343,7 +355,7 @@ function jobCard(item) {
 function jobMatchesFilter(item, filter) {
   if (filter === "All") return true;
   if (["New", "Updated", "Open", "Closing Soon", "To Verify", "Closed", "Expired"].includes(filter)) return item.status === filter;
-  if (["Head Coach", "Assistant Coach", "Fitness Coach"].includes(filter)) return item.roleType === filter;
+  if (["Head Coach", "Assistant Coach"].includes(filter)) return item.roleType === filter;
   if (["National Team", "Professional Club"].includes(filter)) return item.teamType === filter;
   if (filter === "Verified") return hasVerifiedJobSource(item);
   if (filter === "AFC") return item.continent === "Asia" || item.sourcePlatform === "AFC";
@@ -353,7 +365,7 @@ function jobMatchesFilter(item, filter) {
 }
 function renderJobStats() {
   const active = new Set(["New", "Updated", "Open", "Closing Soon"]);
-  const stats = [["Active", state.jobs.filter((item) => active.has(item.status) && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && active.has(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && active.has(item.status)).length], ["Fitness Coach", state.jobs.filter((item) => item.roleType === "Fitness Coach" && active.has(item.status)).length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
+  const stats = [["Active", state.jobs.filter((item) => active.has(item.status) && hasVerifiedJobSource(item)).length], ["Closing Within 7 Days", state.jobs.filter((item) => item.status === "Closing Soon").length], ["Head Coach", state.jobs.filter((item) => item.roleType === "Head Coach" && active.has(item.status)).length], ["Assistant Coach", state.jobs.filter((item) => item.roleType === "Assistant Coach" && active.has(item.status)).length], ["To Verify", state.jobs.filter((item) => item.status === "To Verify").length]];
   document.querySelector("#jobsStats").innerHTML = stats.map(([label, value]) => `<article class="stat-card"><span>${escapeHtml(label)}</span><strong>${value}</strong></article>`).join("");
 }
 function renderJobs(filter = "All", query = "") {
@@ -577,7 +589,7 @@ async function loadDatabases() {
       country: item.country,
       organization: item.organisation,
       type: "Official social profile",
-      role: "Head Coach / Assistant Coach / Fitness Coach watch",
+      role: "Head Coach / Assistant Coach watch",
       person: "Official organisation account",
       email: "Not Public",
       phone: "Not Public",

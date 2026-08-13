@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_STATUSES = {"Verified Open", "Closing Soon", "To Verify", "Closed", "Filled"}
-ALLOWED_ROLES = {"Head Coach", "Assistant Coach", "Fitness Coach"}
+ALLOWED_ROLES = {"Head Coach", "Assistant Coach"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 

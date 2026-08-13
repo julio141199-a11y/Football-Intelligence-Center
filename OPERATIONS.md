@@ -7,7 +7,7 @@ FIC is now in stable daily-operation mode.
 - GitHub Actions runs every day at 08:00 and 18:00 Asia/Seoul.
 - The pipeline checks the approved lightweight source set.
 - The pipeline refreshes the focused AFC/OFC federation decision-maker directory from FIFA official pages.
-- Only Head Coach, Assistant Coach, and Fitness Coach candidates are accepted within the PROJECT.md organisation scope.
+- Only Head Coach and Assistant Coach candidates are accepted within the PROJECT.md organisation scope.
 - Before AFC Pro, target senior national-team Assistant Coach, national U20 Head Coach, and officially verified AFC A-compatible men's professional-club Head Coach roles.
 - New candidates remain `To Verify`.
 - Generated data is committed and published only after validation passes.
@@ -42,13 +42,14 @@ Open the public FIC site and confirm:
 
 Do not add another feature unless it directly increases Julio Park's chance of obtaining a Head Coach or Assistant Coach interview. Routine data collection belongs to automation, not continued development.
 
-## Add a vacancy found in ChatGPT or Codex
+## Add a vacancy found in Work, ChatGPT, or Codex
 
-GitHub Actions cannot read a private chat. Codex must first verify the public source and create a JSON file in `data/inbox/`. Then run:
+GitHub Actions cannot read a private chat. Codex must first verify the public source, then use the single reviewed-input bridge:
 
 ```sh
-python scripts/add_vacancy.py --file data/inbox/example.json
+python scripts/import_chat_vacancies.py --file reviewed.json
+python scripts/import_chat_vacancies.py --inbox
 python scripts/validate_vacancies.py
 ```
 
-For several reviewed JSON files, run `python scripts/import_vacancies.py data/inbox`. The scheduled workflow also imports that folder and the lightweight pipeline automatically.
+Inline JSON is also accepted with `--json`. Successful inbox files move to `data/inbox/processed/`; rejected records are not published and are logged. The scheduled workflow processes the reviewed feed, inbox, and lightweight pipeline automatically.
