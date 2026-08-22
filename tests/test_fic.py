@@ -72,6 +72,22 @@ def test_contacts_are_grouped_by_exclusive_continent_and_country_accordions():
     assert 'directory.querySelectorAll(".contact-country[open]")' in javascript
 
 
+def test_priority_asian_club_contacts_are_published_without_inferred_private_data():
+    contacts = json.loads((ROOT / "contacts.json").read_text(encoding="utf-8"))
+    managed = [item for item in contacts if item["id"].startswith("club-priority-")]
+    assert len(managed) == 152
+    assert {"Philippines", "Uzbekistan", "Cambodia", "Myanmar", "Hong Kong, China", "Chinese Taipei", "Singapore", "Indonesia", "Malaysia", "Vietnam", "China PR"} <= {item["country"] for item in managed}
+    assert all(item["type"] == "Men's Professional Club" for item in managed)
+    assert all(item["sourceUrl"].startswith("https://") for item in managed)
+    assert all(item["dataPolicy"].startswith("Public professional route only") for item in managed)
+
+
+def test_priority_club_contact_ids_are_unique():
+    contacts = json.loads((ROOT / "contacts.json").read_text(encoding="utf-8"))
+    ids = [item["id"] for item in contacts]
+    assert len(ids) == len(set(ids))
+
+
 def test_countries_and_leagues_are_merged_and_show_essential_information():
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     javascript = (ROOT / "data.js").read_text(encoding="utf-8")

@@ -47,7 +47,8 @@
 - [x] Connect standardised vacancies to both site views without redesign
 - [x] Add FIFA official decision-maker collection for 20 requested AFC markets and all OFC FIFA members
 - [x] Publish federation Technical Director, General Secretary, national coach, and official contact routes on Contacts
-- [ ] Build and verify the top-division club roster and public decision-maker routes market by market
+- [x] Publish current club rosters and safe official league/association contact routes for the 11 priority Asian markets
+- [ ] Replace league-routed club contacts with verified club-direct emails, contact pages, and official Instagram accounts market by market
 
 ## Current next task
-Operate the reviewed Work-to-GitHub vacancy bridge and verify the first live Head Coach or Assistant Coach vacancy import.
+Verify club-direct public contacts for the highest-priority teams, beginning with the Philippines, Cambodia, Hong Kong, Chinese Taipei, Singapore, Indonesia, Malaysia, and Vietnam.

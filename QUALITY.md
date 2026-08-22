@@ -58,3 +58,6 @@ Do not commit invalid data. Preserve the last known-good version and report the 
 - Federation decision-maker records must come from FIFA, AFC/OFC, or the association's official site.
 - Store only public professional contacts; never infer or discover private personal addresses.
 - A named decision-maker is not automatically permission to send a CV. Use the official association route and confirm the intended recipient.
+- A current official participant list may create a club record, but it does not prove a club-direct email, decision-maker, Instagram account, or AFC A recognition.
+- When no club-direct public contact is verified, publish the official league/association route and label the direct contact `Not Public`.
+- Never infer domestic Head Coach eligibility from Transfermarkt, a coach's current licence, or an AFC continental competition minimum.

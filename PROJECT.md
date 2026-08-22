@@ -70,6 +70,10 @@ Relevant opportunities are found early, verified, deduplicated, safely committed
 FIC is feature-complete for its first stable daily-operation release. See `OPERATIONS.md`.
 Further work should focus on verified opportunities, high-value contacts, and application preparation rather than adding features.
 
+## Priority Asian club-contact coverage
+
+The live Contacts database includes current official participant rosters and safe public contact routes for the Philippines, Uzbekistan, Cambodia, Myanmar, Hong Kong, Chinese Taipei, Singapore, Indonesia, Malaysia, Vietnam, China League One, and a first verified China League Two cohort. Club-direct email, decision-maker, and social fields remain `Not Public` until confirmed on an official public source.
+
 ## Pre-Pro career priorities
 
 Until Julio obtains the AFC Pro Diploma:

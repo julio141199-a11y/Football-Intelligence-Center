@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Added
+- Added 152 current professional-club records across 11 priority Asian markets, using official league or association participant sources and safe public contact routes
+- Added a repeatable priority-club contact updater that preserves existing contacts and replaces only its own managed records
 - Added the Work/ChatGPT reviewed-vacancy bridge and single import command.
 - Added the single `import_chat_vacancies.py` reviewed-input interface with file, inline JSON, and inbox modes.
 - Added chat-feed-to-vacancy-to-website integration coverage.
@@ -30,6 +32,8 @@
 - Pre-Pro career profile based on the AFC Competition Operations Manual 2026
 
 ### Changed
+- Updated 11 priority country/league licence summaries: Philippines and Chinese Taipei have published AFC A-compatible routes subject to association recognition; the other reviewed domestic markets remain association-confirmation-required
+- Marked unverified club-direct email, decision-maker, phone, and social fields as `Not Public` instead of guessing them
 - Daily vacancy processing now consumes chat opportunities, reviewed inbox files, and pipeline opportunities together.
 - Work/Chat imports now allow only Head Coach and Assistant Coach and fail closed for Fitness Coach and all other roles.
 - Vacancy deduplication now checks both stable IDs and source hashes.
