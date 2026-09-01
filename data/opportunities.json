@@ -1,5 +1,22 @@
 [
   {
+    "id": "opportunity-c1b1a7f5c8083740",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Vacancy",
+    "country": "Regional",
+    "region": "Oceania",
+    "organisation": "Oceania Football Confederation",
+    "title": "Vacancy | Club Licensing & Compliance Manager",
+    "sourceUrl": "https://www.oceaniafootball.com/vacancy-club-licensing-compliance-manager/",
+    "sourceType": "federation",
+    "official": true,
+    "careerPriority": "Monitor",
+    "licenceNote": "Target role detected; team level and licence fit require verification.",
+    "detectedAt": "2026-09-01T13:50:25+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "opportunity-5712ec21d257dbef",
     "status": "To Verify",
     "role": "Head Coach",
