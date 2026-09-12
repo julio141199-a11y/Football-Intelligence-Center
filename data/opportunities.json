@@ -1,5 +1,22 @@
 [
   {
+    "id": "opportunity-2a768d7c919f0996",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Vacancy",
+    "country": "International",
+    "region": "International",
+    "organisation": "Jobs In Football",
+    "title": "Recruitment Coaching and Development Manager",
+    "sourceUrl": "https://jobsinfootball.com/job/132491/recruitment-coaching-and-development-manager/",
+    "sourceType": "job-site",
+    "official": false,
+    "careerPriority": "Monitor",
+    "licenceNote": "Target role detected; team level and licence fit require verification.",
+    "detectedAt": "2026-09-12T12:32:47+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "opportunity-c1b1a7f5c8083740",
     "status": "To Verify",
     "role": "Head Coach",
