@@ -1,5 +1,22 @@
 [
   {
+    "id": "opportunity-43768d970a65cc57",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Vacancy",
+    "country": "International",
+    "region": "International",
+    "organisation": "Jobs In Football",
+    "title": "Access Management Systems & Applications Manager",
+    "sourceUrl": "https://jobsinfootball.com/job/131570/access-management-systems-applications-manager/",
+    "sourceType": "job-site",
+    "official": false,
+    "careerPriority": "Monitor",
+    "licenceNote": "Target role detected; team level and licence fit require verification.",
+    "detectedAt": "2026-09-15T01:06:20+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "opportunity-2a768d7c919f0996",
     "status": "To Verify",
     "role": "Head Coach",

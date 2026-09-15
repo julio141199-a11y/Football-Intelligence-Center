@@ -296,5 +296,42 @@
       "updated_at": "2026-09-12T12:33:29+00:00",
       "source_hash": "a8247ba29ee1b6b7d1b6ff8ba53cd4a8b99b32b42d9387996c8909e86c815892"
     }
+  },
+  {
+    "vacancy_id": "vacancy-7338a54b991acac0",
+    "action": "CREATED",
+    "at": "2026-09-15T01:07:05+00:00",
+    "after": {
+      "id": "vacancy-7338a54b991acac0",
+      "role": "Head Coach",
+      "organization": "Jobs In Football",
+      "country": "International",
+      "region": "International",
+      "team_gender": "",
+      "team_level": "",
+      "league": "",
+      "source_type": "job-site",
+      "official_source_url": "https://jobsinfootball.com/job/131570/access-management-systems-applications-manager/",
+      "application_url": "",
+      "contact_email": "",
+      "contact_phone": "",
+      "posted_date": "2026-09-15",
+      "deadline": "",
+      "licence_requirement": "Target role detected; team level and licence fit require verification.",
+      "language_requirement": "",
+      "contract_type": "",
+      "salary": "",
+      "housing": "",
+      "visa": "",
+      "flights": "",
+      "status": "UNVERIFIED",
+      "accuracy_level": "",
+      "fit_score": "",
+      "fit_assessment": "Target role detected; team level and licence fit require verification.",
+      "last_checked": "2026-09-15",
+      "created_at": "2026-09-15T01:07:05+00:00",
+      "updated_at": "2026-09-15T01:07:05+00:00",
+      "source_hash": "bc8fa16c5df380198cfe782898e988d43c0c5cc1d8f45e740a5e8a249b1c9aa2"
+    }
   }
 ]
