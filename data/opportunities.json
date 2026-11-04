@@ -1,5 +1,22 @@
 [
   {
+    "id": "opportunity-d9660eab9f26b442",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Coach Change",
+    "country": "International",
+    "region": "International",
+    "organisation": "BBC Sport Football",
+    "title": "Sporting beat Shakhtar day after head coach sacked",
+    "sourceUrl": "https://www.bbc.com/sport/football/live/cv5ynx579l0lt",
+    "sourceType": "trusted-news",
+    "official": false,
+    "careerPriority": "Monitor",
+    "licenceNote": "Target role detected; team level and licence fit require verification.",
+    "detectedAt": "2026-11-04T02:50:53+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "opportunity-43768d970a65cc57",
     "status": "To Verify",
     "role": "Head Coach",

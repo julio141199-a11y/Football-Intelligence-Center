@@ -333,5 +333,42 @@
       "updated_at": "2026-09-15T01:07:05+00:00",
       "source_hash": "bc8fa16c5df380198cfe782898e988d43c0c5cc1d8f45e740a5e8a249b1c9aa2"
     }
+  },
+  {
+    "vacancy_id": "vacancy-f4ae0fa9ac761535",
+    "action": "CREATED",
+    "at": "2026-11-04T02:51:37+00:00",
+    "after": {
+      "id": "vacancy-f4ae0fa9ac761535",
+      "role": "Head Coach",
+      "organization": "BBC Sport Football",
+      "country": "International",
+      "region": "International",
+      "team_gender": "",
+      "team_level": "",
+      "league": "",
+      "source_type": "trusted-news",
+      "official_source_url": "https://www.bbc.com/sport/football/live/cv5ynx579l0lt",
+      "application_url": "",
+      "contact_email": "",
+      "contact_phone": "",
+      "posted_date": "2026-11-04",
+      "deadline": "",
+      "licence_requirement": "Target role detected; team level and licence fit require verification.",
+      "language_requirement": "",
+      "contract_type": "",
+      "salary": "",
+      "housing": "",
+      "visa": "",
+      "flights": "",
+      "status": "UNVERIFIED",
+      "accuracy_level": "",
+      "fit_score": "",
+      "fit_assessment": "Target role detected; team level and licence fit require verification.",
+      "last_checked": "2026-11-04",
+      "created_at": "2026-11-04T02:51:37+00:00",
+      "updated_at": "2026-11-04T02:51:37+00:00",
+      "source_hash": "fb4c730f2c6b1f91cb343834a7fc9b7e03258b4f181acd7d8130afaad87b8a03"
+    }
   }
 ]
