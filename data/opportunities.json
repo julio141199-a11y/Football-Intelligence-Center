@@ -1,5 +1,22 @@
 [
   {
+    "id": "opportunity-5988b4f0a2d36ba2",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Coach Change",
+    "country": "Canada",
+    "region": "Canada",
+    "organisation": "Canadian Premier League",
+    "title": "Inter Toronto announce departure of head coach Mauro Eustáquio06/11/2026",
+    "sourceUrl": "https://www.cplsoccer.com/news/inter-toronto-announce-departure-of-head-coach-mauro-eustaquio",
+    "sourceType": "league",
+    "official": true,
+    "careerPriority": "Priority 2",
+    "licenceNote": "Professional-club Head Coach — official domestic licence and recognition rules must be verified.",
+    "detectedAt": "2026-11-07T02:29:26+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "opportunity-d9660eab9f26b442",
     "status": "To Verify",
     "role": "Head Coach",
