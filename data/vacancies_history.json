@@ -407,5 +407,42 @@
       "updated_at": "2026-11-07T02:30:08+00:00",
       "source_hash": "696c1ee23300a73123df5520587cbfdf9476a6f3f2d080a78f0e02ad71fd894f"
     }
+  },
+  {
+    "vacancy_id": "vacancy-b3a4c9e7ab14c2ac",
+    "action": "CREATED",
+    "at": "2026-11-27T04:41:40+00:00",
+    "after": {
+      "id": "vacancy-b3a4c9e7ab14c2ac",
+      "role": "Head Coach",
+      "organization": "Jobs In Football",
+      "country": "International",
+      "region": "International",
+      "team_gender": "",
+      "team_level": "",
+      "league": "",
+      "source_type": "job-site",
+      "official_source_url": "https://jobsinfootball.com/job/136172/senior-local-recruitment-manager/",
+      "application_url": "",
+      "contact_email": "",
+      "contact_phone": "",
+      "posted_date": "2026-11-27",
+      "deadline": "",
+      "licence_requirement": "Target role detected; team level and licence fit require verification.",
+      "language_requirement": "",
+      "contract_type": "",
+      "salary": "",
+      "housing": "",
+      "visa": "",
+      "flights": "",
+      "status": "UNVERIFIED",
+      "accuracy_level": "",
+      "fit_score": "",
+      "fit_assessment": "Target role detected; team level and licence fit require verification.",
+      "last_checked": "2026-11-27",
+      "created_at": "2026-11-27T04:41:40+00:00",
+      "updated_at": "2026-11-27T04:41:40+00:00",
+      "source_hash": "1bb1e8465ba13cc1e2187ac658a7fe6944fd62e44dde3bd02deb550dee54f40b"
+    }
   }
 ]

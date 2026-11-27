@@ -1,5 +1,22 @@
 [
   {
+    "id": "opportunity-d9dea803853d6710",
+    "status": "To Verify",
+    "role": "Head Coach",
+    "eventType": "Vacancy",
+    "country": "International",
+    "region": "International",
+    "organisation": "Jobs In Football",
+    "title": "Senior Local Recruitment Manager",
+    "sourceUrl": "https://jobsinfootball.com/job/136172/senior-local-recruitment-manager/",
+    "sourceType": "job-site",
+    "official": false,
+    "careerPriority": "Monitor",
+    "licenceNote": "Target role detected; team level and licence fit require verification.",
+    "detectedAt": "2026-11-27T04:40:54+00:00",
+    "lastVerified": "Needs verification"
+  },
+  {
     "id": "opportunity-5988b4f0a2d36ba2",
     "status": "To Verify",
     "role": "Head Coach",
